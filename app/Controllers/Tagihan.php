@@ -141,12 +141,12 @@ class Tagihan extends ResourcePresenter
     {
         $this->db = \Config\Database::connect();
         if ($id != null) {
-            $this->db->table('tahun_ajaran')
+            $this->db->table('tagihan')
                 ->set('deleted_at', null, true)
                 ->where(['id_tagihan' => $id])
                 ->update();
         } else {
-            $this->db->table('tahun_ajaran')
+            $this->db->table('tagihan')
                 ->set('deleted_at', null, true)
                 ->where('deleted_at is NOT NULL', NULL, FALSE)
                 ->update();

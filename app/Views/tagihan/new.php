@@ -44,10 +44,21 @@
           </div>
           <div class="form-group">
             <label for="">Bulan</label>
-            <input type="text" name="bulan" value="<?= old('bulan'); ?>" class="form-control <?= $validation->hasError('bulan') ? 'is-invalid' : null ?>" autofocus>
-            <div class="invalid-feedback">
-              <?= $validation->getError('bulan'); ?>
-            </div>
+            <select name="bulan" id="bulan" class="form-control" required>
+              <option value="" hidden></option>
+              <option value="Januari">Januari</option>
+              <option value="Februari">Februari</option>
+              <option value="Maret">Maret</option>
+              <option value="April">April</option>
+              <option value="Mei">Mei</option>
+              <option value="Juni">Juni</option>
+              <option value="Juli">Juli</option>
+              <option value="Agustus">Agustus</option>
+              <option value="September">September</option>
+              <option value="Oktober">Oktober</option>
+              <option value="November">November</option>
+              <option value="Desember">Desember</option>
+            </select>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>

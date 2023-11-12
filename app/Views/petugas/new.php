@@ -8,7 +8,7 @@
 <section class="section">
   <div class="section-header">
     <div class="section-header-back">
-      <a href="<?= site_url('jurusan'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+      <a href="<?= site_url('petugas'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
     <h1>Create Petugas</h1>
   </div>
@@ -22,11 +22,15 @@
       </div>
       <div class="card-body col-md-6">
         <?php $validation = \Config\Services::validation(); ?>
-        <form action="<?= site_url('jurusan'); ?>" method="post" autocomplete="off">
+        <form action="<?= site_url('petugas'); ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
           <div class="form-group">
             <label for="">Username</label>
             <input type="text" name="username" value="<?= old('username'); ?>" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" name="email" value="<?= old('email'); ?>" class="form-control" autofocus>
           </div>
           <div class="form-group">
             <label for="">Password</label>
