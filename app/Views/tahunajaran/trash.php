@@ -1,16 +1,16 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Data Petugas &mdash; SPPCERIA</title>
+<title>Data Trash &mdash; SPPCERIA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
   <div class="section-header">
-    <h1>Petugas</h1>
-    <div class="section-header-button">
-      <a href="<?= site_url('petugas/new'); ?>" class="btn btn-primary">Add New</a>
+    <div class="section-header-back">
+      <a href="<?= site_url('tahunajaran'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
+    <h1>Tahun Ajaran Trash</h1>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -37,36 +37,35 @@
     <div class="card">
 
       <div class="card-header">
-        <h4>Data Petugas</h4>
+        <h4>Data Tahun Ajaran - Trash</h4>
         <div class="card-header-action">
-          <a href="<?= site_url('petugas/trash'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
+          <a href="<?= site_url('tahunajaran/restore'); ?>" class="btn btn-info">Restore All</a>
+          <form action="<?= site_url('tahunajaran/delete2/'); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
+            <?= csrf_field(); ?>
+            <button href="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
         </div>
       </div>
-      <div class="card-body table-responsive">
-        <table class="table table-striped table-md" id="table1">
-          <thead>
+      <div class="card body table-responsive">
+        <table class="table table-striped table-md">
+          <tbody>
             <tr>
               <th>#</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Nama Petugas</th>
-              <th>Level</th>
+              <th>Tahun Ajaran</th>
+              <th>Keterangan</th>
               <th>Action</th>
             </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($petugas_data as $key => $value) : ?>
+            <?php foreach ($tahunajaran_data as $key => $value) : ?>
               <tr>
                 <td><?= $key + 1; ?></td>
-                <td><?= $value->username; ?></td>
-                <td><?= $value->email; ?></td>
-                <td><?= $value->nama_petugas; ?></td>
-                <td><?= $value->level; ?></td>
+                <td><?= $value->tahun; ?></td>
+                <td><?= $value->keterangan; ?></td>
                 <td class="text-center" style="width: 15%;">
-                  <a href="<?= site_url('petugas/edit/' . $value->id_petugas); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                  <form action="<?= site_url('petugas/delete/' . $value->id_petugas); ?>" method="post" class="d-inline" id="del-<?= $value->id_petugas; ?>">
+                  <a href="<?= site_url('tahunajaran/restore/' . $value->id_tahunajaran); ?>" class="btn btn-info btn-sm">Restore</a>
+                  <form action="<?= site_url('tahunajaran/delete2/' . $value->id_tahunajaran); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
                     <?= csrf_field(); ?>
-                    <button href="submit" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?= $value->id_petugas; ?>)"><i class="fas fa-trash"></i></button>
+                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                    <button href="submit" class="btn btn-danger btn-sm">Delete</button>
                   </form>
                 </td>
               </tr>

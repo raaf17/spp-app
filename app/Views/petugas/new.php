@@ -40,18 +40,17 @@
             <label for="">Level</label>
             <select name="level" id="level" class="form-control" required>
               <option value="" hidden>Pilih Level</option>
-              <option value="admin">Admin</option>
-              <option value="petugas">Petugas</option>
+              <option value="admin" name="admin">Admin</option>
+              <option value="petugas" name="petugas">Petugas</option>
             </select>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>
             <button type="reset" class="btn btn-secondary">Reset</button>
           </div>
+        </form>
       </div>
-      </form>
     </div>
-  </div>
   </div>
 </section>
 <?= $this->endSection() ?>

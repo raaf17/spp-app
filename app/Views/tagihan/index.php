@@ -1,15 +1,15 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Data Petugas &mdash; SPPCERIA</title>
+<title>Data Tagihan &mdash; SPPCERIA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
   <div class="section-header">
-    <h1>Petugas</h1>
+    <h1>Tagihan</h1>
     <div class="section-header-button">
-      <a href="<?= site_url('petugas/new'); ?>" class="btn btn-primary">Add New</a>
+      <a href="<?= site_url('tagihan/new'); ?>" class="btn btn-primary">Add New</a>
     </div>
   </div>
 
@@ -37,9 +37,9 @@
     <div class="card">
 
       <div class="card-header">
-        <h4>Data Petugas</h4>
+        <h4>Data Tagihan</h4>
         <div class="card-header-action">
-          <a href="<?= site_url('petugas/trash'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
+          <a href="<?= site_url('tagihan/trash'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
         </div>
       </div>
       <div class="card-body table-responsive">
@@ -47,26 +47,26 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Nama Petugas</th>
-              <th>Level</th>
+              <th>Nama Tagihan</th>
+              <th>Nominal</th>
+              <th>Keterangan</th>
+              <th>Bulan</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($petugas_data as $key => $value) : ?>
+            <?php foreach ($tagihan_data as $key => $value) : ?>
               <tr>
                 <td><?= $key + 1; ?></td>
-                <td><?= $value->username; ?></td>
-                <td><?= $value->email; ?></td>
-                <td><?= $value->nama_petugas; ?></td>
-                <td><?= $value->level; ?></td>
+                <td><?= $value->nama_tagihan; ?></td>
+                <td><?= $value->nominal; ?></td>
+                <td><?= $value->keterangan; ?></td>
+                <td><?= $value->bulan; ?></td>
                 <td class="text-center" style="width: 15%;">
-                  <a href="<?= site_url('petugas/edit/' . $value->id_petugas); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                  <form action="<?= site_url('petugas/delete/' . $value->id_petugas); ?>" method="post" class="d-inline" id="del-<?= $value->id_petugas; ?>">
+                  <a href="<?= site_url('tagihan/edit/' . $value->id_tagihan); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                  <form action="<?= site_url('tagihan/delete/' . $value->id_tagihan); ?>" method="post" class="d-inline" id="del-<?= $value->id_tagihan; ?>">
                     <?= csrf_field(); ?>
-                    <button href="submit" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?= $value->id_petugas; ?>)"><i class="fas fa-trash"></i></button>
+                    <button href="submit" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?= $value->id_tagihan; ?>)"><i class="fas fa-trash"></i></button>
                   </form>
                 </td>
               </tr>
