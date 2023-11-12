@@ -245,18 +245,19 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="<?= site_url(); ?>">Pembayaran SPP</a>
+            <img src="<?= base_url() ?>/img/esemkita-lg.png" width="30px" alt="">
+            <a href="<?= site_url(); ?>">SPPKITA</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="<?= site_url(); ?>">PS</a>
+            <a href="<?= site_url(); ?>">SK</a>
           </div>
           <ul class="sidebar-menu">
               <?= $this->include('layout/menu'); ?>
             </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="https://getstisla.com/docs" class="btn btn-primary btn-sm btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Upgrade to Pro
+              <a href="<?= site_url('documentation'); ?>" class="btn btn-primary btn-sm btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Documentation
               </a>
             </div>
         </aside>

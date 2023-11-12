@@ -4,36 +4,34 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Petugas extends Migration
+class LogActivity extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_petugas' => [
+            'id_activity' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => false,
                 'auto_increment' => true,
             ],
-            'username' => [
+            'subject' => [
+                'type'       => 'TEXT',
+            ],
+            'detail' => [
+                'type'       => 'JSON',
+            ],
+            'url' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '25',
+                'constraint'     => '255',
             ],
-            'email' => [
+            'method' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '50',
+                'constraint'     => '255',
             ],
-            'password' => [
-                'type' => 'VARCHAR',
-                'constraint' => '50',
-            ],
-            'nama_petugas' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'level' => [
-                'type' => 'VARCHAR',
-                'constraint' => '10',
+            'agent' => [
+                'type'       => 'VARCHAR',
+                'constraint'     => '255',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -48,12 +46,12 @@ class Petugas extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_petugas', true);
-        $this->forge->createTable('petugas');
+        $this->forge->addKey('id_activity', true);
+        $this->forge->createTable('log_activity');
     }
 
     public function down()
     {
-        $this->forge->dropTable('petugas');
+        $this->forge->dropTable('log_activity');
     }
 }

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PetugasModel extends Model
+class TahunAjaranModel extends Model
 {
-    protected $table            = 'petugas';
-    protected $primaryKey       = 'id_petugas';
+    protected $table            = 'tahun_ajaran';
+    protected $primaryKey       = 'id_tahunajaran';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['username', 'email', 'password', 'nama_petugas', 'level'];
+    protected $allowedFields    = ['tahun', 'keterangan'];
     protected $useTimestamps    = true;
     protected $useSoftDeletes   = true;
     protected $deletedField  = 'deleted_at';

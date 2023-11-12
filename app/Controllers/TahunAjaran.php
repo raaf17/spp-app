@@ -2,18 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Models\PetugasModel;
+use App\Models\TahunAjaranModel;
 use CodeIgniter\RESTful\ResourcePresenter;
 
-class Petugas extends ResourcePresenter
+class TahunAjaran extends ResourcePresenter
 {
     protected $db;
-    protected $petugas;
-    protected $helpers = ['custom'];
+    protected $tahunajaran;
 
     public function __construct()
     {
-        $this->petugas = new PetugasModel();
+        $this->tahunajaran = new TahunAjaranModel();
     }
     /**
      * Present a view of resource objects
@@ -22,8 +21,8 @@ class Petugas extends ResourcePresenter
      */
     public function index()
     {
-        $data['petugas_data'] = $this->petugas->findAll();
-        return view('petugas/index', $data);
+        $data['tahunajaran_data'] = $this->tahunajaran->findAll();
+        return view('tahunajaran/index', $data);
     }
 
     /**
@@ -45,7 +44,7 @@ class Petugas extends ResourcePresenter
      */
     public function new()
     {
-        return view('petugas/new');
+        return view('tahunajaran/new');
     }
 
     /**
@@ -57,11 +56,11 @@ class Petugas extends ResourcePresenter
     public function create()
     {
         // $validate = $this->validate([
-        //     'nama_petugas' => [
+        //     'nama_jurusan' => [
         //         'rules' => 'required|min_length[3]',
         //         'errors' => [
-        //             'required' => 'Nama Petugas tidak boleh kosong',
-        //             'min_length' => 'Nama Petugas minimal 3 karakter',
+        //             'required' => 'Nama Jurusan tidak boleh kosong',
+        //             'min_length' => 'Nama Jurusan minimal 3 karakter',
         //         ],
         //     ],
         // ]);
@@ -69,8 +68,8 @@ class Petugas extends ResourcePresenter
         //     return redirect()->back()->withInput();
         // }
         $data = $this->request->getPost();
-        $this->petugas->insert($data);
-        return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Disimpan');
+        $this->tahunajaran->insert($data);
+        return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -82,10 +81,10 @@ class Petugas extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $petugas = $this->petugas->where('id_petugas', $id)->first();
-        if (is_object($petugas)) {
-            $data['petugas_data'] = $petugas;
-            return view('petugas/edit', $data);
+        $tahunajaran = $this->tahunajaran->where('id_tahunajaran', $id)->first();
+        if (is_object($tahunajaran)) {
+            $data['tahunajaran_data'] = $tahunajaran;
+            return view('tahunajaran/edit', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
@@ -102,8 +101,8 @@ class Petugas extends ResourcePresenter
     public function update($id = null)
     {
         $data = $this->request->getPost();
-        $this->petugas->update($id, $data);
-        return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Diupdate');
+        $this->tahunajaran->update($id, $data);
+        return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -127,43 +126,43 @@ class Petugas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->petugas->where('id_petugas', $id)->delete();
-        $this->petugas->delete($id);
-        return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Dihapus');
+        // $this->tahunajaran->where('id_tahunajaran', $id)->delete();
+        $this->tahunajaran->delete($id);
+        return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Dihapus');
     }
 
     public function trash()
     {
-        $data['petugas_data'] = $this->petugas->onlyDeleted()->findAll();
-        return view('petugas/trash', $data);
+        $data['tahunajaran_data'] = $this->tahunajaran->onlyDeleted()->findAll();
+        return view('tahunajaran/trash', $data);
     }
 
     public function restore($id = null)
     {
         $this->db = \Config\Database::connect();
         if ($id != null) {
-            $this->db->table('petugas')
+            $this->db->table('tahun_ajaran')
                 ->set('deleted_at', null, true)
-                ->where(['id_petugas' => $id])
+                ->where(['id_tahunajaran' => $id])
                 ->update();
         } else {
-            $this->db->table('petugas')
+            $this->db->table('tahun_ajaran')
                 ->set('deleted_at', null, true)
                 ->where('deleted_at is NOT NULL', NULL, FALSE)
                 ->update();
         }
         if ($this->db->affectedRows() > 0) {
-            return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Direstore');
+            return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Direstore');
         }
     }
     public function delete2($id = null)
     {
         if($id != null) {
-            $this->petugas->delete($id, true);
-            return redirect()->to(site_url('petugas/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
+            $this->tahunajaran->delete($id, true);
+            return redirect()->to(site_url('tahunajaran/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
         } else {
-            $this->petugas->purgeDeleted();
-            return redirect()->to(site_url('petugas/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
+            $this->tahunajaran->purgeDeleted();
+            return redirect()->to(site_url('tahunajaran/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
         }
     }
 }

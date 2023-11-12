@@ -4,36 +4,31 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Petugas extends Migration
+class Tagihan extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_petugas' => [
+            'id_tagihan' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => false,
                 'auto_increment' => true,
             ],
-            'username' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '25',
-            ],
-            'email' => [
+            'nama_tagihan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
             ],
-            'password' => [
-                'type' => 'VARCHAR',
+            'nominal' => [
+                'type'       => 'BIGINT',
                 'constraint' => '50',
             ],
-            'nama_petugas' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
+            'keterangan' => [
+                'type'       => 'TEXT',
             ],
-            'level' => [
-                'type' => 'VARCHAR',
-                'constraint' => '10',
+            'bulan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '30',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -48,12 +43,12 @@ class Petugas extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_petugas', true);
-        $this->forge->createTable('petugas');
+        $this->forge->addKey('id_tagihan', true);
+        $this->forge->createTable('tagihan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('petugas');
+        $this->forge->dropTable('tagihan');
     }
 }

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PetugasModel extends Model
+class LogActivityModel extends Model
 {
-    protected $table            = 'petugas';
-    protected $primaryKey       = 'id_petugas';
+    protected $table            = 'log_activity';
+    protected $primaryKey       = 'id_activity';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['username', 'email', 'password', 'nama_petugas', 'level'];
+    protected $allowedFields    = ['subject', 'detail', 'url', 'method', 'agent'];
     protected $useTimestamps    = true;
     protected $useSoftDeletes   = true;
     protected $deletedField  = 'deleted_at';
