@@ -33,7 +33,7 @@
           </div>
           <div class="form-group">
             <label for="">Keterangan Jurusan</label>
-            <textarea name="info_group" class="form-control"><?= $jurusan_data->info_group; ?></textarea>
+            <textarea name="keterangan" class="form-control"><?= $jurusan_data->keterangan; ?></textarea>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>

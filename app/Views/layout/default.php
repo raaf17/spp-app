@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <?= $this->renderSection('title'); ?>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="<?=base_url()?>/template/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?=base_url()?>/template/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="<?=base_url()?>/template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <!-- CSS Libraries -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="<?=base_url()?>/template/assets/css/style.css">
-  <link rel="stylesheet" href="<?=base_url()?>/template/assets/css/components.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/assets/css/style.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/assets/css/components.css">
 </head>
 
-<body><script id="__bs_script__">//<![CDATA[
+<body>
+  <script id="__bs_script__">
+    //<![CDATA[
     document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.27.10'><\/script>".replace("HOST", location.hostname));
-//]]></script>
+    //]]>
+  </script>
 
   <div id="app">
     <div class="main-wrapper">
@@ -56,19 +60,19 @@
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="<?=base_url()?>/template/assets/img/products/product-3-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" src="<?= base_url() ?>/template/assets/img/products/product-3-50.png" alt="product">
                   oPhone S9 Limited Edition
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="<?=base_url()?>/template/assets/img/products/product-2-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" src="<?= base_url() ?>/template/assets/img/products/product-2-50.png" alt="product">
                   Drone X2 New Gen-7
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="<?=base_url()?>/template/assets/img/products/product-1-50.png" alt="product">
+                  <img class="mr-3 rounded" width="30" src="<?= base_url() ?>/template/assets/img/products/product-1-50.png" alt="product">
                   Headphone Blitz
                 </a>
               </div>
@@ -105,7 +109,7 @@
               <div class="dropdown-list-content dropdown-list-message">
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-1.png" class="rounded-circle">
+                    <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-1.png" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -116,7 +120,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-2.png" class="rounded-circle">
+                    <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-2.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Dedik Sugiharto</b>
@@ -126,7 +130,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-3.png" class="rounded-circle">
+                    <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-3.png" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -137,7 +141,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-4.png" class="rounded-circle">
+                    <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-4.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Ardian Rahardiansyah</b>
@@ -147,7 +151,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-5.png" class="rounded-circle">
+                    <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-5.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Alfa Zulkarnain</b>
@@ -221,8 +225,9 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="<?=base_url()?>/template/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Rafi</div></a>
+              <img alt="image" src="<?= base_url() ?>/template/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+              <div class="d-sm-none d-lg-inline-block">Hi, Rafi</div>
+            </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -252,14 +257,14 @@
             <a href="<?= site_url(); ?>">SK</a>
           </div>
           <ul class="sidebar-menu">
-              <?= $this->include('layout/menu'); ?>
-            </ul>
+            <?= $this->include('layout/menu'); ?>
+          </ul>
 
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="<?= site_url('documentation'); ?>" class="btn btn-primary btn-sm btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-              </a>
-            </div>
+          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            <a href="<?= site_url('documentation'); ?>" class="btn btn-primary btn-sm btn-block btn-icon-split">
+              <i class="fas fa-rocket"></i> Documentation
+            </a>
+          </div>
         </aside>
       </div>
 
@@ -269,7 +274,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauv.al/">Kipli Media</a>
+          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauv.al/">WebCrafters</a>
         </div>
         <div class="footer-right">
           v1.0
@@ -287,14 +292,19 @@
   <script src="<?= base_url() ?>/template/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="<?= base_url() ?>/template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="<?=base_url()?>/template/assets/js/stisla.js"></script>
+  <script src="<?= base_url() ?>/template/assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
+  <script src="<?= base_url() ?>/template/assets/modules/chart.min.js"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="<?= base_url() ?>/template/assets/js/page/modules-chartjs.js"></script>
 
   <!-- Template JS File -->
-  <script src="<?=base_url()?>/template/assets/js/scripts.js"></script>
-  <script src="<?=base_url()?>/template/assets/js/custom.js"></script>
+  <script src="<?= base_url() ?>/template/assets/js/scripts.js"></script>
+  <script src="<?= base_url() ?>/template/assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
 </body>
+
 </html>
