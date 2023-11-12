@@ -29,7 +29,7 @@ class Petugas extends Migration
             ],
             'level' => [
                 'type' => 'ENUM',
-                'constraint' => ['admin', 'petugas', 'siswa'],
+                'constraint' => ['admin', 'petugas',],
             ],
             'created_at' => [
                 'type' => 'DATETIME',
