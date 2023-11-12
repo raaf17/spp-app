@@ -42,7 +42,6 @@
               <option value="" hidden>Pilih Level</option>
               <option value="admin">Admin</option>
               <option value="petugas">Petugas</option>
-              <option value="siswa">Siswa</option>
             </select>
           </div>
           <div>
