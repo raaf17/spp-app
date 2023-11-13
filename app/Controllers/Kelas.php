@@ -60,18 +60,18 @@ class Kelas extends ResourcePresenter
      */
     public function create()
     {
-        $validate = $this->validate([
-            'nama_kelas' => [
-                'rules' => 'required|min_length[3]',
-                'errors' => [
-                    'required' => 'Nama Kelas tidak boleh kosong',
-                    'min_length' => 'Nama Kelas minimal 3 karakter',
-                ],
-            ],
-        ]);
-        if (!$validate) {
-            return redirect()->back()->withInput();
-        }
+        // $validate = $this->validate([
+        //     'nama_kelas' => [
+        //         'rules' => 'required|min_length[3]',
+        //         'errors' => [
+        //             'required' => 'Nama Kelas tidak boleh kosong',
+        //             'min_length' => 'Nama Kelas minimal 3 karakter',
+        //         ],
+        //     ],
+        // ]);
+        // if (!$validate) {
+        //     return redirect()->back()->withInput();
+        // }
         $data = $this->request->getPost();
         $this->kelas->insert($data);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Disimpan');

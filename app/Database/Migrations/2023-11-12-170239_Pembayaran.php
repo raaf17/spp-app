@@ -12,11 +12,13 @@ class Pembayaran extends Migration
             'id_pembayaran' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => false,
+                'unsigned'       => true,
                 'auto_increment' => true
             ],
             'id_petugas' => [
                 'type'       => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
             ],
             'nisn' => [
                 'type'       => 'VARCHAR',
@@ -35,6 +37,8 @@ class Pembayaran extends Migration
             ],
             'id_spp' => [
                 'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
             ],
             'jumlah_bayar' => [
                 'type' => 'BIGINT',

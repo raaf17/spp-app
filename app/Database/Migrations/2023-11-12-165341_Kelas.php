@@ -4,23 +4,25 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TahunAjaran extends Migration
+class Kelas extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_tahunajaran' => [
+            'id_kelas' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => false,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'tahun' => [
+            'nama_kelas' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '20',
             ],
-            'keterangan' => [
-                'type'       => 'TEXT',
+            'id_jurusan' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned'       => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -35,12 +37,14 @@ class TahunAjaran extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_tahunajaran', true);
-        $this->forge->createTable('tahun_ajaran');
+        $this->forge->addKey('id_kelas', true);
+        $this->forge->addForeignKey('id_jurusan', 'jurusan', 'id_jurusan');
+        $this->forge->createTable('kelas');
     }
 
     public function down()
     {
-        $this->forge->dropTable('tahun_ajaran');
+        $this->forge->dropForeignKey('kelas', 'kelas_id_jurusan_foreign');
+        $this->forge->dropTable('kelas');
     }
 }

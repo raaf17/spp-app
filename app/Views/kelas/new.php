@@ -21,7 +21,8 @@
         <h4>Data Kelas</h4>
       </div>
       <div class="card-body col-md-6">
-        <?php $validation = \Config\Services::validation(); ?>
+        <?php $validation = \Config\Services::validation();
+        ?>
         <form action="<?= site_url('kelas'); ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
           <div class="form-group">

@@ -157,7 +157,7 @@ class TahunAjaran extends ResourcePresenter
     }
     public function delete2($id = null)
     {
-        if($id != null) {
+        if ($id != null) {
             $this->tahunajaran->delete($id, true);
             return redirect()->to(site_url('tahunajaran/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
         } else {

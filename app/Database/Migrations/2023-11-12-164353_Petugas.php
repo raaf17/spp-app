@@ -4,34 +4,36 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class LogActivity extends Migration
+class Petugas extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_activity' => [
+            'id_petugas' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => false,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'subject' => [
-                'type'       => 'TEXT',
-            ],
-            'detail' => [
-                'type'       => 'JSON',
-            ],
-            'url' => [
+            'username' => [
                 'type'       => 'VARCHAR',
-                'constraint'     => '255',
+                'constraint' => '25',
             ],
-            'method' => [
+            'email' => [
                 'type'       => 'VARCHAR',
-                'constraint'     => '255',
+                'constraint' => '50',
             ],
-            'agent' => [
-                'type'       => 'VARCHAR',
-                'constraint'     => '255',
+            'password' => [
+                'type' => 'VARCHAR',
+                'constraint' => '50',
+            ],
+            'nama_petugas' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'level' => [
+                'type' => 'VARCHAR',
+                'constraint' => '10',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -46,12 +48,12 @@ class LogActivity extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_activity', true);
-        $this->forge->createTable('log_activity');
+        $this->forge->addKey('id_petugas', true);
+        $this->forge->createTable('petugas');
     }
 
     public function down()
     {
-        $this->forge->dropTable('log_activity');
+        $this->forge->dropTable('petugas');
     }
 }

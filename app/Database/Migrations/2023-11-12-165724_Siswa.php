@@ -25,6 +25,8 @@ class Siswa extends Migration
             ],
             'id_kelas' => [
                 'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
             ],
             'alamat' => [
                 'type' => 'TEXT',
@@ -35,6 +37,8 @@ class Siswa extends Migration
             ],
             'id_spp' => [
                 'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
