@@ -4,24 +4,24 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Kelas extends Migration
+class Spp extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_kelas' => [
+            'id_spp' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => false,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama_kelas' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '20',
+            'id_kelas' => [
+                'type'       => 'INT',
+                'constraint' => '5',
             ],
-            'id_jurusan' => [
-                'type' => 'INT',
-                'constraint' => 5,
+            'nominal' => [
+                'type' => 'VARCHAR',
+                'constraint' => '20',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,14 +36,12 @@ class Kelas extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_kelas', true);
-        $this->forge->addForeignKey('id_jurusan', 'jurusan', 'id_jurusan');
-        $this->forge->createTable('kelas');
+        $this->forge->addKey('id_spp', true);
+        $this->forge->createTable('spp');
     }
 
     public function down()
     {
-        $this->forge->dropForeignKey('kelas', 'kelas_id_jurusan_foreign');
-        $this->forge->dropTable('kelas');
+        $this->forge->dropTable('spp');
     }
 }

@@ -30,8 +30,35 @@ $routes->post('jurusan/delete2/(:num)', 'Jurusan::delete2/$1');
 $routes->post('jurusan/delete2', 'Jurusan::delete2');
 
 $routes->presenter('jurusan');
+
+$routes->get('kelas/trash', 'Kelas::trash');
+$routes->get('kelas/restore/(:any)', 'Kelas::restore/$1');
+$routes->get('kelas/restore', 'Kelas::restore');
+// $routes->delete('kelas/delete2/(:any)', 'Kelas::delete/$1');
+// $routes->delete('kelas/delete2/', 'Kelas::delete2');
+$routes->post('kelas/delete2/(:num)', 'Kelas::delete2/$1');
+$routes->post('kelas/delete2', 'Kelas::delete2');
+
 $routes->presenter('kelas');
+
+$routes->get('siswa/trash', 'Siswa::trash');
+$routes->get('siswa/restore/(:any)', 'Siswa::restore/$1');
+$routes->get('siswa/restore', 'Siswa::restore');
+// $routes->delete('siswa/delete2/(:any)', 'Siswa::delete/$1');
+// $routes->delete('siswa/delete2/', 'Siswa::delete2');
+$routes->post('siswa/delete2/(:num)', 'Siswa::delete2/$1');
+$routes->post('siswa/delete2', 'Siswa::delete2');
+
 $routes->presenter('siswa');
+
+$routes->get('petugas/trash', 'Petugas::trash');
+$routes->get('petugas/restore/(:any)', 'Petugas::restore/$1');
+$routes->get('petugas/restore', 'Petugas::restore');
+// $routes->delete('petugas/delete2/(:any)', 'Petugas::delete/$1');
+// $routes->delete('petugas/delete2/', 'Petugas::delete2');
+$routes->post('petugas/delete2/(:num)', 'Petugas::delete2/$1');
+$routes->post('petugas/delete2', 'Petugas::delete2');
+
 $routes->presenter('petugas');
 
 $routes->get('tahunajaran/trash', 'TahunAjaran::trash');
