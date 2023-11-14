@@ -27,24 +27,7 @@ class Siswa extends ResourcePresenter
      */
     public function index()
     {
-        // 1. cek apakah yang login bukan admin
-		// if(session()->get('level')!='admin'){
-		// 	return redirect()->to(site_url('kelas'));
-		// 	exit;		
-		// }
-
-		// 2. query builder data siswa
-
-		$this->siswa->join('kelas','kelas.id_kelas=siswa.id_kelas');
-		$this->siswa->join('spp','spp.id_spp=siswa.id_spp');
-
-		// 2. jalankan query builder
-		// $data['listSiswa']=$this->siswa->findAll();
-		
-		// // 3. kirim ke view
-		// return view('Siswa/tampil',$data);
-
-        $data['siswa_data'] = $this->siswa->findAll();
+        $data['siswa_data'] = $this->siswa->getAll();
         return view('siswa/index', $data);
     }
 
@@ -106,9 +89,11 @@ class Siswa extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $siswa = $this->siswa->where('id_jurusan', $id)->first();
+        $siswa = $this->siswa->where('id_siswa', $id)->first();
         if (is_object($siswa)) {
             $data['siswa_data'] = $siswa;
+            $data['kelas_data'] = $this->kelas->findAll();
+            $data['spp_data'] = $this->spp->findAll();
             return view('siswa/edit', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -151,7 +136,7 @@ class Siswa extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->jurusan->where('id_jurusan', $id)->delete();
+        // $this->jurusan->where('id_siswa', $id)->delete();
         $this->siswa->delete($id);
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Dihapus');
     }
@@ -168,7 +153,7 @@ class Siswa extends ResourcePresenter
         if ($id != null) {
             $this->db->table('siswa')
                 ->set('deleted_at', null, true)
-                ->where(['id_jurusan' => $id])
+                ->where(['id_siswa' => $id])
                 ->update();
         } else {
             $this->db->table('siswa')

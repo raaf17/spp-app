@@ -8,9 +8,9 @@
 <section class="section">
   <div class="section-header">
     <div class="section-header-back">
-      <a href="<?= site_url('jurusan'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+      <a href="<?= site_url('siswa'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
-    <h1>Edit Kelas</h1>
+    <h1>Edit Siswa</h1>
   </div>
 
   <div class="section-body">
@@ -18,32 +18,63 @@
     <div class="card">
 
       <div class="card-header">
-        <h4>Edit Kelas</h4>
+        <h4>Edit Siswa</h4>
       </div>
       <div class="card-body col-md-6">
-      <?php $validation = \Config\Services::validation(); ?>
-        <form action="<?= site_url('jurusan/update/'.$jurusan_data->id_jurusan); ?>" method="post" autocomplete="off">
-        <?= csrf_field(); ?>
-        <div class="form-group">
-            <label for="">Jurusan *</label>
-            <select name="id_jurusan" id="" class="form-control" required>
+        <?php $validation = \Config\Services::validation(); ?>
+        <form action="<?= site_url('siswa/update/' . $siswa_data->id_siswa); ?>" method="post" autocomplete="off">
+          <?= csrf_field(); ?>
+          <div class="form-group">
+            <label for="">NISN</label>
+            <input type="text" name="nisn" value="<?= old('nisn', $siswa_data->nisn) ?>" class="form-control <?= $validation->hasError('nisn') ? 'is-invalid' : null ?>" autofocus>
+            <div class="invalid-feedback">
+              <?= $validation->getError('nisn'); ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">NIS</label>
+            <input type="text" name="nis" value="<?= old('nis', $siswa_data->nis) ?>" class="form-control <?= $validation->hasError('nis') ? 'is-invalid' : null ?>" autofocus>
+            <div class="invalid-feedback">
+              <?= $validation->getError('nis'); ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Nama Siswa</label>
+            <input type="text" name="nama_siswa" value="<?= old('nama_siswa', $siswa_data->nama_siswa) ?>" class="form-control <?= $validation->hasError('nama_siswa') ? 'is-invalid' : null ?>" autofocus>
+            <div class="invalid-feedback">
+              <?= $validation->getError('nama_siswa'); ?>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Kelas</label>
+            <select name="id_kelas" id="" class="form-control" required>
               <option value="" hidden></option>
-              <?php foreach ($jurusan_data as $key => $value) : ?>
-                <option value="<?= $value->id_jurusan; ?>" <?= $contact->id_jurusan == $value->id_jurusan ? 'selected' : null ?> ><?= $value->nama_jurusan; ?></option>
+              <?php foreach ($kelas_data as $key => $value) : ?>
+                <option value="<?= $value->id_kelas; ?>" <?= $siswa_data->id_kelas == $value->id_kelas ? 'selected' : null ?>><?= $value->nama_kelas; ?></option>
               <?php endforeach; ?>
               <option value=""></option>
             </select>
           </div>
           <div class="form-group">
-            <label for="">Nama Kelas</label>
-            <input type="text" name="nama_kelas" value="<?= old('nama_kelas', $jurusan_data->nama_kelas) ?>" class="form-control <?= $validation->hasError('nama_kelas') ? 'is-invalid' : null ?>" autofocus>
+            <label for="">Alamat</label>
+            <textarea name="alamat" class="form-control"><?= $siswa_data->alamat; ?></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">No. Telepon</label>
+            <input type="text" name="no_telp" value="<?= old('no_telp', $siswa_data->no_telp) ?>" class="form-control <?= $validation->hasError('no_telp') ? 'is-invalid' : null ?>" autofocus>
             <div class="invalid-feedback">
-              <?= $validation->getError('nama_kelas'); ?>
+              <?= $validation->getError('no_telp'); ?>
             </div>
           </div>
           <div class="form-group">
-            <label for="">Keterangan Kelas</label>
-            <textarea name="keterangan-kelas" class="form-control"><?= $jurusan_data->keterangan; ?></textarea>
+            <label for="">Nominal</label>
+            <select name="id_spp" id="" class="form-control" required>
+              <option value="" hidden></option>
+              <?php foreach ($spp_data as $key => $value) : ?>
+                <option value="<?= $value->id_spp; ?>" <?= $siswa_data->id_spp == $value->id_spp ? 'selected' : null ?>><?= $value->nominal; ?></option>
+              <?php endforeach; ?>
+              <option value=""></option>
+            </select>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>
