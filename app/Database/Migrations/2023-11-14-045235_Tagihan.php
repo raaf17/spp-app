@@ -12,7 +12,7 @@ class Tagihan extends Migration
             'id_tagihan' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
+                'unsigned'       => false,
                 'auto_increment' => true,
             ],
             'nama_tagihan' => [

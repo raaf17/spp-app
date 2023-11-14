@@ -12,7 +12,7 @@ class Petugas extends Migration
             'id_petugas' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
+                'unsigned'       => false,
                 'auto_increment' => true,
             ],
             'username' => [

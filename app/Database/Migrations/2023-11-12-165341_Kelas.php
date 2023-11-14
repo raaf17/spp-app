@@ -12,7 +12,7 @@ class Kelas extends Migration
             'id_kelas' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
+                'unsigned'       => false,
                 'auto_increment' => true,
             ],
             'nama_kelas' => [
@@ -22,7 +22,7 @@ class Kelas extends Migration
             'id_jurusan' => [
                 'type' => 'INT',
                 'constraint' => 5,
-                'unsigned'       => true,
+                'unsigned' => false,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
