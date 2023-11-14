@@ -86,9 +86,10 @@ class Kelas extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $kelas = $this->kelas->where('id_jurusan', $id)->first();
+        $kelas = $this->kelas->where('id_kelas', $id)->first();
         if (is_object($kelas)) {
             $data['kelas_data'] = $kelas;
+            $data['jurusan_data'] = $this->jurusan->findAll();
             return view('kelas/edit', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -131,7 +132,7 @@ class Kelas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->jurusan->where('id_jurusan', $id)->delete();
+        // $this->jurusan->where('id_kelas', $id)->delete();
         $this->kelas->delete($id);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Dihapus');
     }
@@ -148,7 +149,7 @@ class Kelas extends ResourcePresenter
         if ($id != null) {
             $this->db->table('kelas')
                 ->set('deleted_at', null, true)
-                ->where(['id_jurusan' => $id])
+                ->where(['id_kelas' => $id])
                 ->update();
         } else {
             $this->db->table('kelas')

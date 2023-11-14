@@ -9,6 +9,12 @@ class Siswa extends Migration
     public function up()
     {
         $this->forge->addField([
+            'id_siswa' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => false,
+                'auto_increment' => true,
+            ],
             'nisn' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 20,
@@ -53,7 +59,7 @@ class Siswa extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('nisn', true);
+        $this->forge->addKey('id_siswa', true);
         $this->forge->addForeignKey('id_kelas', 'kelas', 'id_kelas');
         $this->forge->addForeignKey('id_spp', 'spp', 'id_spp');
         $this->forge->createTable('siswa');

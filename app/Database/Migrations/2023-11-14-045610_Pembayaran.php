@@ -20,9 +20,10 @@ class Pembayaran extends Migration
                 'constraint'     => 5,
                 'unsigned'       => false,
             ],
-            'nisn' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '20'
+            'id_siswa' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+                'unsigned'       => false,
             ],
             'tgl_bayar' => [
                 'type' => 'DATE',
@@ -59,7 +60,7 @@ class Pembayaran extends Migration
         ]);
         $this->forge->addKey('id_pembayaran', true);
         $this->forge->addForeignKey('id_petugas', 'petugas', 'id_petugas');
-        $this->forge->addForeignKey('nisn', 'siswa', 'nisn');
+        $this->forge->addForeignKey('id_siswa', 'siswa', 'id_siswa');
         $this->forge->addForeignKey('id_spp', 'spp', 'id_spp');
         $this->forge->createTable('pembayaran');
     }

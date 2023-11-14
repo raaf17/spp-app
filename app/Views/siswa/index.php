@@ -50,8 +50,10 @@
               <th>NISN</th>
               <th>NIS</th>
               <th>Nama Siswa</th>
+              <th>Kelas</th>
               <th>Alamat</th></th>
               <th>No. Telepon</th>
+              <th>Nominal</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -62,8 +64,10 @@
                 <td><?= $value->nisn; ?></td>
                 <td><?= $value->nis; ?></td>
                 <td><?= $value->nama_siswa; ?></td>
+                <td><?= $value->nama_kelas; ?></td>
                 <td><?= $value->alamat; ?></td>
                 <td><?= $value->no_telp; ?></td>
+                <td><?= $value->nominal; ?></td>
                 <td class="text-center" style="width: 15%;">
                   <a href="<?= site_url('siswa/edit/' . $value->id_siswa); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="<?= site_url('siswa/delete/' . $value->id_siswa); ?>" method="post" class="d-inline" id="del-<?= $value->id_siswa; ?>">

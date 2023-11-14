@@ -15,6 +15,10 @@ class Spp extends Migration
                 'unsigned'       => false,
                 'auto_increment' => true,
             ],
+            'tahun' => [
+                'type' => 'VARCHAR',
+                'constraint' => '10',
+            ],
             'nominal' => [
                 'type' => 'VARCHAR',
                 'constraint' => '20',
