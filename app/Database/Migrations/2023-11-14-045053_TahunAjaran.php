@@ -4,24 +4,23 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Spp extends Migration
+class TahunAjaran extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_spp' => [
+            'id_tahunajaran' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
+                'unsigned'       => false,
                 'auto_increment' => true,
             ],
-            'id_kelas' => [
-                'type'       => 'INT',
-                'constraint' => '5',
-            ],
-            'nominal' => [
-                'type' => 'VARCHAR',
+            'tahun' => [
+                'type'       => 'VARCHAR',
                 'constraint' => '20',
+            ],
+            'keterangan' => [
+                'type'       => 'TEXT',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,12 +35,12 @@ class Spp extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_spp', true);
-        $this->forge->createTable('spp');
+        $this->forge->addKey('id_tahunajaran', true);
+        $this->forge->createTable('tahun_ajaran');
     }
 
     public function down()
     {
-        $this->forge->dropTable('spp');
+        $this->forge->dropTable('tahun_ajaran');
     }
 }

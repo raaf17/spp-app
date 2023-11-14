@@ -25,6 +25,11 @@
   </ul>
 </li>
 <li>
+  <a class="nav-link" href="<?= site_url('spp'); ?>">
+  <i class="fa-solid fa-newspaper"></i> <span>SPP</span>
+  </a>
+</li>
+<li>
   <a class="nav-link" href="<?= site_url('tahunajaran'); ?>">
     <i class="fa-solid fa-flag"></i> <span>Tahun Ajaran</span>
   </a>

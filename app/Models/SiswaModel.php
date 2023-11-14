@@ -9,7 +9,7 @@ class SiswaModel extends Model
     protected $table            = 'siswa';
     protected $primaryKey       = 'nisn';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['nisn', 'nis', 'alamat', 'no_telp'];
+    protected $allowedFields    = ['nisn', 'nis', 'nama_siswa', 'id_kelas', 'alamat', 'no_telp', 'id_spp'];
     protected $useTimestamps    = true;
     protected $useSoftDeletes   = true;
     protected $deletedField  = 'deleted_at';

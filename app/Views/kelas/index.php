@@ -49,8 +49,6 @@
               <th>#</th>
               <th>Kelas</th>
               <th>Jurusan</th>
-              <th>Jumlah Siswa</th>
-              <th>Tanggal</th>
               <th>Action</th>
             </tr>
           </thead>
