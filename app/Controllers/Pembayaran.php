@@ -71,18 +71,6 @@ class Pembayaran extends ResourcePresenter
      */
     public function create()
     {
-        $validate = $this->validate([
-            'nama_jurusan' => [
-                'rules' => 'required|min_length[3]',
-                'errors' => [
-                    'required' => 'Nama Jurusan tidak boleh kosong',
-                    'min_length' => 'Nama Jurusan minimal 3 karakter',
-                ],
-            ],
-        ]);
-        if (!$validate) {
-            return redirect()->back()->withInput();
-        }
         $data = $this->request->getPost();
         $this->pembayaran->insert($data);
         return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Disimpan');
@@ -146,7 +134,6 @@ class Pembayaran extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->pembayaran->where('id_pembayaran', $id)->delete();
         $this->pembayaran->delete($id);
         return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Dihapus');
     }

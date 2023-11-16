@@ -11,6 +11,7 @@ class Siswa extends ResourcePresenter
     protected $db;
     protected $kelas;
     protected $siswa;
+    protected $helpers = ['custom'];
 
     public function __construct()
     {
@@ -120,7 +121,6 @@ class Siswa extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->jurusan->where('id_siswa', $id)->delete();
         $this->siswa->delete($id);
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Dihapus');
     }

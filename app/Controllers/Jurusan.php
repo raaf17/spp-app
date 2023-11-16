@@ -126,7 +126,6 @@ class Jurusan extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->jurusan->where('id_jurusan', $id)->delete();
         $this->jurusan->delete($id);
         return redirect()->to(site_url('jurusan'))->with('success', 'Data Berhasil Dihapus');
     }

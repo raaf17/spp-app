@@ -29,9 +29,9 @@
         ?>
         <form action="<?= site_url('kelas'); ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
-          <div class="form-group">
+          <div class="form-group custom-select-icon">
             <label for="">Jurusan</label>
-            <select name="id_jurusan" id="id_jurusan" class="form-control" required>
+            <select name="id_jurusan" id="id_jurusan" class="custom-select" required>
               <option value="">Pilih Jurusan</option>
               <?php foreach ($jurusan_data as $key => $value) : ?>
                 <option value="<?= $value->id_jurusan; ?>"><?= $value->nama_jurusan; ?></option>

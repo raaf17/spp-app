@@ -49,9 +49,9 @@
               <?= $validation->getError('nisn'); ?>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group custom-select-icon">
             <label for="">Kelas</label>
-            <select name="id_kelas" id="id_kelas" class="form-control" required>
+            <select name="id_kelas" id="id_kelas" class="custom-select" required>
               <option value="" hidden></option>
               <?php foreach ($kelas_data as $key => $value) : ?>
                 <option value="<?= $value->id_kelas; ?>"><?= $value->nama_kelas; ?></option>
@@ -59,9 +59,9 @@
               <option value=""></option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group custom-select-icon">
             <label for="">Jenis Kelamin</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+            <select name="jenis_kelamin" id="jenis_kelamin" class="custom-select" required>
               <option value="" hidden>Pilih Jenis Kelamin</option>
               <option value="Laki-laki" name="laki-laki">Laki-laki</option>
               <option value="Lerempuan" name="perempuan">Perempuan</option>

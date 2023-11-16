@@ -114,7 +114,6 @@ class TahunAjaran extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->tahunajaran->where('id_tahunajaran', $id)->delete();
         $this->tahunajaran->delete($id);
         return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Dihapus');
     }

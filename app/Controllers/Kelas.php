@@ -120,7 +120,6 @@ class Kelas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->kelas->where('id_kelas', $id)->delete();
         $this->kelas->delete($id);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Dihapus');
     }

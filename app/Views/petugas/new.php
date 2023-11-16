@@ -44,9 +44,9 @@
             <label for="">Nama Petugas</label>
             <input type="text" name="nama_petugas" value="<?= old('nama_petugas'); ?>" class="form-control" autofocus>
           </div>
-          <div class="form-group">
+          <div class="form-group custom-select-icon">
             <label for="">Level</label>
-            <select name="level" id="level" class="form-control" required>
+            <select name="level" id="level" class="custom-select" required>
               <option value="" hidden>Pilih Level</option>
               <option value="admin" name="admin">Admin</option>
               <option value="petugas" name="petugas">Petugas</option>

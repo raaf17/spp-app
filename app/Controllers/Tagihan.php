@@ -114,7 +114,6 @@ class Tagihan extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->tagihan->where('id_tagihan', $id)->delete();
         $this->tagihan->delete($id);
         return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Dihapus');
     }
