@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Petugas extends Migration
+class Users extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_petugas' => [
+            'id_user' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => false,
@@ -48,12 +48,12 @@ class Petugas extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_petugas', true);
-        $this->forge->createTable('petugas');
+        $this->forge->addKey('id_user', true);
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        $this->forge->dropTable('petugas');
+        $this->forge->dropTable('users');
     }
 }

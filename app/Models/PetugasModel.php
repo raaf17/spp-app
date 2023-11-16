@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class PetugasModel extends Model
 {
-    protected $table            = 'petugas';
-    protected $primaryKey       = 'id_petugas';
+    protected $table            = 'users';
+    protected $primaryKey       = 'id_user';
     protected $returnType       = 'object';
     protected $allowedFields    = ['username', 'email', 'password', 'nama_petugas', 'level'];
     protected $useTimestamps    = true;

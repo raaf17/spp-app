@@ -11,6 +11,10 @@
     <div class="section-header-button">
       <a href="<?= site_url('petugas/new'); ?>" class="btn btn-primary">Add New</a>
     </div>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Petugas</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -63,10 +67,10 @@
                 <td><?= $value->nama_petugas; ?></td>
                 <td><?= $value->level; ?></td>
                 <td class="text-center" style="width: 15%;">
-                  <a href="<?= site_url('petugas/edit/' . $value->id_petugas); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                  <form action="<?= site_url('petugas/delete/' . $value->id_petugas); ?>" method="post" class="d-inline" id="del-<?= $value->id_petugas; ?>">
+                  <a href="<?= site_url('petugas/edit/' . $value->id_user); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                  <form action="<?= site_url('petugas/delete/' . $value->id_user); ?>" method="post" class="d-inline" id="del-<?= $value->id_user; ?>">
                     <?= csrf_field(); ?>
-                    <button href="submit" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?= $value->id_petugas; ?>)"><i class="fas fa-trash"></i></button>
+                    <button href="submit" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?= $value->id_user; ?>)"><i class="fas fa-trash"></i></button>
                   </form>
                 </td>
               </tr>

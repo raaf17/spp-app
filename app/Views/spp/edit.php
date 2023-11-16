@@ -11,6 +11,10 @@
       <a href="<?= site_url('spp'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
     <h1>Edit SPP</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">SPP</div>
+    </div>
   </div>
 
   <div class="section-body">

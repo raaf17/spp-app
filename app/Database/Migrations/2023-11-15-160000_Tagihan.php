@@ -4,24 +4,35 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Spp extends Migration
+class Tagihan extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_spp' => [
+            'id_tagihan' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => false,
                 'auto_increment' => true,
             ],
-            'tahun' => [
-                'type' => 'VARCHAR',
-                'constraint' => '10',
+            'nama_tagihan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '50',
             ],
             'nominal' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
+                'type'       => 'BIGINT',
+                'constraint' => '50',
+            ],
+            'bulanan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '50',
+            ],
+            'keterangan' => [
+                'type'       => 'TEXT',
+            ],
+            'tanggal' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '30',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,12 +47,12 @@ class Spp extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id_spp', true);
-        $this->forge->createTable('spp');
+        $this->forge->addKey('id_tagihan', true);
+        $this->forge->createTable('tagihan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('spp');
+        $this->forge->dropTable('tagihan');
     }
 }

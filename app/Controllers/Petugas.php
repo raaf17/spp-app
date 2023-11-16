@@ -56,18 +56,6 @@ class Petugas extends ResourcePresenter
      */
     public function create()
     {
-        // $validate = $this->validate([
-        //     'nama_petugas' => [
-        //         'rules' => 'required|min_length[3]',
-        //         'errors' => [
-        //             'required' => 'Nama Petugas tidak boleh kosong',
-        //             'min_length' => 'Nama Petugas minimal 3 karakter',
-        //         ],
-        //     ],
-        // ]);
-        // if (!$validate) {
-        //     return redirect()->back()->withInput();
-        // }
         $data = $this->request->getPost();
         $this->petugas->insert($data);
         return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Disimpan');
@@ -82,7 +70,7 @@ class Petugas extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $petugas = $this->petugas->where('id_petugas', $id)->first();
+        $petugas = $this->petugas->where('id_user', $id)->first();
         if (is_object($petugas)) {
             $data['petugas_data'] = $petugas;
             return view('petugas/edit', $data);
@@ -127,7 +115,7 @@ class Petugas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->petugas->where('id_petugas', $id)->delete();
+        // $this->petugas->where('id_user', $id)->delete();
         $this->petugas->delete($id);
         return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Dihapus');
     }
@@ -142,12 +130,12 @@ class Petugas extends ResourcePresenter
     {
         $this->db = \Config\Database::connect();
         if ($id != null) {
-            $this->db->table('petugas')
+            $this->db->table('users')
                 ->set('deleted_at', null, true)
-                ->where(['id_petugas' => $id])
+                ->where(['id_user' => $id])
                 ->update();
         } else {
-            $this->db->table('petugas')
+            $this->db->table('users')
                 ->set('deleted_at', null, true)
                 ->where('deleted_at is NOT NULL', NULL, FALSE)
                 ->update();

@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\SiswaModel;
 use App\Models\KelasModel;
-use App\Models\SppModel;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class Siswa extends ResourcePresenter
@@ -12,13 +11,11 @@ class Siswa extends ResourcePresenter
     protected $db;
     protected $kelas;
     protected $siswa;
-    protected $spp;
 
     public function __construct()
     {
         $this->kelas = new KelasModel();
         $this->siswa = new SiswaModel();
-        $this->spp = new SppModel();
     }
     /**
      * Present a view of resource objects
@@ -51,7 +48,6 @@ class Siswa extends ResourcePresenter
     public function new()
     {
         $data['kelas_data'] = $this->kelas->findAll();
-        $data['spp_data'] = $this->spp->findAll();
         return view('siswa/new', $data);
     }
 
@@ -63,18 +59,6 @@ class Siswa extends ResourcePresenter
      */
     public function create()
     {
-        // $validate = $this->validate([
-        //     'nama_kelas' => [
-        //         'rules' => 'required|min_length[3]',
-        //         'errors' => [
-        //             'required' => 'Nama Kelas tidak boleh kosong',
-        //             'min_length' => 'Nama Kelas minimal 3 karakter',
-        //         ],
-        //     ],
-        // ]);
-        // if (!$validate) {
-        //     return redirect()->back()->withInput();
-        // }
         $data = $this->request->getPost();
         $this->siswa->insert($data);
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Disimpan');
@@ -89,11 +73,11 @@ class Siswa extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $siswa = $this->siswa->where('id_siswa', $id)->first();
+        // $siswa = $this->siswa->where('id_siswa', $id)->first();
+        $siswa = $this->siswa->find($id);
         if (is_object($siswa)) {
             $data['siswa_data'] = $siswa;
             $data['kelas_data'] = $this->kelas->findAll();
-            $data['spp_data'] = $this->spp->findAll();
             return view('siswa/edit', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -139,40 +123,5 @@ class Siswa extends ResourcePresenter
         // $this->jurusan->where('id_siswa', $id)->delete();
         $this->siswa->delete($id);
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Dihapus');
-    }
-
-    public function trash()
-    {
-        $data['siswa_data'] = $this->siswa->onlyDeleted()->findAll();
-        return view('siswa/trash', $data);
-    }
-
-    public function restore($id = null)
-    {
-        $this->db = \Config\Database::connect();
-        if ($id != null) {
-            $this->db->table('siswa')
-                ->set('deleted_at', null, true)
-                ->where(['id_siswa' => $id])
-                ->update();
-        } else {
-            $this->db->table('siswa')
-                ->set('deleted_at', null, true)
-                ->where('deleted_at is NOT NULL', NULL, FALSE)
-                ->update();
-        }
-        if ($this->db->affectedRows() > 0) {
-            return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Direstore');
-        }
-    }
-    public function delete2($id = null)
-    {
-        if ($id != null) {
-            $this->siswa->delete($id, true);
-            return redirect()->to(site_url('siswa/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
-        } else {
-            $this->siswa->purgeDeleted();
-            return redirect()->to(site_url('siswa/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
-        }
     }
 }

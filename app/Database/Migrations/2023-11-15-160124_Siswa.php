@@ -15,36 +15,30 @@ class Siswa extends Migration
                 'unsigned'       => false,
                 'auto_increment' => true,
             ],
-            'nisn' => [
+            'nama_siswa' => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 20,
-                'unsigned'       => false,
-                'auto_increment' => false,
+                'constraint'     => '100',
             ],
             'nis' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '20',
+                'type'           => 'VARCHAR',
+                'constraint'     => '20',
             ],
-            'nama_siswa' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
+            'nisn' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '20',
             ],
             'id_kelas' => [
                 'type' => 'INT',
-                'constraint'     => 5,
+                'constraint'     => 20,
                 'unsigned'       => false,
             ],
-            'alamat' => [
-                'type' => 'TEXT',
+            'jenis_kelamin' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 20,
             ],
             'no_telp' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-            ],
-            'id_spp' => [
-                'type' => 'INT',
-                'constraint'     => 5,
-                'unsigned'       => false,
+                'type'           => 'VARCHAR',
+                'constraint'     => '20',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -61,12 +55,12 @@ class Siswa extends Migration
         ]);
         $this->forge->addKey('id_siswa', true);
         $this->forge->addForeignKey('id_kelas', 'kelas', 'id_kelas');
-        $this->forge->addForeignKey('id_spp', 'spp', 'id_spp');
         $this->forge->createTable('siswa');
     }
 
     public function down()
     {
+        $this->forge->dropForeignKey('siswa', 'siswa_id_kelas_foreign');
         $this->forge->dropTable('siswa');
     }
 }
