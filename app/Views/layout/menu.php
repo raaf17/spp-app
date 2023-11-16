@@ -2,7 +2,7 @@
 <li class="menu-header">Main Menu</li>
 <li>
   <a class="nav-link" href="<?= site_url('/home'); ?>">
-    <i class="fas fa-fire"></i> <span>Dashboard</span>
+    <i class="fa-solid fa-gauge"></i> <span>Dashboard</span>
   </a>
 </li>
 
@@ -26,7 +26,7 @@
 </li>
 <li>
   <a class="nav-link" href="<?= site_url('spp'); ?>">
-  <i class="fa-solid fa-newspaper"></i> <span>SPP</span>
+    <i class="fa-solid fa-newspaper"></i> <span>SPP</span>
   </a>
 </li>
 <li>

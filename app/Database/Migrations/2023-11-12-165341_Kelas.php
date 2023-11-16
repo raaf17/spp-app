@@ -45,6 +45,8 @@ class Kelas extends Migration
     public function down()
     {
         $this->forge->dropForeignKey('kelas', 'kelas_id_jurusan_foreign');
+        // $this->forge->dropTable('kelas', false, true);
+        // $this->forge->dropForeignKey('kelas', 'id_jurusan');
         $this->forge->dropTable('kelas');
     }
 }

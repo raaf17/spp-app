@@ -11,6 +11,10 @@
     <div class="section-header-button">
       <a href="<?= site_url('jurusan/new'); ?>" class="btn btn-primary">Add New</a>
     </div>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Jurusan</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>

@@ -11,7 +11,7 @@ class KelasModel extends Model
     protected $returnType       = 'object';
     protected $allowedFields    = ['nama_kelas', 'id_jurusan'];
     protected $useTimestamps    = true;
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
 
     function getAll()
     {

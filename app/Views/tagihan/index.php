@@ -11,6 +11,10 @@
     <div class="section-header-button">
       <a href="<?= site_url('tagihan/new'); ?>" class="btn btn-primary">Add New</a>
     </div>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Tagihan</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -49,8 +53,9 @@
               <th>#</th>
               <th>Nama Tagihan</th>
               <th>Nominal</th>
+              <th>Bulanan</th>
               <th>Keterangan</th>
-              <th>Bulan</th>
+              <th>Tanggal</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -60,8 +65,9 @@
                 <td><?= $key + 1; ?></td>
                 <td><?= $value->nama_tagihan; ?></td>
                 <td><?= $value->nominal; ?></td>
+                <td><?= $value->bulanan; ?></td>
                 <td><?= $value->keterangan; ?></td>
-                <td><?= $value->bulan; ?></td>
+                <td><?= $value->tanggal; ?></td>
                 <td class="text-center" style="width: 15%;">
                   <a href="<?= site_url('tagihan/edit/' . $value->id_tagihan); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="<?= site_url('tagihan/delete/' . $value->id_tagihan); ?>" method="post" class="d-inline" id="del-<?= $value->id_tagihan; ?>">

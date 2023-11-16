@@ -9,7 +9,7 @@ class TagihanModel extends Model
     protected $table            = 'tagihan';
     protected $primaryKey       = 'id_tagihan';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['nama_tagihan', 'nominal', 'keterangan', 'bulan'];
+    protected $allowedFields    = ['nama_tagihan', 'nominal', 'bulanan', 'keterangan', 'tanggal'];
     protected $useTimestamps    = true;
     protected $useSoftDeletes   = true;
     protected $deletedField  = 'deleted_at';

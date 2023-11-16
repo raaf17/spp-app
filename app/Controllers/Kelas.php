@@ -47,7 +47,6 @@ class Kelas extends ResourcePresenter
      */
     public function new()
     {
-        // $data['jurusan_data'] = $this->kelas->getAll();
         $data['jurusan_data'] = $this->jurusan->findAll();
         return view('kelas/new', $data);
     }
@@ -60,18 +59,6 @@ class Kelas extends ResourcePresenter
      */
     public function create()
     {
-        // $validate = $this->validate([
-        //     'nama_kelas' => [
-        //         'rules' => 'required|min_length[3]',
-        //         'errors' => [
-        //             'required' => 'Nama Kelas tidak boleh kosong',
-        //             'min_length' => 'Nama Kelas minimal 3 karakter',
-        //         ],
-        //     ],
-        // ]);
-        // if (!$validate) {
-        //     return redirect()->back()->withInput();
-        // }
         $data = $this->request->getPost();
         $this->kelas->insert($data);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Disimpan');
@@ -86,13 +73,14 @@ class Kelas extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        $kelas = $this->kelas->where('id_kelas', $id)->first();
+        // $kelas = $this->kelas->where('id_kelas', $id)->first();
+        $kelas = $this->kelas->find($id);
         if (is_object($kelas)) {
             $data['kelas_data'] = $kelas;
             $data['jurusan_data'] = $this->jurusan->findAll();
             return view('kelas/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('kelas/404');
         }
     }
 
@@ -132,43 +120,8 @@ class Kelas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->jurusan->where('id_kelas', $id)->delete();
+        // $this->kelas->where('id_kelas', $id)->delete();
         $this->kelas->delete($id);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Dihapus');
-    }
-
-    public function trash()
-    {
-        $data['kelas_data'] = $this->kelas->onlyDeleted()->findAll();
-        return view('kelas/trash', $data);
-    }
-
-    public function restore($id = null)
-    {
-        $this->db = \Config\Database::connect();
-        if ($id != null) {
-            $this->db->table('kelas')
-                ->set('deleted_at', null, true)
-                ->where(['id_kelas' => $id])
-                ->update();
-        } else {
-            $this->db->table('kelas')
-                ->set('deleted_at', null, true)
-                ->where('deleted_at is NOT NULL', NULL, FALSE)
-                ->update();
-        }
-        if ($this->db->affectedRows() > 0) {
-            return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Direstore');
-        }
-    }
-    public function delete2($id = null)
-    {
-        if($id != null) {
-            $this->kelas->delete($id, true);
-            return redirect()->to(site_url('kelas/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
-        } else {
-            $this->kelas->purgeDeleted();
-            return redirect()->to(site_url('kelas/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
-        }
     }
 }

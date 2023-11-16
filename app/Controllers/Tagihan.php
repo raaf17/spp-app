@@ -55,18 +55,6 @@ class Tagihan extends ResourcePresenter
      */
     public function create()
     {
-        // $validate = $this->validate([
-        //     'nama_jurusan' => [
-        //         'rules' => 'required|min_length[3]',
-        //         'errors' => [
-        //             'required' => 'Nama Jurusan tidak boleh kosong',
-        //             'min_length' => 'Nama Jurusan minimal 3 karakter',
-        //         ],
-        //     ],
-        // ]);
-        // if (!$validate) {
-        //     return redirect()->back()->withInput();
-        // }
         $data = $this->request->getPost();
         $this->tagihan->insert($data);
         return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Disimpan');

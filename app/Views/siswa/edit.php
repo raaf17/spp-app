@@ -11,6 +11,10 @@
       <a href="<?= site_url('siswa'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
     <h1>Edit Siswa</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Siswa</div>
+    </div>
   </div>
 
   <div class="section-body">
@@ -25,10 +29,10 @@
         <form action="<?= site_url('siswa/update/' . $siswa_data->id_siswa); ?>" method="post" autocomplete="off">
           <?= csrf_field(); ?>
           <div class="form-group">
-            <label for="">NISN</label>
-            <input type="text" name="nisn" value="<?= old('nisn', $siswa_data->nisn) ?>" class="form-control <?= $validation->hasError('nisn') ? 'is-invalid' : null ?>" autofocus>
+            <label for="">Nama Siswa</label>
+            <input type="text" name="nama_siswa" value="<?= old('nama_siswa', $siswa_data->nama_siswa) ?>" class="form-control <?= $validation->hasError('nama_siswa') ? 'is-invalid' : null ?>" autofocus>
             <div class="invalid-feedback">
-              <?= $validation->getError('nisn'); ?>
+              <?= $validation->getError('nama_siswa'); ?>
             </div>
           </div>
           <div class="form-group">
@@ -39,10 +43,10 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="">Nama Siswa</label>
-            <input type="text" name="nama_siswa" value="<?= old('nama_siswa', $siswa_data->nama_siswa) ?>" class="form-control <?= $validation->hasError('nama_siswa') ? 'is-invalid' : null ?>" autofocus>
+            <label for="">NISN</label>
+            <input type="text" name="nisn" value="<?= old('nisn', $siswa_data->nisn) ?>" class="form-control <?= $validation->hasError('nisn') ? 'is-invalid' : null ?>" autofocus>
             <div class="invalid-feedback">
-              <?= $validation->getError('nama_siswa'); ?>
+              <?= $validation->getError('nisn'); ?>
             </div>
           </div>
           <div class="form-group">
@@ -56,8 +60,12 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="">Alamat</label>
-            <textarea name="alamat" class="form-control"><?= $siswa_data->alamat; ?></textarea>
+            <label for="">Jenis Kelamin</label>
+            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+              <option value="<?= $siswa_data->jenis_kelamin; ?>" ><?= $siswa_data->jenis_kelamin; ?></option>
+              <option value="Laki-laki" name="laki-laki">Laki-laki</option>
+              <option value="Perempuan" name="perempuan">Perempuan</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="">No. Telepon</label>
@@ -65,16 +73,6 @@
             <div class="invalid-feedback">
               <?= $validation->getError('no_telp'); ?>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="">Nominal</label>
-            <select name="id_spp" id="" class="form-control" required>
-              <option value="" hidden></option>
-              <?php foreach ($spp_data as $key => $value) : ?>
-                <option value="<?= $value->id_spp; ?>" <?= $siswa_data->id_spp == $value->id_spp ? 'selected' : null ?>><?= $value->nominal; ?></option>
-              <?php endforeach; ?>
-              <option value=""></option>
-            </select>
           </div>
           <div>
             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>

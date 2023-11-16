@@ -8,9 +8,13 @@
 <section class="section">
   <div class="section-header">
     <div class="section-header-back">
-      <a href="<?= site_url('jurusan'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
+      <a href="<?= site_url('siswa'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
-    <h1>Jurusan Trash</h1>
+    <h1>Siswa Trash</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Siswa</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -37,10 +41,10 @@
     <div class="card">
 
       <div class="card-header">
-        <h4>Data Jurusan - Trash</h4>
+        <h4>Data Siswa - Trash</h4>
         <div class="card-header-action">
-          <a href="<?= site_url('jurusan/restore'); ?>" class="btn btn-info">Restore All</a>
-          <form action="<?= site_url('jurusan/delete2/'); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
+          <a href="<?= site_url('siswa/restore'); ?>" class="btn btn-info">Restore All</a>
+          <form action="<?= site_url('siswa/delete2/'); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
             <?= csrf_field(); ?>
             <button href="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
@@ -51,18 +55,28 @@
           <tbody>
             <tr>
               <th>#</th>
-              <th>Nama Jurusan</th>
-              <th>Keterangan Jurusan</th>
+              <th>NISN</th>
+              <th>NIS</th>
+              <th>Nama Siswa</th>
+              <th>Kelas</th>
+              <th>Alamat</th>
+              <th>No. Telepon</th>
+              <th>Nominal</th>
               <th>Action</th>
             </tr>
-            <?php foreach ($jurusan_data as $key => $value) : ?>
+            <?php foreach ($siswa_data as $key => $value) : ?>
               <tr>
                 <td><?= $key + 1; ?></td>
-                <td><?= $value->nama_jurusan; ?></td>
-                <td><?= $value->keterangan; ?></td>
+                <td><?= $value->nisn; ?></td>
+                <td><?= $value->nis; ?></td>
+                <td><?= $value->nama_siswa; ?></td>
+                <td><?= $value->nama_kelas; ?></td>
+                <td><?= $value->alamat; ?></td>
+                <td><?= $value->no_telp; ?></td>
+                <td><?= $value->nominal; ?></td>
                 <td class="text-center" style="width: 15%;">
-                  <a href="<?= site_url('jurusan/restore/' . $value->id_jurusan); ?>" class="btn btn-info btn-sm">Restore</a>
-                  <form action="<?= site_url('jurusan/delete2/' . $value->id_jurusan); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
+                  <a href="<?= site_url('siswa/restore/' . $value->id_siswa); ?>" class="btn btn-info btn-sm">Restore</a>
+                  <form action="<?= site_url('siswa/delete2/' . $value->id_siswa); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
                     <?= csrf_field(); ?>
                     <!-- <input type="hidden" name="_method" value="DELETE"> -->
                     <button href="submit" class="btn btn-danger btn-sm">Delete</button>

@@ -11,6 +11,10 @@
     <div class="section-header-button">
       <a href="<?= site_url('siswa/new'); ?>" class="btn btn-primary">Add New</a>
     </div>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Siswa</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -47,13 +51,13 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>NISN</th>
-              <th>NIS</th>
               <th>Nama Siswa</th>
+              <th>NIS</th>
+              <th>NISN</th>
               <th>Kelas</th>
-              <th>Alamat</th></th>
+              <th>Jenis Kelamin</th>
+              </th>
               <th>No. Telepon</th>
-              <th>Nominal</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -61,13 +65,12 @@
             <?php foreach ($siswa_data as $key => $value) : ?>
               <tr>
                 <td><?= $key + 1; ?></td>
-                <td><?= $value->nisn; ?></td>
-                <td><?= $value->nis; ?></td>
                 <td><?= $value->nama_siswa; ?></td>
+                <td><?= $value->nis; ?></td>
+                <td><?= $value->nisn; ?></td>
                 <td><?= $value->nama_kelas; ?></td>
-                <td><?= $value->alamat; ?></td>
+                <td><?= $value->jenis_kelamin; ?></td>
                 <td><?= $value->no_telp; ?></td>
-                <td><?= $value->nominal; ?></td>
                 <td class="text-center" style="width: 15%;">
                   <a href="<?= site_url('siswa/edit/' . $value->id_siswa); ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                   <form action="<?= site_url('siswa/delete/' . $value->id_siswa); ?>" method="post" class="d-inline" id="del-<?= $value->id_siswa; ?>">

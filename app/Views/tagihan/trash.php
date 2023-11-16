@@ -11,6 +11,10 @@
       <a href="<?= site_url('tagihan'); ?>" class="btn"><i class="fas fa-arrow-left"></i></a>
     </div>
     <h1>Tagihan Trash</h1>
+    <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+      <div class="breadcrumb-item">Tagihan</div>
+    </div>
   </div>
 
   <?php if (session()->getFlashdata('success')) : ?>
@@ -53,8 +57,9 @@
               <th>#</th>
               <th>Nama Tagihan</th>
               <th>Nominal</th>
+              <th>Bulanan</th>
               <th>Keterangan</th>
-              <th>Bulan</th>
+              <th>Tanggal</th>
               <th>Action</th>
             </tr>
             <?php foreach ($tagihan_data as $key => $value) : ?>
@@ -62,8 +67,9 @@
                 <td><?= $key + 1; ?></td>
                 <td><?= $value->nama_tagihan; ?></td>
                 <td><?= $value->nominal; ?></td>
+                <td><?= $value->bulanan; ?></td>
                 <td><?= $value->keterangan; ?></td>
-                <td><?= $value->bulan; ?></td>
+                <td><?= $value->tanggal; ?></td>
                 <td class="text-center" style="width: 15%;">
                   <a href="<?= site_url('tagihan/restore/' . $value->id_tagihan); ?>" class="btn btn-info btn-sm">Restore</a>
                   <form action="<?= site_url('tagihan/delete2/' . $value->id_tagihan); ?>" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus data?')">
