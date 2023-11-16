@@ -115,7 +115,6 @@ class Petugas extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        // $this->petugas->where('id_user', $id)->delete();
         $this->petugas->delete($id);
         return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Dihapus');
     }

@@ -56,9 +56,9 @@
               <?= $validation->getError('nama_petugas'); ?>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group custom-select-icon">
             <label for="">Level</label>
-            <select name="level" id="level" class="form-control" required>
+            <select name="level" id="level" class="custom-select" required>
               <option value="<?= $petugas_data->level; ?>"><?= $petugas_data->level; ?></option>
               <option value="Admin">Admin</option>
               <option value="Petugas">Petugas</option>

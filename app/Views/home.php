@@ -22,7 +22,7 @@
               <h4>Siswa</h4>
             </div>
             <div class="card-body">
-              39
+              <?= countData('siswa'); ?>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
               <h4>Kelas</h4>
             </div>
             <div class="card-body">
-              12
+              <?= countData('kelas'); ?>
             </div>
           </div>
         </div>
@@ -45,14 +45,14 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-primary">
-            <i class="far fa-file"></i>
+            <i class="fas fa-money-bill-1-wave"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
               <h4>Uang Bulan Ini</h4>
             </div>
             <div class="card-body">
-              1.000.000
+              <?= countData('pembayaran'); ?>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-primary">
-            <i class="fas fa-circle"></i>
+            <i class="fas fa-money-bill-1-wave"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">

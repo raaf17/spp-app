@@ -28,9 +28,9 @@
       <?php $validation = \Config\Services::validation(); ?>
         <form action="<?= site_url('kelas/update/'.$kelas_data->id_jurusan); ?>" method="post" autocomplete="off">
         <?= csrf_field(); ?>
-        <div class="form-group">
+        <div class="form-group custom-select-icon">
             <label for="">Jurusan</label>
-            <select name="id_jurusan" id="" class="form-control" required>
+            <select name="id_jurusan" id="" class="custom-select" required>
               <option value="" hidden></option>
               <?php foreach ($jurusan_data as $key => $value) : ?>
                 <option value="<?= $value->id_jurusan; ?>" <?= $kelas_data->id_jurusan == $value->id_jurusan ? 'selected' : null ?> ><?= $value->nama_jurusan; ?></option>
