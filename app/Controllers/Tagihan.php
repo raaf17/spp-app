@@ -74,7 +74,7 @@ class Tagihan extends ResourcePresenter
             $data['tagihan_data'] = $tagihan;
             return view('tagihan/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('tagihan/404');
         }
     }
 

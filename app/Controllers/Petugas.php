@@ -75,7 +75,7 @@ class Petugas extends ResourcePresenter
             $data['petugas_data'] = $petugas;
             return view('petugas/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('petugas/404');
         }
     }
 

@@ -1,7 +1,7 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Data Trash &mdash; SPPCERIA</title>
+<title>Data Trash &mdash; SPPKITA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

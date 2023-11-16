@@ -74,7 +74,7 @@ class TahunAjaran extends ResourcePresenter
             $data['tahunajaran_data'] = $tahunajaran;
             return view('tahunajaran/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('tahunajaran/404');
         }
     }
 

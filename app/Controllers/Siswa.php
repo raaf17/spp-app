@@ -81,7 +81,7 @@ class Siswa extends ResourcePresenter
             $data['kelas_data'] = $this->kelas->findAll();
             return view('siswa/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('siswa/404');
         }
     }
 

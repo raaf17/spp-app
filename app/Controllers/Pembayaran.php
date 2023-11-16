@@ -94,7 +94,7 @@ class Pembayaran extends ResourcePresenter
             $data['tagihan_data'] = $this->tagihan->findAll();
             return view('pembayaran/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('pembayaran/404');
         }
     }
 

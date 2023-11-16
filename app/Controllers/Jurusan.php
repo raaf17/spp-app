@@ -86,7 +86,7 @@ class Jurusan extends ResourcePresenter
             $data['jurusan_data'] = $jurusan;
             return view('jurusan/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('jurusan/404');
         }
     }
 
