@@ -1,4 +1,4 @@
-<?= $this->extend('layout/default') ?>
+<?= $this->extend('layout/dashboard') ?>
 
 <?= $this->section('title') ?>
 <title>Data Pengeluaran &mdash; SPPKITA</title>

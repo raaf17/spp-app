@@ -14,45 +14,18 @@ class Tagihan extends ResourcePresenter
     {
         $this->tagihan = new TagihanModel();
     }
-    /**
-     * Present a view of resource objects
-     *
-     * @return mixed
-     */
+
     public function index()
     {
         $data['tagihan_data'] = $this->tagihan->findAll();
         return view('tagihan/index', $data);
     }
 
-    /**
-     * Present a view to present a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
     public function new()
     {
         return view('tagihan/new');
     }
 
-    /**
-     * Process the creation/insertion of a new resource object.
-     * This should be a POST.
-     *
-     * @return mixed
-     */
     public function create()
     {
         $data = $this->request->getPost();
@@ -60,13 +33,6 @@ class Tagihan extends ResourcePresenter
         return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Disimpan');
     }
 
-    /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function edit($id = null)
     {
         $tagihan = $this->tagihan->where('id_tagihan', $id)->first();
@@ -78,14 +44,6 @@ class Tagihan extends ResourcePresenter
         }
     }
 
-    /**
-     * Process the updating, full or partial, of a specific resource object.
-     * This should be a POST.
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function update($id = null)
     {
         $data = $this->request->getPost();
@@ -93,25 +51,6 @@ class Tagihan extends ResourcePresenter
         return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Diupdate');
     }
 
-    /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
-     * Process the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function delete($id = null)
     {
         $this->tagihan->delete($id);

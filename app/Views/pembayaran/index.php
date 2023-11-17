@@ -1,4 +1,4 @@
-<?= $this->extend('layout/default') ?>
+<?= $this->extend('layout/dashboard') ?>
 
 <?= $this->section('title') ?>
 <title>Data Siswa &mdash; SPPKITA</title>
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card card-primary">
-          <form>
+          <form action="">
             <div class="card-body mt-4">
               <div class="row">
                 <div class="col">
@@ -53,7 +53,7 @@
                   </div>
                 </div>
                 <div class="col-md-auto">
-                  <button wire:click.prevent='search' type="submit" role="button" class="btn btn-primary" style="padding: 8px 30px;" disabled>
+                  <button type="submit" name="cari" class="btn btn-primary" style="padding: 8px 30px;" disabled>
                     Cari
                   </button>
                 </div>
@@ -62,9 +62,6 @@
           </form>
         </div>
       </div>
-
-      <!-- <div class="col-12" wire:target='search' wire:loading.remove> -->
-
     </div>
   </div>
 

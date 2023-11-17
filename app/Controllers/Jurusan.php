@@ -14,45 +14,18 @@ class Jurusan extends ResourcePresenter
     {
         $this->jurusan = new JurusanModel();
     }
-    /**
-     * Present a view of resource objects
-     *
-     * @return mixed
-     */
+
     public function index()
     {
         $data['jurusan_data'] = $this->jurusan->findAll();
         return view('jurusan/index', $data);
     }
 
-    /**
-     * Present a view to present a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
     public function new()
     {
         return view('jurusan/new');
     }
 
-    /**
-     * Process the creation/insertion of a new resource object.
-     * This should be a POST.
-     *
-     * @return mixed
-     */
     public function create()
     {
         $validate = $this->validate([
@@ -72,13 +45,6 @@ class Jurusan extends ResourcePresenter
         return redirect()->to(site_url('jurusan'))->with('success', 'Data Berhasil Disimpan');
     }
 
-    /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function edit($id = null)
     {
         $jurusan = $this->jurusan->where('id_jurusan', $id)->first();
@@ -90,14 +56,6 @@ class Jurusan extends ResourcePresenter
         }
     }
 
-    /**
-     * Process the updating, full or partial, of a specific resource object.
-     * This should be a POST.
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function update($id = null)
     {
         $data = $this->request->getPost();
@@ -105,25 +63,6 @@ class Jurusan extends ResourcePresenter
         return redirect()->to(site_url('jurusan'))->with('success', 'Data Berhasil Diupdate');
     }
 
-    /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
-     * Process the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function delete($id = null)
     {
         $this->jurusan->delete($id);

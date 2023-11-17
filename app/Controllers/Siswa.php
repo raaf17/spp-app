@@ -18,46 +18,19 @@ class Siswa extends ResourcePresenter
         $this->kelas = new KelasModel();
         $this->siswa = new SiswaModel();
     }
-    /**
-     * Present a view of resource objects
-     *
-     * @return mixed
-     */
+
     public function index()
     {
         $data['siswa_data'] = $this->siswa->getAll();
         return view('siswa/index', $data);
     }
 
-    /**
-     * Present a view to present a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
     public function new()
     {
         $data['kelas_data'] = $this->kelas->findAll();
         return view('siswa/new', $data);
     }
 
-    /**
-     * Process the creation/insertion of a new resource object.
-     * This should be a POST.
-     *
-     * @return mixed
-     */
     public function create()
     {
         $data = $this->request->getPost();
@@ -65,16 +38,8 @@ class Siswa extends ResourcePresenter
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Disimpan');
     }
 
-    /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function edit($id = null)
     {
-        // $siswa = $this->siswa->where('id_siswa', $id)->first();
         $siswa = $this->siswa->find($id);
         if (is_object($siswa)) {
             $data['siswa_data'] = $siswa;
@@ -85,14 +50,6 @@ class Siswa extends ResourcePresenter
         }
     }
 
-    /**
-     * Process the updating, full or partial, of a specific resource object.
-     * This should be a POST.
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function update($id = null)
     {
         $data = $this->request->getPost();
@@ -100,25 +57,6 @@ class Siswa extends ResourcePresenter
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Diupdate');
     }
 
-    /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
-     * Process the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function delete($id = null)
     {
         $this->siswa->delete($id);
