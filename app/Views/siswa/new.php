@@ -1,7 +1,7 @@
-<?= $this->extend('layout/default') ?>
+<?= $this->extend('layout/dashboard') ?>
 
 <?= $this->section('title') ?>
-<title>Data Siswa &mdash; SPPCERIA</title>
+<title>Data Siswa &mdash; SPPKITA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

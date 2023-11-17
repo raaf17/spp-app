@@ -1,7 +1,7 @@
-<?= $this->extend('layout/default') ?>
+<?= $this->extend('layout/dashboard') ?>
 
 <?= $this->section('title') ?>
-<title>Home &mdash; SPPCERIA</title>
+<title>Home &mdash; SPPKITA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

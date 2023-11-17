@@ -26,11 +26,7 @@ class Pembayaran extends ResourcePresenter
         $this->siswa = new SiswaModel();
         $this->tagihan = new TagihanModel();
     }
-    /**
-     * Present a view of resource objects
-     *
-     * @return mixed
-     */
+
     public function index()
     {
         $data['petugas_data'] = $this->petugas->findAll();
@@ -41,34 +37,11 @@ class Pembayaran extends ResourcePresenter
         return view('pembayaran/index', $data);
     }
 
-    /**
-     * Present a view to present a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
     public function new()
     {
         return view('pembayaran/new');
     }
 
-    /**
-     * Process the creation/insertion of a new resource object.
-     * This should be a POST.
-     *
-     * @return mixed
-     */
     public function create()
     {
         $data = $this->request->getPost();
@@ -76,13 +49,6 @@ class Pembayaran extends ResourcePresenter
         return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Disimpan');
     }
 
-    /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function edit($id = null)
     {
         $pembayaran = $this->pembayaran->where('id_pembayaran', $id)->first();
@@ -94,18 +60,10 @@ class Pembayaran extends ResourcePresenter
             $data['tagihan_data'] = $this->tagihan->findAll();
             return view('pembayaran/edit', $data);
         } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            return view('pembayaran/404');
         }
     }
 
-    /**
-     * Process the updating, full or partial, of a specific resource object.
-     * This should be a POST.
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function update($id = null)
     {
         $data = $this->request->getPost();
@@ -113,25 +71,6 @@ class Pembayaran extends ResourcePresenter
         return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Diupdate');
     }
 
-    /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
-     * Process the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function delete($id = null)
     {
         $this->pembayaran->delete($id);

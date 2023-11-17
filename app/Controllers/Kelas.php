@@ -17,46 +17,19 @@ class Kelas extends ResourcePresenter
         $this->jurusan = new JurusanModel();
         $this->kelas = new KelasModel();
     }
-    /**
-     * Present a view of resource objects
-     *
-     * @return mixed
-     */
+
     public function index()
     {
         $data['kelas_data'] = $this->kelas->getAll();
         return view('kelas/index', $data);
     }
 
-    /**
-     * Present a view to present a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
     public function new()
     {
         $data['jurusan_data'] = $this->jurusan->findAll();
         return view('kelas/new', $data);
     }
 
-    /**
-     * Process the creation/insertion of a new resource object.
-     * This should be a POST.
-     *
-     * @return mixed
-     */
     public function create()
     {
         $data = $this->request->getPost();
@@ -64,16 +37,8 @@ class Kelas extends ResourcePresenter
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Disimpan');
     }
 
-    /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function edit($id = null)
     {
-        // $kelas = $this->kelas->where('id_kelas', $id)->first();
         $kelas = $this->kelas->find($id);
         if (is_object($kelas)) {
             $data['kelas_data'] = $kelas;
@@ -84,14 +49,6 @@ class Kelas extends ResourcePresenter
         }
     }
 
-    /**
-     * Process the updating, full or partial, of a specific resource object.
-     * This should be a POST.
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function update($id = null)
     {
         $data = $this->request->getPost();
@@ -99,25 +56,6 @@ class Kelas extends ResourcePresenter
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Diupdate');
     }
 
-    /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
-     * Process the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
     public function delete($id = null)
     {
         $this->kelas->delete($id);
