@@ -37,6 +37,22 @@ class Pembayaran extends ResourcePresenter
         return view('pembayaran/index', $data);
     }
 
+    public function pembayaran()
+    {
+        if (isset($_POST['cari'])) {
+            $id_siswa = $this->request->getPost('id_siswa');
+            $id_tagihan = $this->request->getPost('id_tagihan');
+            $id_tahunajaran = $this->request->getPost('id_tahunajaran');
+            $siswa = $this->pembayaran->where('id_siswa', $id_siswa)->first();
+            $tagihan = $this->pembayaran->where('id_tagihan', $id_tagihan)->first();
+            $tahunajaran = $this->pembayaran->where('id_tahunajaran', $id_tahunajaran)->first();
+
+            if(!empty($siswa && $tagihan && $tahunajaran)) {
+                echo "ok";
+            }
+        }
+    }
+
     public function new()
     {
         return view('pembayaran/new');

@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\TahunAjaranModel;
 use CodeIgniter\RESTful\ResourcePresenter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class TahunAjaran extends ResourcePresenter
 {
@@ -81,6 +83,7 @@ class TahunAjaran extends ResourcePresenter
             return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Direstore');
         }
     }
+
     public function delete2($id = null)
     {
         if ($id != null) {
@@ -90,5 +93,50 @@ class TahunAjaran extends ResourcePresenter
             $this->tahunajaran->purgeDeleted();
             return redirect()->to(site_url('tahunajaran/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
         }
+    }
+
+    public function export()
+    {
+        $spreadsheet = new Spreadsheet();
+        $writer = new Xlsx($spreadsheet);
+
+        $tahunajaran_data = $this->tahunajaran->findAll();
+
+        $activeWorksheet = $spreadsheet->getActiveSheet();
+        $activeWorksheet->setCellValue('A1', 'No');
+        $activeWorksheet->setCellValue('B1', 'Tahun');
+        $activeWorksheet->setCellValue('C1', 'Keterangan');
+
+        $column = 2; // Kolom Start
+        foreach ($tahunajaran_data as $key => $value) {
+            $activeWorksheet->setCellValue('A' . $column, ($column - 1));
+            $activeWorksheet->setCellValue('B' . $column, $value->tahun);
+            $activeWorksheet->setCellValue('C' . $column, $value->keterangan);
+            $column++;
+        }
+
+        $activeWorksheet->getStyle('A1:C1')->getFont()->setBold(true);
+        $activeWorksheet->getStyle('A1:C1')->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFFFFF00');
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ]
+            ],
+        ];
+        $activeWorksheet->getStyle('A1:C' . ($column - 1))->applyFromArray($styleArray);
+
+        $activeWorksheet->getColumnDimension('A')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('B')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('C')->setAutoSize(true);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachement;filename=tahunajaran_data.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

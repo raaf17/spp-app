@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\JurusanModel;
 use App\Models\KelasModel;
 use CodeIgniter\RESTful\ResourcePresenter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Kelas extends ResourcePresenter
 {
@@ -60,5 +62,50 @@ class Kelas extends ResourcePresenter
     {
         $this->kelas->delete($id);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function export()
+    {
+        $spreadsheet = new Spreadsheet();
+        $writer = new Xlsx($spreadsheet);
+
+        $kelas_data = $this->kelas->getAll();
+
+        $activeWorksheet = $spreadsheet->getActiveSheet();
+        $activeWorksheet->setCellValue('A1', 'No');
+        $activeWorksheet->setCellValue('B1', 'Kelas');
+        $activeWorksheet->setCellValue('C1', 'Jurusan');
+
+        $column = 2; // Kolom Start
+        foreach ($kelas_data as $key => $value) {
+            $activeWorksheet->setCellValue('A' . $column, ($column - 1));
+            $activeWorksheet->setCellValue('B' . $column, $value->nama_kelas);
+            $activeWorksheet->setCellValue('C' . $column, $value->nama_jurusan);
+            $column++;
+        }
+
+        $activeWorksheet->getStyle('A1:C1')->getFont()->setBold(true);
+        $activeWorksheet->getStyle('A1:C1')->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFFFFF00');
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ]
+            ],
+        ];
+        $activeWorksheet->getStyle('A1:C' . ($column - 1))->applyFromArray($styleArray);
+
+        $activeWorksheet->getColumnDimension('A')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('B')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('C')->setAutoSize(true);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachement;filename=kelas_data.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }
