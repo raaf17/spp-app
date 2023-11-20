@@ -6,10 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('create-db', function() {
+$routes->get('create-db', function () {
   $forge = \Config\Database::forge();
   if ($forge->createDatabase('spp_app')) {
-      echo 'Database created!';
+    echo 'Database created!';
   }
 });
 
@@ -20,6 +20,7 @@ $routes->get('create-db', function() {
 $routes->addRedirect('/', 'home');
 $routes->get('home', 'Home::index');
 $routes->get('setting', 'Setting::index');
+$routes->get('laporan', 'Laporan::index');
 
 // Jurusan
 $routes->get('jurusan/trash', 'Jurusan::trash');
@@ -28,12 +29,21 @@ $routes->get('jurusan/restore', 'Jurusan::restore');
 $routes->post('jurusan/delete2/(:num)', 'Jurusan::delete2/$1');
 $routes->post('jurusan/delete2', 'Jurusan::delete2');
 
+$routes->get('jurusan/export', 'Jurusan::export');
+$routes->post('jurusan/import', 'Jurusan::import');
+
 $routes->presenter('jurusan');
 
 // Kelas
+$routes->get('kelas/export', 'Kelas::export');
+$routes->post('kelas/import', 'Kelas::import');
+
 $routes->presenter('kelas');
 
 // Siswa
+$routes->get('siswa/export', 'Siswa::export');
+$routes->post('siswa/import', 'Siswa::import');
+
 $routes->presenter('siswa');
 
 // Petugas
@@ -42,6 +52,9 @@ $routes->get('petugas/restore/(:any)', 'Petugas::restore/$1');
 $routes->get('petugas/restore', 'Petugas::restore');
 $routes->post('petugas/delete2/(:num)', 'Petugas::delete2/$1');
 $routes->post('petugas/delete2', 'Petugas::delete2');
+
+$routes->get('petugas/export', 'Petugas::export');
+$routes->post('petugas/import', 'Petugas::import');
 
 $routes->presenter('petugas');
 
@@ -52,6 +65,9 @@ $routes->get('tahunajaran/restore', 'TahunAjaran::restore');
 $routes->post('tahunajaran/delete2/(:num)', 'TahunAjaran::delete2/$1');
 $routes->post('tahunajaran/delete2', 'TahunAjaran::delete2');
 
+$routes->get('tahunajaran/export', 'TahunAjaran::export');
+$routes->post('tahunajaran/import', 'TahunAjaran::import');
+
 $routes->presenter('tahunajaran');
 
 // Tagihan
@@ -61,18 +77,13 @@ $routes->get('tagihan/restore', 'Tagihan::restore');
 $routes->post('tagihan/delete2/(:num)', 'Tagihan::delete2/$1');
 $routes->post('tagihan/delete2', 'Tagihan::delete2');
 
+$routes->get('tagihan/export', 'Tagihan::export');
+$routes->post('tagihan/import', 'Tagihan::import');
+
 $routes->presenter('tagihan');
 
-// SPP
-$routes->get('spp/trash', 'Spp::trash');
-$routes->get('spp/restore/(:any)', 'Spp::restore/$1');
-$routes->get('spp/restore', 'Spp::restore');
-$routes->post('spp/delete2/(:num)', 'Spp::delete2/$1');
-$routes->post('spp/delete2', 'Spp::delete2');
-
-$routes->presenter('spp');
-
 // Pembayaran
+$routes->post('pembayaran/pembayaran', 'Pembayaran::pembayaran');
 $routes->presenter('pembayaran');
 
 // Pengeluaran

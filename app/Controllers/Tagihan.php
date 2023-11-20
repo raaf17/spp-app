@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\TagihanModel;
 use CodeIgniter\RESTful\ResourcePresenter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Tagihan extends ResourcePresenter
 {
@@ -81,6 +83,7 @@ class Tagihan extends ResourcePresenter
             return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Direstore');
         }
     }
+
     public function delete2($id = null)
     {
         if($id != null) {
@@ -90,5 +93,59 @@ class Tagihan extends ResourcePresenter
             $this->tagihan->purgeDeleted();
             return redirect()->to(site_url('tagihan/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
         }
+    }
+
+    public function export()
+    {
+        $spreadsheet = new Spreadsheet();
+        $writer = new Xlsx($spreadsheet);
+
+        $tagihan_data = $this->tagihan->findAll();
+
+        $activeWorksheet = $spreadsheet->getActiveSheet();
+        $activeWorksheet->setCellValue('A1', 'No');
+        $activeWorksheet->setCellValue('B1', 'Nama Tagihan');
+        $activeWorksheet->setCellValue('C1', 'Nominal');
+        $activeWorksheet->setCellValue('D1', 'Bulanan');
+        $activeWorksheet->setCellValue('E1', 'Keterangan');
+        $activeWorksheet->setCellValue('F1', 'Tanggal');
+
+        $column = 2; // Kolom Start
+        foreach ($tagihan_data as $key => $value) {
+            $activeWorksheet->setCellValue('A' . $column, ($column - 1));
+            $activeWorksheet->setCellValue('B' . $column, $value->nama_tagihan);
+            $activeWorksheet->setCellValue('C' . $column, $value->nominal);
+            $activeWorksheet->setCellValue('D' . $column, $value->bulanan);
+            $activeWorksheet->setCellValue('E' . $column, $value->keterangan);
+            $activeWorksheet->setCellValue('F' . $column, $value->tanggal);
+            $column++;
+        }
+
+        $activeWorksheet->getStyle('A1:F1')->getFont()->setBold(true);
+        $activeWorksheet->getStyle('A1:F1')->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFFFFF00');
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ]
+            ],
+        ];
+        $activeWorksheet->getStyle('A1:F' . ($column - 1))->applyFromArray($styleArray);
+
+        $activeWorksheet->getColumnDimension('A')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('B')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('C')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('D')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('E')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('F')->setAutoSize(true);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachement;filename=tagihan_data.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

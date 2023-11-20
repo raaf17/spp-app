@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\PetugasModel;
 use CodeIgniter\RESTful\ResourcePresenter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Petugas extends ResourcePresenter
 {
@@ -82,6 +84,7 @@ class Petugas extends ResourcePresenter
             return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Direstore');
         }
     }
+
     public function delete2($id = null)
     {
         if($id != null) {
@@ -91,5 +94,56 @@ class Petugas extends ResourcePresenter
             $this->petugas->purgeDeleted();
             return redirect()->to(site_url('petugas/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
         }
+    }
+
+    public function export()
+    {
+        $spreadsheet = new Spreadsheet();
+        $writer = new Xlsx($spreadsheet);
+
+        $petugas_data = $this->petugas->findAll();
+
+        $activeWorksheet = $spreadsheet->getActiveSheet();
+        $activeWorksheet->setCellValue('A1', 'No');
+        $activeWorksheet->setCellValue('B1', 'Username');
+        $activeWorksheet->setCellValue('C1', 'Email');
+        $activeWorksheet->setCellValue('D1', 'Nama Petugas');
+        $activeWorksheet->setCellValue('E1', 'Level');
+
+        $column = 2; // Kolom Start
+        foreach ($petugas_data as $key => $value) {
+            $activeWorksheet->setCellValue('A' . $column, ($column - 1));
+            $activeWorksheet->setCellValue('B' . $column, $value->username);
+            $activeWorksheet->setCellValue('C' . $column, $value->email);
+            $activeWorksheet->setCellValue('D' . $column, $value->nama_petugas);
+            $activeWorksheet->setCellValue('E' . $column, $value->level);
+            $column++;
+        }
+
+        $activeWorksheet->getStyle('A1:E1')->getFont()->setBold(true);
+        $activeWorksheet->getStyle('A1:E1')->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FFFFFF00');
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ]
+            ],
+        ];
+        $activeWorksheet->getStyle('A1:E' . ($column - 1))->applyFromArray($styleArray);
+
+        $activeWorksheet->getColumnDimension('A')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('B')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('C')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('D')->setAutoSize(true);
+        $activeWorksheet->getColumnDimension('E')->setAutoSize(true);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachement;filename=petugas_data.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

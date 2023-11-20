@@ -42,6 +42,16 @@
 
       <div class="card-header">
         <h4>Data Tahun Ajaran</h4>
+        <div class="card-header-action mr-1">
+          <a href="<?= site_url('tahunajaran/export'); ?>" class="btn btn-primary"><i class="fa-solid fa-file-export"></i> Export File</a>
+          <div class="dropdown">
+            <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"></i><i class="fa-solid fa-download"></i> Import File</a>
+            <div class="dropdown-menu">
+              <a href="<?= base_url('tahunajaran_example_file.xlsx'); ?>" class="dropdown-item has-icon"><i class="fa-solid fa-download"></i> Download Example</a>
+              <a href="#" class="dropdown-item has-icon" data-toggle="modal" data-target="#modal-import-tahunajaran"><i class="fa-solid fa-upload"></i> Upload File</a>
+            </div>
+          </div>
+        </div>
         <div class="card-header-action">
           <a href="<?= site_url('tahunajaran/trash'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
         </div>
@@ -77,4 +87,31 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-import-tahunajaran">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Import Tahun Ajaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= site_url('contacts/import'); ?>" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <label for="">File Excel</label>
+          <div class="custom-file">
+            <?= csrf_field(); ?>
+            <input type="file" name="file_excel" class="form-file-input" id="file_excel" required>
+            <label for="file_excel" class="custom-file-label">Pilih File</label>
+          </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <?= $this->endSection() ?>

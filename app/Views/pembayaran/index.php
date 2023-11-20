@@ -1,7 +1,7 @@
 <?= $this->extend('layout/dashboard') ?>
 
 <?= $this->section('title') ?>
-<title>Data Siswa &mdash; SPPKITA</title>
+<title>Data Pembayaran &mdash; SPPKITA</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -19,11 +19,12 @@
     <div class="row">
       <div class="col-12">
         <div class="card card-primary">
-          <form action="">
+          <form action="<?= site_url('pembayaran/pembayaran'); ?>" method="post">
             <div class="card-body mt-4">
               <div class="row">
+                <?= csrf_field(); ?>
                 <div class="col">
-                  <div class="form-group custom-select-icon" wire:ignore>
+                  <div class="form-group custom-select-icon">
                     <select class="custom-select" name="id_siswa" id="id_siswa">
                       <option value="" hidden></option>
                       <?php foreach ($siswa_data as $key => $value) : ?>
@@ -33,7 +34,7 @@
                   </div>
                 </div>
                 <div class="col col-lg-4">
-                  <div class="form-group custom-select-icon" wire:ignore>
+                  <div class="form-group custom-select-icon">
                     <select class="custom-select" name="id_tagihan" id="id_tagihan">
                       <option value="" hidden></option>
                       <?php foreach ($tagihan_data as $key => $value) : ?>
@@ -43,7 +44,7 @@
                   </div>
                 </div>
                 <div class="col col-lg-2">
-                  <div class="form-group custom-select-icon" wire:ignore>
+                  <div class="form-group custom-select-icon">
                     <select class="custom-select" name="id_tahunajaran" id="id_tahunajaran">
                       <option value="" hidden></option>
                       <?php foreach ($tahunajaran_data as $key => $value) : ?>
@@ -53,7 +54,7 @@
                   </div>
                 </div>
                 <div class="col-md-auto">
-                  <button type="submit" name="cari" class="btn btn-primary" style="padding: 8px 30px;" disabled>
+                  <button type="submit" name="cari" class="btn btn-primary" style="padding: 8px 30px;">
                     Cari
                   </button>
                 </div>
@@ -65,7 +66,7 @@
     </div>
   </div>
 
-  <div wire:ignore.self class="modal fade" tabindex="-1" id="pay" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" tabindex="-1" id="pay" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <form>
         <div class="modal-content">
@@ -78,34 +79,28 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="pay_date" class="text-capitalize">
-                tanggal bayar
-
+                Tanggal bayar
                 <small class="required text-danger">*</small>
               </label>
-              <input wire:model.defer="pay_date" id="pay_date" type="text" class="datepicker form-control " name="pay_date" value="" wire:model.defer="pay_date">
-
+              <input type="text" class="datepicker form-control " name="pay_date" value="">
             </div>
             <div class="form-group">
               <label for="pay" class="text-capitalize">
-                nominal
-
+                Nominal
                 <small class="required text-danger">*</small>
               </label>
-              <input wire:model="pay" id="pay" type="text" class="form-control number " name="pay">
-
+              <input id="pay" type="text" class="form-control number " name="pay">
             </div>
             <div class="form-group">
               <label for="change" class="text-capitalize">
-                kembalian
-
+                Kembalian
               </label>
-              <input wire:model="change" id="change" type="text" class="form-control number " name="change">
-
+              <input id="change" type="text" class="form-control number " name="change">
             </div>
           </div>
           <div class="modal-footer bg-whitesmoke">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button wire:click.prevent="onPay" class="btn btn-primary">Bayar</button>
+            <button class="btn btn-primary">Bayar</button>
           </div>
         </div>
       </form>
