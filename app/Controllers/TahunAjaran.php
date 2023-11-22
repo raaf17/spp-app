@@ -11,6 +11,7 @@ class TahunAjaran extends ResourcePresenter
 {
     protected $db;
     protected $tahunajaran;
+    protected $helpers = ['custom'];
 
     public function __construct()
     {
@@ -138,5 +139,33 @@ class TahunAjaran extends ResourcePresenter
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function import()
+    {
+        $file = $this->request->getFile('file_excel');
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $tahunajaran = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($tahunajaran as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $data = [
+                    'tahun' => $value[1],
+                    'keterangan' => $value[2],
+                ];
+                $this->tahunajaran->insert($data);
+            }
+            return redirect()->back()->with('success', 'Data excel berhasil diimpor');
+        } else {
+            return redirect()->back()->with('errors', 'Format file tidak sesuai');
+        }
     }
 }

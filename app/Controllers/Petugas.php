@@ -31,6 +31,35 @@ class Petugas extends ResourcePresenter
 
     public function create()
     {
+        $validate = $this->validate([
+            'username' => [
+                'rules' => 'required|max_length[30]|min_length[3]',
+                'errors' => [
+                    'required' => 'Username tidak boleh kosong',
+                    'max_length' => 'Username maksimal 30 karakter',
+                    'min_length' => 'Username minimal 3 karakter',
+                ],
+            ],
+            'email' => [
+                'rules' => 'required|min_length[3]|max_length[30]',
+                'errors' => [
+                    'required' => 'Email tidak boleh kosong',
+                    'max_length' => 'Email maksimal 30 karakter',
+                    'min_length' => 'Email minimal 3 karakter',
+                ],
+            ], 
+            'password' => [
+                'rules' => 'required|max_length[20]|min_length[3]',
+                'errors' => [
+                    'required' => 'Password tidak boleh kosong',
+                    'max_length' => 'Password maksimal 30 karakter',
+                    'min_length' => 'Password minimal 3 karakter',
+                ],
+            ],
+        ]);
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
         $data = $this->request->getPost();
         $this->petugas->insert($data);
         return redirect()->to(site_url('petugas'))->with('success', 'Data Berhasil Disimpan');
@@ -87,7 +116,7 @@ class Petugas extends ResourcePresenter
 
     public function delete2($id = null)
     {
-        if($id != null) {
+        if ($id != null) {
             $this->petugas->delete($id, true);
             return redirect()->to(site_url('petugas/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
         } else {
@@ -145,5 +174,36 @@ class Petugas extends ResourcePresenter
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function import()
+    {
+        $file = $this->request->getFile('file_excel');
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $petugas = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($petugas as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $data = [
+                    'username' => $value[1],
+                    'email' => $value[2],
+                    'password' => $value[3],
+                    'nama_petugas' => $value[4],
+                    'level' => $value[5],
+                ];
+                $this->petugas->insert($data);
+            }
+            return redirect()->back()->with('success', 'Data excel berhasil diimpor');
+        } else {
+            return redirect()->back()->with('errors', 'Format file tidak sesuai');
+        }
     }
 }

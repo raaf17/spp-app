@@ -121,4 +121,36 @@ class Siswa extends ResourcePresenter
         $writer->save('php://output');
         exit();
     }
+
+    public function import()
+    {
+        $file = $this->request->getFile('file_excel');
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $siswa = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($siswa as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $data = [
+                    'nama_siswa' => $value[1],
+                    'nis' => $value[2],
+                    'nisn' => $value[3],
+                    'id_kelas' => $value[4],
+                    'jenis_kelamin' => $value[5],
+                    'no_telp' => $value[6],
+                ];
+                $this->siswa->insert($data);
+            }
+            return redirect()->back()->with('success', 'Data excel berhasil diimpor');
+        } else {
+            return redirect()->back()->with('errors', 'Format file tidak sesuai');
+        }
+    }
 }
