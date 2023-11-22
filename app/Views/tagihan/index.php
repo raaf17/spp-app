@@ -109,7 +109,7 @@
           <div class="custom-file">
             <?= csrf_field(); ?>
             <input type="file" name="file_excel" class="form-file-input" id="file_excel" required>
-            <label for="file_excel" class="custom-file-label">Pilih File</label>
+            <label for="file_excel" name="file_excel" class="custom-file-label">Pilih File</label>
           </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">

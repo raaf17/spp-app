@@ -3,7 +3,7 @@
 function userLogin()
 {
   $db = \Config\Database::connect();
-  return $db->table('petugas')->where('id_petugas', session('id_petugas'))->get()->getRow();
+  return $db->table('users')->where('id_user', session('id_user'))->get()->getRow();
 }
 
 function countData($table)

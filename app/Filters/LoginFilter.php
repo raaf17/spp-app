@@ -10,7 +10,7 @@ class LoginFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-      if(!session('id_petugas')){
+      if(!session('id_user')){
         return redirect()->to(site_url('login'));
       }
     }

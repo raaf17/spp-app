@@ -11,6 +11,7 @@ class Tagihan extends ResourcePresenter
 {
     protected $db;
     protected $tagihan;
+    protected $helpers = ['custom'];
 
     public function __construct()
     {
@@ -86,7 +87,7 @@ class Tagihan extends ResourcePresenter
 
     public function delete2($id = null)
     {
-        if($id != null) {
+        if ($id != null) {
             $this->tagihan->delete($id, true);
             return redirect()->to(site_url('tagihan/trash'))->with('success', 'Data Berhasil Dihapus Permanen');
         } else {
@@ -147,5 +148,36 @@ class Tagihan extends ResourcePresenter
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function import()
+    {
+        $file = $this->request->getFile('file_excel');
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $ttagihan = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($ttagihan as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $data = [
+                    'nama_tagihan' => $value[1],
+                    'nominal' => $value[2],
+                    'bulanan' => $value[3],
+                    'keterangan' => $value[4],
+                    'tanggal' => $value[5],
+                ];
+                $this->tagihan->insert($data);
+            }
+            return redirect()->back()->with('success', 'Data excel berhasil diimpor');
+        } else {
+            return redirect()->back()->with('errors', 'Format file tidak sesuai');
+        }
     }
 }

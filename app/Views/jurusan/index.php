@@ -97,13 +97,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= site_url('contacts/import'); ?>" method="post" enctype="multipart/form-data">
+      <form action="<?= site_url('jurusan/import') ?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <label for="">File Excel</label>
           <div class="custom-file">
             <?= csrf_field(); ?>
-            <input type="file" name="file_excel" class="form-file-input" id="file_excel" required>
-            <label for="file_excel" class="custom-file-label">Pilih File</label>
+            <input type="file" name="file_excel" class="form-control" id="file_excel" required>
+            <label for="file_excel" name="file_excel" class="custom-file-label">Pilih File</label>
           </div>
         </div>
         <div class="modal-footer bg-whitesmoke br">

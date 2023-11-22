@@ -13,6 +13,7 @@ class Kelas extends ResourcePresenter
     protected $db;
     protected $jurusan;
     protected $kelas;
+    protected $helpers = ['custom'];
 
     public function __construct()
     {
@@ -34,6 +35,18 @@ class Kelas extends ResourcePresenter
 
     public function create()
     {
+        $validate = $this->validate([
+            'nama_kelas' => [
+                'rules' => 'required|min_length[2]',
+                'errors' => [
+                    'required' => 'Nama Kelas tidak boleh kosong',
+                    'min_length' => 'Nama Kelas minimal 2 karakter',
+                ],
+            ],
+        ]);
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
         $data = $this->request->getPost();
         $this->kelas->insert($data);
         return redirect()->to(site_url('kelas'))->with('success', 'Data Berhasil Disimpan');
@@ -107,5 +120,33 @@ class Kelas extends ResourcePresenter
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function import()
+    {
+        $file = $this->request->getFile('file_excel');
+        $extension = $file->getClientExtension();
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            if ($extension == 'xls') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            $spreadsheet = $reader->load($file);
+            $kelas = $spreadsheet->getActiveSheet()->toArray();
+            foreach ($kelas as $key => $value) {
+                if ($key == 0) {
+                    continue;
+                }
+                $data = [
+                    'nama_kelas' => $value[1],
+                    'id_jurusan' => $value[2],
+                ];
+                $this->kelas->insert($data);
+            }
+            return redirect()->back()->with('success', 'Data excel berhasil diimpor');
+        } else {
+            return redirect()->back()->with('errors', 'Format file tidak sesuai');
+        }
     }
 }

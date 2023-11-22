@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; SPPCeria</title>
+  <title>Login &mdash; SPPKITA</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -46,7 +46,6 @@
                     Please fill in your email
                   </div>
                 </div>
-
                 <div class="form-group">
                   <div class="d-block">
                     <label for="password" class="control-label">Password</label>
