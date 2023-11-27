@@ -35,6 +35,35 @@ class Siswa extends ResourcePresenter
 
     public function create()
     {
+        $validate = $this->validate([
+            'nama_siswa' => [
+                'rules' => 'required|max_length[30]|min_length[3]',
+                'errors' => [
+                    'required' => 'Nama Siswa tidak boleh kosong',
+                    'max_length' => 'Nama Siswa maksimal 30 karakter',
+                    'min_length' => 'Nama Siswa minimal 3 karakter',
+                ],
+            ],
+            'nis' => [
+                'rules' => 'required|max_length[30]|min_length[3]',
+                'errors' => [
+                    'required' => 'nis tidak boleh kosong',
+                    'max_length' => 'nis maksimal 30 karakter',
+                    'min_length' => 'nis minimal 3 karakter',
+                ],
+            ],
+            'nisn' => [
+                'rules' => 'required|max_length[30]|min_length[3]',
+                'errors' => [
+                    'required' => 'nisn tidak boleh kosong',
+                    'max_length' => 'nisn maksimal 30 karakter',
+                    'min_length' => 'nisn minimal 3 karakter',
+                ],
+            ],
+        ]);
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
         $data = $this->request->getPost();
         $this->siswa->insert($data);
         return redirect()->to(site_url('siswa'))->with('success', 'Data Berhasil Disimpan');

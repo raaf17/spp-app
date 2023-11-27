@@ -31,6 +31,19 @@ class TahunAjaran extends ResourcePresenter
 
     public function create()
     {
+        $validate = $this->validate([
+            'tahun' => [
+                'rules' => 'required|max_length[10]|min_length[3]',
+                'errors' => [
+                    'required' => 'Tahun tidak boleh kosong',
+                    'max_length' => 'Tahun maksimal 10 karakter',
+                    'min_length' => 'Tahun minimal 3 karakter',
+                ],
+            ],
+        ]);
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
         $data = $this->request->getPost();
         $this->tahunajaran->insert($data);
         return redirect()->to(site_url('tahunajaran'))->with('success', 'Data Berhasil Disimpan');

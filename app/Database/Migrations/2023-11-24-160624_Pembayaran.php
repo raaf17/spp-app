@@ -25,6 +25,7 @@ class Pembayaran extends Migration
             ],
             'bulan' => [
                 'type'           => 'DATE',
+                'null'           => 'true',
             ],
             'nominal' => [
                 'type'           => 'BIGINT',
@@ -41,6 +42,11 @@ class Pembayaran extends Migration
                 'unsigned'       => false,
             ],
             'id_tagihan' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => false,
+            ],
+            'id_status' => [
                 'type' => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => false,
@@ -63,6 +69,7 @@ class Pembayaran extends Migration
         $this->forge->addForeignKey('id_tahunajaran', 'tahun_ajaran', 'id_tahunajaran');
         $this->forge->addForeignKey('id_siswa', 'siswa', 'id_siswa');
         $this->forge->addForeignKey('id_tagihan', 'tagihan', 'id_tagihan');
+        $this->forge->addForeignKey('id_status', 'status', 'id_status');
         $this->forge->createTable('pembayaran');
     }
 

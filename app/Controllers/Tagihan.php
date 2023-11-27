@@ -31,6 +31,19 @@ class Tagihan extends ResourcePresenter
 
     public function create()
     {
+        $validate = $this->validate([
+            'nama_tagihan' => [
+                'rules' => 'required|max_length[30]|min_length[3]',
+                'errors' => [
+                    'required' => 'Nama Tagihan tidak boleh kosong',
+                    'max_length' => 'Nama Tagihan maksimal 30 karakter',
+                    'min_length' => 'Nama Tagihan minimal 3 karakter',
+                ],
+            ],
+        ]);
+        if (!$validate) {
+            return redirect()->back()->withInput();
+        }
         $data = $this->request->getPost();
         $this->tagihan->insert($data);
         return redirect()->to(site_url('tagihan'))->with('success', 'Data Berhasil Disimpan');

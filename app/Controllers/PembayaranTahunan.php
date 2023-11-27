@@ -7,9 +7,10 @@ use App\Models\PetugasModel;
 use App\Models\TahunAjaranModel;
 use App\Models\SiswaModel;
 use App\Models\TagihanModel;
+use App\Models\StatusModel;
 use CodeIgniter\RESTful\ResourcePresenter;
 
-class Pembayaran extends ResourcePresenter
+class PembayaranTahunan extends ResourcePresenter
 {
     protected $db;
     protected $pembayaran;
@@ -17,6 +18,7 @@ class Pembayaran extends ResourcePresenter
     protected $tahunajaran;
     protected $siswa;
     protected $tagihan;
+    protected $status;
 
     public function __construct()
     {
@@ -25,6 +27,7 @@ class Pembayaran extends ResourcePresenter
         $this->tahunajaran = new TahunAjaranModel();
         $this->siswa = new SiswaModel();
         $this->tagihan = new TagihanModel();
+        $this->status = new StatusModel();
     }
 
     public function index()
@@ -34,35 +37,29 @@ class Pembayaran extends ResourcePresenter
         $data['siswa_data'] = $this->siswa->findAll();
         $data['tagihan_data'] = $this->tagihan->findAll();
         $data['pembayaran_data'] = $this->pembayaran->getAll();
-        return view('pembayaran/index', $data);
-    }
-
-    public function pembayaran()
-    {
-        if (isset($_POST['cari'])) {
-            $id_siswa = $this->request->getPost('id_siswa');
-            $id_tagihan = $this->request->getPost('id_tagihan');
-            $id_tahunajaran = $this->request->getPost('id_tahunajaran');
-            $siswa = $this->pembayaran->where('id_siswa', $id_siswa)->first();
-            $tagihan = $this->pembayaran->where('id_tagihan', $id_tagihan)->first();
-            $tahunajaran = $this->pembayaran->where('id_tahunajaran', $id_tahunajaran)->first();
-
-            if(!empty($siswa && $tagihan && $tahunajaran)) {
-                echo "ok";
-            }
-        }
+        $data['data_bulan'] = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $data['status_data'] = $this->status->where('id_status', 1)->findAll();
+        return view('pembayaran/tahunan/index', $data);
     }
 
     public function new()
     {
-        return view('pembayaran/new');
+        return view('pembayaran/tahunan/new');
     }
 
     public function create()
     {
-        $data = $this->request->getPost();
+        $this->status->insert('status', 'Tunggak');
+        $status_awal = $this->status->insertID();
+        $data = [
+            'id_user' => $this->request->getPost('id_user'),
+            'id_siswa' => $this->request->getPost('id_siswa'),
+            'id_tagihan' => $this->request->getPost('id_tagihan'),
+            'id_tahunajaran' => $this->request->getPost('id_tahunajaran'),
+            'id_status' => $status_awal
+        ];
         $this->pembayaran->insert($data);
-        return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Disimpan');
+        return redirect()->to(site_url('pembayarantahunan'))->with('success', 'Data Berhasil Disimpan');
     }
 
     public function edit($id = null)
@@ -74,7 +71,7 @@ class Pembayaran extends ResourcePresenter
             $data['tahunajaran_data'] = $this->tahunajaran->findAll();
             $data['siswa_data'] = $this->siswa->findAll();
             $data['tagihan_data'] = $this->tagihan->findAll();
-            return view('pembayaran/edit', $data);
+            return view('pembayaran/tahunan/edit', $data);
         } else {
             return view('pembayaran/404');
         }
@@ -84,12 +81,12 @@ class Pembayaran extends ResourcePresenter
     {
         $data = $this->request->getPost();
         $this->pembayaran->update($id, $data);
-        return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Diupdate');
+        return redirect()->to(site_url('pembayarantahunan'))->with('success', 'Data Berhasil Diupdate');
     }
 
     public function delete($id = null)
     {
         $this->pembayaran->delete($id);
-        return redirect()->to(site_url('pembayaran'))->with('success', 'Data Berhasil Dihapus');
+        return redirect()->to(site_url('pembayarantahunan'))->with('success', 'Data Berhasil Dihapus');
     }
 }
