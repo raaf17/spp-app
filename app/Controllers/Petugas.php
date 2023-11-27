@@ -41,11 +41,12 @@ class Petugas extends ResourcePresenter
                 ],
             ],
             'email' => [
-                'rules' => 'required|min_length[3]|max_length[30]',
+                'rules' => 'required|min_length[3]|max_length[30]|valid_email',
                 'errors' => [
                     'required' => 'Email tidak boleh kosong',
                     'max_length' => 'Email maksimal 30 karakter',
                     'min_length' => 'Email minimal 3 karakter',
+                    'valid_email' => 'Email yang anda masukkan tidak valid',
                 ],
             ], 
             'password' => [

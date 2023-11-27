@@ -84,7 +84,11 @@ $routes->presenter('tagihan');
 
 // Pembayaran
 $routes->post('pembayaran/pembayaran', 'Pembayaran::pembayaran');
-$routes->presenter('pembayaran');
+$routes->presenter('pembayaranbulanan');
+$routes->presenter('pembayarantahunan');
 
 // Pengeluaran
 $routes->presenter('pengeluaran');
+
+// Rekap Laporan
+$routes->presenter('rekaplaporan');

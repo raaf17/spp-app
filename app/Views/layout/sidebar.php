@@ -35,17 +35,25 @@
   </a>
 </li>
 <li>
-  <a class="nav-link" href="<?= site_url('rekap'); ?>">
+  <a class="nav-link" href="<?= site_url('rekaplaporan'); ?>">
     <i class="far fa-calendar"></i> <span>Rekap Laporan</span>
   </a>
 </li>
 
 <!-- Keuangan -->
 <li class="menu-header">Keuangan</li>
-<li>
-  <a class="nav-link" href="<?= site_url('pembayaran'); ?>">
-    <i class="fa-solid fa-money-bill-1-wave"></i> <span>Pembayaran</span>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link has-dropdown"><i class="far fa-address-book">
+    </i><span>Pembayaran</span>
   </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="nav-link" href="<?= site_url('pembayaranbulanan'); ?>">Bulanan</a>
+    </li>
+    <li>
+      <a class="nav-link" href="<?= site_url('pembayarantahunan'); ?>">Tahunan</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a class="nav-link" href="<?= site_url('pengeluaran'); ?>">

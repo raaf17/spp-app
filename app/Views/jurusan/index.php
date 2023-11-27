@@ -37,9 +37,7 @@
   <?php endif; ?>
 
   <div class="section-body">
-
     <div class="card">
-
       <div class="card-header">
         <h4>Data Jurusan</h4>
         <div class="card-header-action mr-1">
