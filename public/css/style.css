@@ -1,0 +1,43 @@
+.date-container {
+  display: flex;
+  gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .date-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+.date-container .date {
+  width: 40%;
+}
+@media screen and (max-width: 1120px) {
+  .date-container .date {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .date-container .date {
+    width: 100%;
+  }
+}
+.date-container .form-group {
+  margin: 0;
+}
+
+.button-result {
+  margin: -25px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .button-result {
+    margin: 0;
+    display: block;
+  }
+}
+.button-result .button {
+  padding: 20px 40px;
+}/*# sourceMappingURL=style.css.map */

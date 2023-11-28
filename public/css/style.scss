@@ -1,0 +1,41 @@
+.date-container {
+  display: flex;
+  gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .date {
+    width: 40%;
+
+    @media screen and (max-width: 1120px) {
+      width: 35%;
+    }
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .form-group {
+    margin: 0;
+  }
+}
+
+.button-result {
+  margin: -25px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    margin: 0;
+    display: block;
+  }
+
+  .button {
+    padding: 20px 40px;
+  }
+}
