@@ -1,21 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : Auth di gunakan untuk login, logout & blocked (jika user mengetahui url tetapi dia tidak memiliki hak akses terhadap halaman tsb)
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
-
-
-
 class Auth extends CI_Controller
 {
     public function __construct()

@@ -1,26 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- * Deskripsi :
- *  Berisi tentang query untuk CRUD data.
- *           Data :
- *               1.Data Petugas.
- *               2.Data Siswa.
- *               3.Data Spp.
- *               4.Data Kelas.
- *               5.Entri Transaksi Pembayaran.
- *               6.History Pembayaran.
- * 
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
 class Data_model extends CI_Model
 {
     public function get_id_spp()

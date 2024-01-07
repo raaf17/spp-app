@@ -1,21 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : Controller Pembayaran di gunakan untuk melakukan transaksi
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
-
-
-
 class Pembayaran extends CI_Controller
 {
     public function __construct()

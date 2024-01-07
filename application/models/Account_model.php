@@ -1,19 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : Account_model ini berisi query untuk melakukan fungsi login
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
-
 class Account_model extends CI_Model
 {
     public function login_check($username, $password)

@@ -1,17 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : User di gunakan untuk mengakses dashboard dan di gunakan untuk admin melihat halaman laporan dan cetak laporan
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
 class User extends CI_Controller
 {
     public function __construct()
