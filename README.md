@@ -1,8 +1,8 @@
-<h1 align="center">Selamat datang di repository SPPCeria! 👋🏻</h1>
+<h1 align="center">Selamat datang di repository SPPKITA! 👋🏻</h1>
 
 <p></p>
 
-<h4 align="center">SPPCeria, website pembayaran SPP yang sangat inovatif dan kreatif</h4>
+<h4 align="center">SPPKITA, website pembayaran SPP yang sangat inovatif dan kreatif</h4>
 
 <p></p>
 
@@ -81,13 +81,10 @@ Untuk menjalankan aplikasi atau web ini kamu harus install XAMPP dan mempunyai s
 $ git clone https://github.com/raaf17/spp-app.git
 $ cd spp-app
 $ composer install
-$ cp env .env
-Buat database dengan nama spp_app
-$ php spark migrate
-$ php spark serve
+Buat database dengan nama spp_ci3
 
 # Buka browser
-http://localhost
+http://localhost:8080/spp-app
 
 # Enjoy, jika ingin login maka liat panduan akun diatas
 ```
