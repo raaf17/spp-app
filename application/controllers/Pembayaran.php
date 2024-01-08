@@ -16,7 +16,7 @@ class Pembayaran extends CI_Controller
             redirect('auth/blocked');
         }
 
-        $data['title'] = 'Entri Transaksi Pembayaran';
+        $data['title'] = 'Transaksi Pembayaran';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -25,19 +25,13 @@ class Pembayaran extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-
-
-    // menampilkan biodata siswa dengan NISN yang di cari 
-
-
     public function transaksispp()
     {
         if (empty($this->session->userdata('username'))) {
             redirect('auth/blocked');
         }
 
-
-        $data['title'] = 'Entri Transaksi Pembayaran';
+        $data['title'] = 'Transaksi Pembayaran';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
 
         $keyword = $this->input->get('search');
@@ -50,10 +44,6 @@ class Pembayaran extends CI_Controller
         $this->load->view('pembayaran/view', ['siswa' => $siswa, 'tagihan' => $tagihan]);
         $this->load->view('templates/footer', $data);
     }
-
-
-    // menampilkan tagihan bayar dari NISN yang di cari
-
 
     public function transaksi($id)
     {
@@ -82,10 +72,6 @@ class Pembayaran extends CI_Controller
             redirect('pembayaran/transaksispp?search=' . $search['NISN']);
         }
     }
-
-
-    // Untuk menghapus transaksi pembayaran
-
 
     public function hapus($id)
     {
@@ -116,25 +102,9 @@ class Pembayaran extends CI_Controller
         }
     }
 
-
-
-
-    /**
-     * 
-     * 
-     * Halaman History
-     * 
-     * 
-     */
-
-
-
-
-
-
     public function history()
     {
-        $data['title'] = 'Lihat History Pembayaran';
+        $data['title'] = 'History Pembayaran';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $keyword = $this->session->userdata('NISN');
@@ -145,10 +115,6 @@ class Pembayaran extends CI_Controller
         $this->load->view('pembayaran/history', $data);
         $this->load->view('templates/footer', $data);
     }
-
-
-    // mencari NISN siswa untuk melihat history pembayaran
-
 
     public function search_history()
     {

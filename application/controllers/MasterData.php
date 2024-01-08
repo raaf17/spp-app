@@ -33,10 +33,9 @@ class MasterData extends CI_Controller
 
         $data = $this->Data->petugas_get();
 
-
         foreach ($data as $petugas) {
             echo '<tr>';
-            echo '<td>' . $no++ . '</td>';
+            echo '<td>' . $no++ . '.</td>';
             echo '<td>' . $petugas->USERNAME . '</td>';
             echo '<td>' . $petugas->DESKRIPSI . '</td>';
             echo '<td>' . $petugas->NAMA_PETUGAS . '</td>';
@@ -66,7 +65,6 @@ class MasterData extends CI_Controller
                                 document.location.href = href;
                             }
                         });
-
                     });
                 </script>";
         }
@@ -119,8 +117,6 @@ class MasterData extends CI_Controller
     public function petugas_del($id)
     {
         $this->Data->petugas_del($id);
-
-        // Jika admin sudah menghapus maka masukan ke dalam log activity
 
         if ($this->db->affected_rows() > 0) {
             $assign_to = '';
@@ -209,10 +205,9 @@ class MasterData extends CI_Controller
 
         $data = $this->Data->siswa_get();
 
-
         foreach ($data as $siswa) {
             echo '<tr>';
-            echo '<td>' . $no++ . '</td>';
+            echo '<td>' . $no++ . '.</td>';
             echo '<td>' . $siswa->NISN . '</td>';
             echo '<td>' . $siswa->NIS . '</td>';
             echo '<td>' . $siswa->NAMA . '</td>';
@@ -383,7 +378,7 @@ class MasterData extends CI_Controller
 
         foreach ($data as $spp) {
             echo '<tr>';
-            echo '<td>' . $no++ . '</td>';
+            echo '<td>' . $no++ . '.</td>';
             echo '<td>' . $spp->TAHUN . '</td>';
             echo '<td> Rp.' . $spp->NOMINAL . '</td>';
             echo '<td>
@@ -493,8 +488,6 @@ class MasterData extends CI_Controller
         } else {
             $this->Data->spp_edit();
 
-            // Jika admin atau petugas mengedit data spp maka akan masuk ke log activity
-
             if ($this->db->affected_rows() > 0) {
                 $assign_to = '';
                 $assign_type = '';
@@ -516,7 +509,6 @@ class MasterData extends CI_Controller
         $data['kelas'] = $this->Data->kelas_get();
         $data['jurusan'] = $this->db->get('tbl_jurusan')->result();
 
-
         $this->load->view('templates/header', $data);
         
         $this->load->view('templates/sidebar', $data);
@@ -532,7 +524,7 @@ class MasterData extends CI_Controller
 
         foreach ($data as $kelas) {
             echo '<tr>';
-            echo '<td>' . $no++ . '</td>';
+            echo '<td>' . $no++ . '.</td>';
             echo '<td>' . $kelas->NAMA_KELAS . '</td>';
             echo '<td>' . $kelas->jurusan . '</td>';
             echo '<td>
@@ -561,7 +553,6 @@ class MasterData extends CI_Controller
                                 document.location.href = href;
                             }
                         });
-
                     });
                 </script>";
         }
@@ -652,11 +643,9 @@ class MasterData extends CI_Controller
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['jurusan'] = $this->db->get('tbl_jurusan')->result();
 
-
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required', [
             'required' => 'Kompetensi Keahlian tidak boleh kosong.'
         ]);
-
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -666,8 +655,6 @@ class MasterData extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $this->db->insert('tbl_jurusan', ['jurusan' => $this->input->post('jurusan')]);
-
-            // Jika admin atau petugas menambahkan data jurusan maka akan masuk ke log activity
 
             if ($this->db->affected_rows() > 0) {
                 $assign_to = '';
@@ -688,10 +675,9 @@ class MasterData extends CI_Controller
 
         $data = $this->db->get('tbl_jurusan')->result();
 
-
         foreach ($data as $jurusan) {
             echo '<tr>';
-            echo '<td>' . $no++ . '</td>';
+            echo '<td>' . $no++ . '.</td>';
             echo '<td>' . $jurusan->JURUSAN . '</td>';
             echo '<td>
                 <a href="#" data-toggle="modal" data-target="#modalEdit' . $jurusan->ID_JURUSAN . '" class="btn btn-sm btn-warning" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fas fa-md fa-pencil-alt text-white"></i></a>
@@ -719,7 +705,6 @@ class MasterData extends CI_Controller
                                 document.location.href = href;
                             }
                         });
-
                     });
                 </script>";
         }
@@ -729,8 +714,6 @@ class MasterData extends CI_Controller
     {
         $this->db->where('id_jurusan', $id);
         $this->db->delete('tbl_jurusan');
-
-        // Jika admin atau petugas menghapus data jurusan maka akan masuk ke log activity
 
         if ($this->db->affected_rows() > 0) {
             $assign_to = '';
@@ -747,7 +730,6 @@ class MasterData extends CI_Controller
     public function jurusan_edit()
     {
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required');
-
 
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('gagal', 'diubah');

@@ -15,4 +15,14 @@ class Log_model extends CI_Model
         $this->db->order_by('log_time', 'DESC');
         return $this->db->get('tbl_log', 8)->result();
     }
+
+    public function count_activity()
+    {
+        $query = $this->db->get('tbl_log');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
 }

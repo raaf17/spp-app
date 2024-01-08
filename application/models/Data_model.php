@@ -9,13 +9,6 @@ class Data_model extends CI_Model
         return $this->db->query($query)->result();
     }
 
-
-
-    //--------------------------------------------
-    // ----------Model data untuk entri transaksi---------
-    //--------------------------------------------
-
-
     public function get_siswa()
     {
         $query = "SELECT `tbl_siswa`.*, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
@@ -23,8 +16,6 @@ class Data_model extends CI_Model
 
         return $this->db->query($query)->row_array();
     }
-
-
 
     public function search($keyword)
     {
@@ -43,21 +34,6 @@ class Data_model extends CI_Model
 
         return $this->db->query($query)->result();
     }
-
-
-
-
-
-
-    //--------------------------------------------
-    // ----------Model data untuk Dashboard---------
-    //--------------------------------------------
-
-
-
-
-
-
 
     public function count_petugas()
     {
@@ -88,17 +64,6 @@ class Data_model extends CI_Model
             return 0;
         }
     }
-
-
-
-
-
-    //--------------------------------------------
-    // ----------Model data untuk Petugas---------
-    //--------------------------------------------
-
-
-
 
     public function petugas_get()
     {
@@ -137,23 +102,12 @@ class Data_model extends CI_Model
         $this->db->update('tbl_petugas');
     }
 
-
-
-
-    //--------------------------------------------
-    // ----------Model data untuk Siswa----------- 
-    //--------------------------------------------
-
-
-
     public function siswa_get()
     {
         $query = $this->db->query("call get_siswa()");
         mysqli_next_result($this->db->conn_id);
         return $query->result();
     }
-
-
 
     public function jatuhTempo($id)
     {
@@ -244,16 +198,6 @@ class Data_model extends CI_Model
         $this->db->update('tbl_siswa');
     }
 
-
-
-
-    //--------------------------------------------
-    // ----------Model data untuk SPP----------- 
-    //--------------------------------------------
-
-
-
-
     public function spp_edit()
     {
         $data = [
@@ -265,22 +209,6 @@ class Data_model extends CI_Model
         $this->db->where('id_spp', $this->input->post('id_spp'));
         $this->db->update('tbl_spp');
     }
-
-
-
-    //--------------------------------------------
-    // ----------Model data untuk Kelas----------- 
-    //--------------------------------------------
-
-
-
-
-    // public function kelas_get()
-    // {
-    //     $query = "SELECT `tbl_kelas`.*, `tbl_jurusan`.`jurusan` FROM `tbl_kelas` JOIN `tbl_jurusan` ON `tbl_kelas`.`id_jurusan` = `tbl_jurusan`.`id_jurusan` ORDER BY `tbl_kelas`.`id_jurusan` ASC";
-
-    //     return $this->db->query($query)->result();
-    // }
 
     public function kelas_get()
     {
@@ -311,16 +239,6 @@ class Data_model extends CI_Model
         $this->db->update('tbl_kelas');
     }
 
-
-
-
-    //---------------------------------------------------------
-    // ----------Model data untuk History Pembayaran----------- 
-    //---------------------------------------------------------
-
-
-
-
     public function history_get($keyword)
     {
         $query = "SELECT `tbl_pembayaran`.*, `tbl_siswa`.* , `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
@@ -332,14 +250,6 @@ class Data_model extends CI_Model
         return $this->db->query($query)->result();
     }
 
-
-
-
-    //---------------------------------------------------------
-    // ----------Model data untuk transaksi----------- 
-    //---------------------------------------------------------
-
-
     public function cetakTransaksi($tgl_mulai, $tgl_sampai)
     {
         $query = "SELECT `tbl_pembayaran`.*, `tbl_siswa`.* , `tbl_petugas`.`nama_petugas`, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
@@ -350,7 +260,6 @@ class Data_model extends CI_Model
 
         return $this->db->query($query)->result();
     }
-
 
     public function cetakStruk($id)
     {

@@ -2,6 +2,10 @@
     <section class="section">
         <div class="section-header">
             <h1>Dashboard</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Main Menu</a></div>
+                <div class="breadcrumb-item">Dashboard</div>
+            </div>
         </div>
 
         <div class="section-body">
@@ -59,10 +63,10 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Uang Tahun Ini</h4>
+                                    <h4>Log Activity</h4>
                                 </div>
                                 <div class="card-body">
-                                    2.000.000
+                                    <?= $jumlahAktifitas; ?>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +78,7 @@
                     <section class="col-lg-12">
                         <div class="card card-outline card-primary">
                             <div class="card-header">
-                                <h5 class="card-title">Aktivitas Log</h5>
+                                <h5 class="card-title">Log Activity</h5>
                             </div>
                             <div class="card-body table-responsive">
                                 <?php if (empty($log)) : ?>

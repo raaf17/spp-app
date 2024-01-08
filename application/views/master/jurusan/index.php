@@ -6,7 +6,7 @@
         <div class="section-header">
             <h1>Data Jurusan</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+                <div class="breadcrumb-item active"><a href="#">Master Data</a></div>
                 <div class="breadcrumb-item">Data Jurusan</div>
             </div>
         </div>
@@ -45,7 +45,8 @@
                 </div>
                 <div class="card-footer small text-muted">Updated at <?php $zone = 3600 * +7;
                                                                         $date = gmdate("l, d F Y H:i a", time() + $zone);
-                                                                        echo "$date"; ?> </div>
+                                                                        echo "$date"; ?>
+                </div>
             </div>
         </div>
     </section>

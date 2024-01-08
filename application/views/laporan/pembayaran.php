@@ -64,7 +64,7 @@
 <body>
     <header class="p-0">
         <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/spp/assets/img/logo_smk.png" class="img-fluid" alt="" width="120">
-        <h2 class="ml-5 text-center">Pemerintah Provinsi Jawa Timur<br>Dinas Pendididkan<br>Sekolah Menengah Kejuruan Negeri 8 Jember<br><span>Kelompok : Teknologi & Pertanian<br>Program Keahlian : Teknik Otomotif, Teknik Komputer & Informatika dan Agribisnis Produksi Tanaman<br>Jl.Pelita No. 27, Sidomekar - Semboro - Jember Telp./Fax : (0336) 444112 <br><span class="email"><b>email</b> : jembersmkn8@yahoo.com</span></span></h2>
+        <h2 class="ml-5 text-center">Pemerintah Provinsi Jawa Timur<br>Dinas Pendididkan<br>SMKN 1 BOYOLANGU<br><span>Jl. Ki Mangun Sarkoro, Beji - Boyolangu - Tulungagung Telp./Fax : (0336) 444112 <br><span class="email"><b>email</b> : smkn1boyolangu@yahoo.com</span></span></h2>
     </header><br><br>
 
     <section id="konten">

@@ -24,30 +24,46 @@
 
 <!-- Page Specific JS File -->
 <script src="<?= base_url('assets/template/') ?>/assets/js/page/modules-chartjs.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?= base_url('assets/adminlte/') ?>plugins/sweetalert2/sweetalert2.all.js"></script>
+<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
+
+<!-- General JS Scripts -->
+<script src="<?= base_url('assets/template/') ?>/node_modules/popper.js"></script>
+<script src="<?= base_url('assets/template/') ?>/node_modules/tooltip.js"></script>
+<script src="<?= base_url('assets/template/') ?>/node_modules/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= base_url('assets/template/') ?>/node_modules/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="<?= base_url('assets/template/') ?>/node_modules/moment.min.js"></script>
+
+<!-- JS Libraies -->
+<script src="<?= base_url('assets/template/') ?>/node_modules/sweetalert/sweetalert.min.js"></script>
+
+<!-- Page Specific JS File -->
+<script src="<?= base_url('assets/template/') ?>/assets/js/page/modules-sweetalert.js"></script>
 
 <script>
-    $('.logout').on('click', function(e) {
+  $('.logout').on('click', function(e) {
 
-        e.preventDefault();
+    e.preventDefault();
 
-        const href = $(this).attr('href');
+    const href = $(this).attr('href');
 
-        Swal.fire({
-            title: 'Yakin ingin logout?',
-            text: 'Jika anda logout maka session akan terhapus!',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Logout!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.value) {
-                document.location.href = href;
-            }
-        });
-
+    Swal.fire({
+      title: 'Yakin ingin logout?',
+      text: 'Jika anda logout maka session akan terhapus!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Logout!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        document.location.href = href;
+      }
     });
+
+  });
 </script>
 
 <!-- Template JS File -->
