@@ -1,17 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : User di gunakan untuk mengakses dashboard dan di gunakan untuk admin melihat halaman laporan dan cetak laporan
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
 class User extends CI_Controller
 {
     public function __construct()
@@ -27,16 +16,15 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Home';
+        $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['jumlahPetugas'] = $this->Data->count_petugas();
         $data['jumlahSiswa'] = $this->Data->count_siswa();
         $data['jumlahTransaksi'] = $this->Data->count_transaksi();
+        $data['jumlahAktifitas'] = $this->Log->count_activity();
         $data['log'] = $this->Log->get_activity_log();
         $data['siswa'] = $this->Data->get_siswa();
-
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -44,23 +32,11 @@ class User extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-    /**
-     * ------------------------------------------------------
-     * 
-     *                 Laporan & Cetak Struk
-     *
-     * ------------------------------------------------------ 
-     */
-
-
-
     public function laporan()
     {
         $data['title'] = 'Generate Laporan';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -71,7 +47,6 @@ class User extends CI_Controller
     public function cetakPetugas()
     {
         $data['petugas'] = $this->db->get_where('tbl_petugas', ['id_level' => 2])->result();
-
 
         $html = $this->load->view('laporan/petugas', $data, true);
 
@@ -86,11 +61,9 @@ class User extends CI_Controller
         }
     }
 
-
     public function cetakSiswa()
     {
         $data['siswa'] = $this->Data->siswa_get();
-
 
         $html = $this->load->view('laporan/siswa', $data, true);
 
@@ -111,7 +84,6 @@ class User extends CI_Controller
         $tgl_sampai  = $this->input->post('tgl2');
 
         $data['transaksi'] = $this->Data->cetakTransaksi($tgl_mulai, $tgl_sampai);
-
 
         $html = $this->load->view('laporan/pembayaran', $data, true);
 

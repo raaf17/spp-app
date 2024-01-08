@@ -15,9 +15,13 @@
             <i class="nav-icon fas fa-copy"></i> <span>Master Data</span>
         </a>
         <ul class="dropdown-menu">
-            <li>
-                <a href="<?= site_url('masterdata/petugas') ?>" class="nav-link"><i class="far fa-circle nav-icon">
-                    </i>Data Petugas</a>
+            <li class="nav-item">
+                <a href="<?= site_url('masterdata/jurusan') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>Data Jurusan</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= site_url('masterdata/kelas') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>Data Kelas</a>
             </li>
             <li>
                 <a href="<?= site_url('masterdata/siswa') ?>" class="nav-link">
@@ -27,13 +31,9 @@
                 <a href="<?= site_url('masterdata/spp') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>Data SPP</a>
             </li>
-            <li class="nav-item">
-                <a href="<?= site_url('masterdata/kelas') ?>" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>Data Kelas</a>
-            </li>
-            <li class="nav-item">
-                <a href="<?= site_url('masterdata/jurusan') ?>" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>Data Jurusan</a>
+            <li>
+                <a href="<?= site_url('masterdata/petugas') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>Data Petugas</a>
             </li>
         </ul>
     </li>
@@ -47,7 +47,7 @@
     </li>
     <li>
         <a href="<?= base_url('pembayaran/history') ?>" class="nav-link">
-            <i class="nav-icon fas fa-history"></i> <span>Lihat Histori Pembayaran</span>
+            <i class="nav-icon fas fa-history"></i> <span>Histori Pembayaran</span>
         </a>
     </li>
 
@@ -78,7 +78,7 @@
     </li>
 <?php endif ?>
 <li>
-    <a href="<?= base_url('auth/logout') ?>" class="nav-link logout">
+    <a href="<?= base_url('auth/logout') ?>" class="nav-link" id="swal-6">
         <i class="fas fa-sign-out-alt nav-icon"></i> Logout</a>
 </li>
 <!-- </ul> -->

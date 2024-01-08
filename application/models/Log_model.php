@@ -1,18 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : Log_model ini berisi query untuk melakukan fungsi log activity
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
 class Log_model extends CI_Model
 {
     public function save_log($param)
@@ -26,5 +14,15 @@ class Log_model extends CI_Model
     {
         $this->db->order_by('log_time', 'DESC');
         return $this->db->get('tbl_log', 8)->result();
+    }
+
+    public function count_activity()
+    {
+        $query = $this->db->get('tbl_log');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
     }
 }

@@ -1,21 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
-/**
- * Deskripsi : Auth di gunakan untuk login, logout & blocked (jika user mengetahui url tetapi dia tidak memiliki hak akses terhadap halaman tsb)
- * Powered by : CodeIgniter
- * Author : Sri Adi Cahyono
- * Email : 21sacah002@gmail.com
- * WA : 085655614570
- */
-
-
-
-
-
-
-
 class Auth extends CI_Controller
 {
     public function __construct()
@@ -41,8 +26,6 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('index');
         } else {
-            // menjalankan fungsi login
-
             $this->_login();
         }
     }
@@ -52,15 +35,12 @@ class Auth extends CI_Controller
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
-        $chk = $this->Account->login_check($username, $password); // melakukan cek untuk tabel petugas
-        $chk_siswa = $this->Account->siswa_check($username, $this->input->post('password')); // melakukan cek untuk tabel siswa
-
-        // Jika data dari username dan password yang diisi oleh user ada di tabel petugas maka 
+        $chk = $this->Account->login_check($username, $password);
+        $chk_siswa = $this->Account->siswa_check($username, $this->input->post('password'));
 
         if ($chk == true) {
             $dataget = $this->Account->login_get($username, $password);
             foreach ($dataget as $userdata) : endforeach;
-
 
             $levelget = $this->Account->level_get($userdata->ID_LEVEL);
             foreach ($levelget as $leveldata) : endforeach;
@@ -74,8 +54,6 @@ class Auth extends CI_Controller
 
             $this->session->set_userdata($data);
             redirect('user');
-
-            // Jika di tabel petugas tidak ada maka cek kembali untuk tabel siswa
 
         } else if ($chk_siswa) {
             $dataget = $this->Account->siswa_get($username, $this->input->post('password'));
@@ -94,7 +72,6 @@ class Auth extends CI_Controller
             $this->session->set_userdata($data);
             redirect('user');
 
-            // Jika data yang di masukkan oleh user tidak ada maka tampilkan error 
         } else {
             $this->session->set_flashdata('error',  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Maaf akun tidak ditemukan!</strong> Mungkin anda salah memasukan username atau password.

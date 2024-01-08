@@ -4,8 +4,9 @@
         <div class="section-header">
             <h1>Data Siswa</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Data Master</a></div>
+                <div class="breadcrumb-item active"><a href="#">Master Data</a></div>
                 <div class="breadcrumb-item">Data Siswa</div>
+                <div class="breadcrumb-item">Tambah Data Siswa</div>
             </div>
         </div>
 
