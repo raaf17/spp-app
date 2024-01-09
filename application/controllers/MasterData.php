@@ -94,7 +94,7 @@ class MasterData extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            
+
             $this->load->view('templates/sidebar', $data);
             $this->load->view('master/petugas/add', $data);
             $this->load->view('templates/footer', $data);
@@ -285,7 +285,7 @@ class MasterData extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            
+
             $this->load->view('templates/sidebar', $data);
             $this->load->view('master/siswa/add', $data);
             $this->load->view('templates/footer', $data);
@@ -364,7 +364,7 @@ class MasterData extends CI_Controller
 
 
         $this->load->view('templates/header', $data);
-        
+
         $this->load->view('templates/sidebar', $data);
         $this->load->view('master/spp/index', $data);
         $this->load->view('templates/footer', $data);
@@ -431,7 +431,7 @@ class MasterData extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            
+
             $this->load->view('templates/sidebar', $data);
             $this->load->view('master/spp/add', $data);
             $this->load->view('templates/footer', $data);
@@ -510,7 +510,7 @@ class MasterData extends CI_Controller
         $data['jurusan'] = $this->db->get('tbl_jurusan')->result();
 
         $this->load->view('templates/header', $data);
-        
+
         $this->load->view('templates/sidebar', $data);
         $this->load->view('master/kelas/index', $data);
         $this->load->view('templates/footer', $data);
@@ -575,7 +575,7 @@ class MasterData extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            
+
             $this->load->view('templates/sidebar', $data);
             $this->load->view('master/kelas/add', $data);
             $this->load->view('templates/footer', $data);
@@ -649,7 +649,7 @@ class MasterData extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            
+
             $this->load->view('templates/sidebar', $data);
             $this->load->view('master/jurusan/index', $data);
             $this->load->view('templates/footer', $data);
@@ -749,6 +749,63 @@ class MasterData extends CI_Controller
             } else {
                 return false;
             }
+        }
+    }
+
+    public function excel()
+    {
+        if (isset($_FILES["file"]["name"])) {
+            // upload
+            $file_tmp = $_FILES['file']['tmp_name'];
+            $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
+            $file_type = $_FILES['file']['type'];
+            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
+
+            $object = PHPExcel_IOFactory::load($file_tmp);
+
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $jurusan = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+
+                    // Cek apakah jurusan sudah ada sebelumnya
+                    $existingJurusan = $this->db->get_where('tbl_jurusan', ['jurusan' => $jurusan])->row();
+
+                    if (!$existingJurusan) {
+                        $data[] = array(
+                            'jurusan' => $jurusan,
+                        );
+                    }
+                }
+            }
+
+            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
+            if (!empty($data)) {
+                $this->db->insert_batch('tbl_jurusan', $data);
+
+                $message = array(
+                    'message' => 'Import file excel berhasil disimpan di database',
+                );
+
+                $this->session->set_flashdata('success', 'Import file excel berhasil disimpan di database');
+            } else {
+                $message = array(
+                    'message' => 'Tidak ada data baru untuk diimpor',
+                );
+
+                $this->session->set_flashdata('gagal', 'Tidak ada data baru untuk diimpor');
+            }
+
+            redirect('masterdata/jurusan');
+        } else {
+            $message = array(
+                'message' => '<div class="alert alert-danger">Import file gagal, coba lagi</div>',
+            );
+
+            $this->session->set_flashdata($message);
+            redirect('masterdata/jurusan');
         }
     }
 }

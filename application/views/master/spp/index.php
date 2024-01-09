@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-md" id="table1">
+                    <table class="table table-striped table-md" id="dataTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -89,15 +89,6 @@
 
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Data table -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables/jquery.dataTables.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-responsive/js/dataTables.responsive.js"></script>
-<!-- SweetAlert2 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/sweetalert2/sweetalert2.all.js"></script>
-<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
 
 <script type="text/javascript">
     show_data();
