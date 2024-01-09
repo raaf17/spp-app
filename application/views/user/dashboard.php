@@ -59,7 +59,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
-                                <i class="fas fa-money-bill-1-wave"></i>
+                                <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -129,7 +129,7 @@
             <?php else : ?>
                 <div class="card card-primary mb-5">
                     <div class="card-header">
-                        <h3 class="card-title text-bold">Biodata Siswa</h3>
+                        <h5 class="card-title text-bold">Biodata Siswa</h5>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -143,7 +143,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['NISN'] ?>
+                                        <?= $siswai['NISN'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,7 +154,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['NIS'] ?>
+                                        <?= $siswai['NIS'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -165,7 +165,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['NAMA'] ?>
+                                        <?= $siswai['NAMA'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -176,7 +176,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['nama_kelas'] ?>
+                                        <?= $siswai['nama_kelas'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +187,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['jurusan'] ?>
+                                        <?= $siswai['jurusan'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -198,7 +198,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswa['TAHUN'] ?>
+                                        <?= $siswai['TAHUN'] ?>
                                     </td>
                                 </tr>
                             </tbody>

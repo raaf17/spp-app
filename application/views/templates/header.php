@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>SPPKITA | <?= $title ?></title>
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/datatables/datatables.min.css">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -23,6 +25,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/components.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -75,7 +78,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <img src="<?= base_url() ?>/img/esemkita-lg.png" width="30px" alt="">
+                        <img src="<?= base_url('public') ?>/img/esemkita-lg.png" width="30px" alt="">
                         <a href="<?= base_url('user') ?>">SPPKITA</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">

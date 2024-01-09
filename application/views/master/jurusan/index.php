@@ -16,22 +16,38 @@
             <b>Jika anda menghapus data jurusan maka data kelas yang memiliki kompetensi keahlian yang sama akan terhapus.</b>
         </div>
 
+        <?php if ($this->session->set_flashdata('success')) : ?>
+            <div class="alert alert-success alert-dismissible show fade">
+                <button class="close" data-dismiss="alert">x</button>
+                <b>Success !</b>
+                <?= $this->session->set_flashdata('success') ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($this->session->set_flashdata('error')) : ?>
+            <div class="alert alert-danger alert-dismissible show fade">
+                <button class="close" data-dismiss="alert">x</button>
+                <b>Error !</b>
+                <?= $this->session->set_flashdata('gagal'); ?>
+            </div>
+        <?php endif; ?>
+
         <div class="section-body">
             <div class="card card-primary mt-3 mb-3">
                 <div class="card-body col-lg-6">
                     <form method="post" action="<?= base_url('masterdata/jurusan') ?>">
-                        <div class="form-group">
+                        <div class="form-group d">
                             <label for="jurusan">Kompetensi Keahlian</label>
                             <input type="text" class="form-control" id="jurusan" name="jurusan">
                             <?= form_error('jurusan', '<small class="text-danger ml-2">', '</small>'); ?>
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah <i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-jurusan">Import <i class="fas fa-file-import"></i></button>
                     </form>
                 </div>
             </div>
             <div class="card card-primary mt-3 mb-3">
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-md" id="table1">
+                    <table class="table table-striped table-md" id="dataTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -81,17 +97,33 @@
             </div>
         </div>
     <?php endforeach ?>
-</div>
 
-<!-- Bootstrap 4 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Data table -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables/jquery.dataTables.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-responsive/js/dataTables.responsive.js"></script>
-<!-- SweetAlert2 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/sweetalert2/sweetalert2.all.js"></script>
-<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-import-jurusan">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Data Jurusan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= site_url('masterdata/excel'); ?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <label for="">File Excel</label>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="form-file-input" id="file" required>
+                            <label for="file" name="file" class="custom-file-label">Pilih File</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>

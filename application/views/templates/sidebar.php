@@ -8,8 +8,8 @@
 </li>
 
 <!-- Data Master -->
-<li class="menu-header">Master</li>
 <?php if ($this->session->userdata('level') ==  'Admin') : ?>
+    <li class="menu-header">Master</li>
     <li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown">
             <i class="nav-icon fas fa-copy"></i> <span>Master Data</span>
@@ -59,26 +59,26 @@
         </a>
     </li>
 <?php elseif ($this->session->userdata('level') == 'Petugas') : ?>
-    <li class="nav-header">Transaksi</li>
+    <li class="menu-header">Transaksi</li>
     <li>
         <a href="<?= base_url('pembayaran') ?>" class="nav-link">
-            <i class="nav-icon far fa-money-bill-alt"></i> Entri Transaksi Pembayaran</a>
+            <i class="nav-icon far fa-money-bill-alt"></i> Transaksi Pembayaran</a>
     </li>
     <li>
         <a href="<?= base_url('pembayaran/history') ?>" class="nav-link">
             <i class="nav-icon fas fa-history"></i>
-            Lihat History Pembayaran
+            History Pembayaran
         </a>
     </li>
 <?php else : ?>
     <li class="menu-header">Transaksi</li>
     <li>
         <a href="<?= base_url('pembayaran/history') ?>" class="nav-link">
-            <i class="nav-icon fas fa-history"></i> Lihat History Pembayaran</a>
+            <i class="nav-icon fas fa-history"></i> History Pembayaran</a>
     </li>
 <?php endif ?>
 <li>
-    <a href="<?= base_url('auth/logout') ?>" class="nav-link" id="swal-6">
+    <a href="<?= base_url('auth/logout') ?>" class="nav-link logout" data-toggle="tooltip">
         <i class="fas fa-sign-out-alt nav-icon"></i> Logout</a>
 </li>
 <!-- </ul> -->
