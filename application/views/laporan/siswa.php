@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Siswa</title>
-    <link rel="stylesheet" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/spp/assets/css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
+        }
+
+        header {
+            margin-left: 240px;
         }
 
         header img {
@@ -20,9 +23,10 @@
         header h2 {
             position: absolute;
             top: -15px;
-            left: 50px;
+            /* left: 50px; */
             font-size: 18px;
             line-height: 25px;
+            text-align: center;
             text-transform: uppercase;
         }
 
@@ -62,8 +66,7 @@
 
 <body>
     <header class="p-0">
-        <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/spp/assets/img/logo_smk.png" class="img-fluid" alt="" width="90">
-        <h2 class="ml-5 text-center">Pemerintah Provinsi Jawa Timur<br>Dinas Pendididkan<br>Sekolah Menengah Kejuruan Negeri 8 Jember<br><span>Kelompok : Teknologi & Pertanian<br>Program Keahlian : Teknik Otomotif, Teknik Komputer & Informatika dan Agribisnis Produksi Tanaman<br>Jl.Pelita No. 27, Sidomekar - Semboro - Jember Telp./Fax : (0336) 444112 <br><span class="email"><b>email</b> : jembersmkn8@yahoo.com</span></span></h2>
+        <h2 class="ml-5 text-center">Pemerintah Provinsi Jawa Timur<br>Dinas Pendididkan<br>SMKN 1 BOYOLANGU<br><span>Jl. Ki Mangun Sarkoro, Beji - Boyolangu - Tulungagung Telp./Fax : (0336) 444112 <br><span class="email"><b>email</b> : smkn1boyolangu@yahoo.com</span></span></h2>
     </header><br><br>
 
     <section id="konten">

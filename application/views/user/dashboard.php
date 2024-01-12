@@ -9,7 +9,7 @@
         </div>
 
         <div class="section-body">
-            <?php if ($this->session->userdata('level') == 'Admin') : ?>
+            <?php if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'Petugas') : ?>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
@@ -111,21 +111,6 @@
                         </div>
                     </section>
                 </div>
-            <?php elseif ($this->session->userdata('level') == 'Petugas') : ?>
-                <div class="row">
-
-                </div>
-                <!-- /.row -->
-                <!-- Main row -->
-                <div class="row">
-                    <!-- Left col -->
-                    <section class="col-lg-12 text-center">
-
-                        <!-- /.card -->
-                    </section>
-                    <!-- right col -->
-                </div>
-                <!-- /.row (main row) -->
             <?php else : ?>
                 <div class="card card-primary mb-5">
                     <div class="card-header">
@@ -143,7 +128,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['NISN'] ?>
+                                        <?= $siswasatu['NISN'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,7 +139,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['NIS'] ?>
+                                        <?= $siswasatu['NIS'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -165,7 +150,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['NAMA'] ?>
+                                        <?= $siswasatu['NAMA'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -176,7 +161,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['nama_kelas'] ?>
+                                        <?= $siswasatu['nama_kelas'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +172,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['jurusan'] ?>
+                                        <?= $siswasatu['jurusan'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -198,7 +183,7 @@
                                         :
                                     </td>
                                     <td>
-                                        <?= $siswai['TAHUN'] ?>
+                                        <?= $siswasatu['TAHUN'] ?>
                                     </td>
                                 </tr>
                             </tbody>

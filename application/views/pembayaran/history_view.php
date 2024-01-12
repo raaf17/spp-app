@@ -37,8 +37,8 @@
             </table>
         </div>
     <?php else : ?>
-        <div class="card-body">
-            <p>Siswa ini belum membayar spp sama sekali.</p>
+        <div class="card-body text-center">
+            <p class="mt-3"><b><h5 class="text-danger">Siswa ini belum membayar SPP sama sekali.</h5></b></p>
         </div>
     <?php endif; ?>
 </div>

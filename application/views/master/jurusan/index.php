@@ -1,5 +1,6 @@
 <div class="jurusan" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error_jurusan" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
+
 <!-- Main content -->
 <div class="main-content">
     <section class="section">
@@ -16,21 +17,6 @@
             <b>Jika anda menghapus data jurusan maka data kelas yang memiliki kompetensi keahlian yang sama akan terhapus.</b>
         </div>
 
-        <?php if ($this->session->set_flashdata('success')) : ?>
-            <div class="alert alert-success alert-dismissible show fade">
-                <button class="close" data-dismiss="alert">x</button>
-                <b>Success !</b>
-                <?= $this->session->set_flashdata('success') ?>
-            </div>
-        <?php endif; ?>
-        <?php if ($this->session->set_flashdata('error')) : ?>
-            <div class="alert alert-danger alert-dismissible show fade">
-                <button class="close" data-dismiss="alert">x</button>
-                <b>Error !</b>
-                <?= $this->session->set_flashdata('gagal'); ?>
-            </div>
-        <?php endif; ?>
-
         <div class="section-body">
             <div class="card card-primary mt-3 mb-3">
                 <div class="card-body col-lg-6">
@@ -45,6 +31,7 @@
                     </form>
                 </div>
             </div>
+            
             <div class="card card-primary mt-3 mb-3">
                 <div class="card-body table-responsive">
                     <table class="table table-striped table-md" id="dataTable">
@@ -107,7 +94,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= site_url('masterdata/excel'); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= site_url('masterdata/import_jurusan'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <label for="">File Excel</label>
                         <div class="custom-file">

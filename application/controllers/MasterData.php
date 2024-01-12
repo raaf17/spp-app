@@ -54,7 +54,7 @@ class MasterData extends CI_Controller
                         Swal.fire({
                             title: 'Yakin ingin hapus?',
                             text: 'Data yang dihapus akan hilang!',
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -230,7 +230,7 @@ class MasterData extends CI_Controller
                         Swal.fire({
                             title: 'Yakin ingin hapus?',
                             text: 'Data yang dihapus akan hilang!',
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -355,6 +355,75 @@ class MasterData extends CI_Controller
         }
     }
 
+    public function import_siswa()
+    {
+        if (isset($_FILES["file"]["name"])) {
+            // upload
+            $file_tmp = $_FILES['file']['tmp_name'];
+            $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
+            $file_type = $_FILES['file']['type'];
+            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
+
+            $object = PHPExcel_IOFactory::load($file_tmp);
+
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+
+                for ($row = 8; $row <= $highestRow; $row++) {
+                    $nisn = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $id_kelas = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $id_spp = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $nis = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $nama = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $alamat = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                    $no_telp = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+
+                    // Cek apakah kelas sudah ada sebelumnya
+                    $existingJurusan = $this->db->get_where('tbl_siswa', ['nisn' => $nisn])->row();
+
+                    if (!$existingJurusan) {
+                        $data[] = array(
+                            'nisn' => $nisn,
+                            'id_kelas' => $id_kelas,
+                            'id_spp' => $id_spp,
+                            'nis' => $nis,
+                            'nama' => $nama,
+                            'alamat' => $alamat,
+                            'no_telp' => $no_telp,
+                        );
+                    }
+                }
+            }
+
+            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
+            if (!empty($data)) {
+                $this->db->insert_batch('tbl_siswa', $data);
+
+                $message = array(
+                    'message' => 'Import file excel berhasil disimpan di database',
+                );
+
+                $this->session->set_flashdata('success', 'Import file excel berhasil disimpan di database');
+            } else {
+                $message = array(
+                    'message' => 'Tidak ada data baru untuk diimpor',
+                );
+
+                $this->session->set_flashdata('gagal', 'Tidak ada data baru untuk diimpor');
+            }
+
+            redirect('masterdata/siswa');
+        } else {
+            $message = array(
+                'message' => '<div class="alert alert-danger">Import file gagal, coba lagi</div>',
+            );
+
+            $this->session->set_flashdata($message);
+            redirect('masterdata/siswa');
+        }
+    }
+
     public function spp()
     {
         $data['title'] = 'Data SPP';
@@ -396,7 +465,7 @@ class MasterData extends CI_Controller
                         Swal.fire({
                             title: 'Yakin ingin hapus?',
                             text: 'Data yang dihapus akan hilang!',
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -542,7 +611,7 @@ class MasterData extends CI_Controller
                         Swal.fire({
                             title: 'Yakin ingin hapus?',
                             text: 'Data yang dihapus akan hilang!',
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -636,6 +705,65 @@ class MasterData extends CI_Controller
         }
     }
 
+    public function import_kelas()
+    {
+        if (isset($_FILES["file"]["name"])) {
+            // upload
+            $file_tmp = $_FILES['file']['tmp_name'];
+            $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
+            $file_type = $_FILES['file']['type'];
+            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
+
+            $object = PHPExcel_IOFactory::load($file_tmp);
+
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+
+                for ($row = 3; $row <= $highestRow; $row++) {
+                    $id_jurusan = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $nama_kelas = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+
+                    // Cek apakah kelas sudah ada sebelumnya
+                    $existingJurusan = $this->db->get_where('tbl_kelas', ['nama_kelas' => $nama_kelas])->row();
+
+                    if (!$existingJurusan) {
+                        $data[] = array(
+                            'id_jurusan' => $id_jurusan,
+                            'nama_kelas' => $nama_kelas,
+                        );
+                    }
+                }
+            }
+
+            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
+            if (!empty($data)) {
+                $this->db->insert_batch('tbl_kelas', $data);
+
+                $message = array(
+                    'message' => 'Import file excel berhasil disimpan di database',
+                );
+
+                $this->session->set_flashdata('success', 'Import file excel berhasil disimpan di database');
+            } else {
+                $message = array(
+                    'message' => 'Tidak ada data baru untuk diimpor',
+                );
+
+                $this->session->set_flashdata('gagal', 'Tidak ada data baru untuk diimpor');
+            }
+
+            redirect('masterdata/kelas');
+        } else {
+            $message = array(
+                'message' => '<div class="alert alert-danger">Import file gagal, coba lagi</div>',
+            );
+
+            $this->session->set_flashdata($message);
+            redirect('masterdata/kelas');
+        }
+    }
+
     public function jurusan()
     {
         $data['title'] = 'Data Jurusan';
@@ -694,7 +822,7 @@ class MasterData extends CI_Controller
                         Swal.fire({
                             title: 'Yakin ingin hapus?',
                             text: 'Data yang dihapus akan hilang!',
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
@@ -752,7 +880,7 @@ class MasterData extends CI_Controller
         }
     }
 
-    public function excel()
+    public function import_jurusan()
     {
         if (isset($_FILES["file"]["name"])) {
             // upload

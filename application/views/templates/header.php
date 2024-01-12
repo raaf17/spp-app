@@ -5,36 +5,28 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>SPPKITA | <?= $title ?></title>
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/datatables/datatables.min.css">
 
-    <!-- General CSS Files -->
+    <link rel="shortcut icon" href="<?= base_url('assets/') ?>img/favicon/esemkita-lg.png" type="image/x-icon">
+
+    <!-- CSS Libraries -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/jquery-selectric/selectric.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modulesbootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/components.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
-    <script id="__bs_script__">
-        //<![CDATA[
-        document.write("<script async src='/browser-sync/browser-sync-client.js?v=2.27.10'><\/script>".replace("HOST", location.hostname));
-        //]]>
-    </script>
-
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
@@ -44,10 +36,10 @@
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                     </ul>
-                    <!-- <div class="search-element">
+                    <div class="search-element">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                    </div> -->
+                    </div>
                 </form>
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
@@ -61,14 +53,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item has-icon">
-                                <i class="far fa-user"></i> Profile
-                            </a>
-                            <a href="<?= base_url('setting') ?>" class="dropdown-item has-icon">
-                                <i class="fas fa-cog"></i> Settings
-                            </a>
-                            <div class="<?= base_url('auth/logout') ?>"></div>
-                            <a href="" class="dropdown-item has-icon text-danger" id="logout" data-confirm="Logout?|Yakin Keluar Aplikasi?" data-confirm-yes="returnLogout()">
+                            <a href="<?= base_url('auth/logout') ?>" class="dropdown-item has-icon text-danger logout" data-toggle="tooltip">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>

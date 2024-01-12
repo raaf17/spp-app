@@ -8,7 +8,7 @@
             <h1>Transaksi Pembayaran</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Transaksi</a></div>
-                <div class="breadcrumb-item">Entri Transaksi Pembayaran</div>
+                <div class="breadcrumb-item">Transaksi Pembayaran</div>
             </div>
         </div>
 
@@ -39,14 +39,7 @@
                             <?php if (!empty($siswa)) : ?>
                                 <div class="card-header">
                                     <h5 class="card-title text-bold">Biodata Siswa</h5>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /.card-tools -->
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <table class="table table-condensed table-striped">
                                         <tbody>
@@ -122,8 +115,10 @@
 
                                 <!-- /.card-body -->
                             <?php else : ?>
-                                <div class="card-body">
-                                    <p>NISN tidak ditemukan.</p>
+                                <div class="card-body text-center">
+                                    <p class="mt-3"><b>
+                                            <h5 class="text-danger">NISN tidak ditemukan.</h5>
+                                        </b></p>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -132,14 +127,7 @@
                             <?php if (!empty($tagihan)) : ?>
                                 <div class="card-header">
                                     <h5 class="card-title text-bold">Tagihan Bayar</h5>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /.card-tools -->
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <table class="table table-bordered table-striped">
                                         <thead>
@@ -200,21 +188,9 @@
 
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables/jquery.dataTables.min.js"></script>
-
-<!-- jQuery UI 1.11.4 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Data table -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables/jquery.dataTables.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="<?= base_url('assets/adminlte/') ?>plugins/datatables-responsive/js/dataTables.responsive.js"></script>
-<!-- SweetAlert2 -->
-<script src="<?= base_url('assets/adminlte/') ?>plugins/sweetalert2/sweetalert2.all.js"></script>
 <script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
 
-<!-- <script src="<?= base_url('assets/') ?>js/config.js"></script> -->
+<script src="<?= base_url('assets/') ?>js/config.js"></script>
 
 <script>
     // SweetAlert untuk transaksi

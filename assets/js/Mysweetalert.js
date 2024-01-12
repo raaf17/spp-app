@@ -1,3 +1,8 @@
+// import Swal from 'sweetalert2';
+
+// or via CommonJS
+// const Swal = require('sweetalert2')
+
 // SweetAlert Untuk Petugas
 
 const success = $('.petugas').data('flashdata');
@@ -6,7 +11,7 @@ if (success) {
     Swal.fire({
         title: 'Data Petugas',
         text: 'Berhasil ' + success,
-        type: 'success'
+        icon: 'success'
     });
 }
 
@@ -16,7 +21,7 @@ if (error) {
     Swal.fire({
         title: 'Data Petugas',
         text: 'Gagal ' + error,
-        type: 'error'
+        icon: 'error'
     });
 }
 
@@ -29,7 +34,7 @@ if (success_siswa) {
     Swal.fire({
         title: 'Data Siswa',
         text: 'Berhasil ' + success_siswa,
-        type: 'success'
+        icon: 'success'
     });
 }
 
@@ -39,7 +44,7 @@ if (error_siswa) {
     Swal.fire({
         title: 'Data Siswa',
         text: 'Gagal ' + error_siswa,
-        type: 'error'
+        icon: 'error'
     });
 }
 
@@ -51,7 +56,7 @@ if (success_spp) {
     Swal.fire({
         title: 'Data SPP',
         text: 'Berhasil ' + success_spp,
-        type: 'success'
+        icon: 'success'
     });
 }
 
@@ -61,7 +66,7 @@ if (error_spp) {
     Swal.fire({
         title: 'Data SPP',
         text: 'Gagal ' + error_spp,
-        type: 'error'
+        icon: 'error'
     });
 }
 
@@ -74,7 +79,7 @@ if (success_kelas) {
     Swal.fire({
         title: 'Data Kelas',
         text: 'Berhasil ' + success_kelas,
-        type: 'success'
+        icon: 'success'
     });
 }
 
@@ -84,7 +89,7 @@ if (error_kelas) {
     Swal.fire({
         title: 'Data Kelas',
         text: 'Gagal ' + error_kelas,
-        type: 'error'
+        icon: 'error'
     });
 }
 
@@ -97,6 +102,7 @@ if (success_jurusan) {
     Swal.fire({
         title: 'Data jurusan',
         text: 'Berhasil ' + success_jurusan,
+        icon: 'success',
         type: 'success'
     });
 }
@@ -107,6 +113,7 @@ if (error_jurusan) {
     Swal.fire({
         title: 'Data jurusan',
         text: 'Gagal ' + error_jurusan,
+        icon: 'error',
         type: 'error'
     });
 }
