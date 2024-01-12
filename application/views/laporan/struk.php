@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Struk Pembayaran</title>
     <link rel="stylesheet" href="<?= base_url() ?>/assets/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="<?= base_url() ?>/assets/img/favicon/icon.png">
+    <link rel="shortcut icon" href="<?= base_url() ?>/assets/img/favicon/esemkita-lg.png">
     <style>
         body {
             margin: 0;
@@ -121,8 +121,6 @@
 </head>
 
 <body>
-
-
     <header class="text-center">
         <p>SMKN 1 BOYOLANGU<br><span>Jl. KI Mangun Sarkoro<br> Beji - Boyolangu - Tulungagung <br> Telp./Fax : (0336) 444112</span></p>
     </header>

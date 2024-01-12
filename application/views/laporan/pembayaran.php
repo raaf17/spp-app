@@ -5,25 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Transaksi Pembayaran</title>
-    <link rel="stylesheet" href="<?= $_SERVER['DOCUMENT_ROOT'] ?>/spp/assets/css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
         }
 
+        header {
+            margin-left: 120px;
+        }
+
         header img {
             position: absolute;
-            top: 5px;
-            left: 15px;
+            top: 10px;
         }
 
         header h2 {
             position: absolute;
             top: -15px;
-            left: 190px;
+            /* left: 50px; */
             font-size: 18px;
             line-height: 25px;
+            text-align: center;
             text-transform: uppercase;
         }
 
@@ -56,14 +59,14 @@
 
         .ttd p {
             position: relative;
-            left: 80%;
+            left: 70%;
         }
+    </style>
     </style>
 </head>
 
 <body>
     <header class="p-0">
-        <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/spp/assets/img/logo_smk.png" class="img-fluid" alt="" width="120">
         <h2 class="ml-5 text-center">Pemerintah Provinsi Jawa Timur<br>Dinas Pendididkan<br>SMKN 1 BOYOLANGU<br><span>Jl. Ki Mangun Sarkoro, Beji - Boyolangu - Tulungagung Telp./Fax : (0336) 444112 <br><span class="email"><b>email</b> : smkn1boyolangu@yahoo.com</span></span></h2>
     </header><br><br>
 

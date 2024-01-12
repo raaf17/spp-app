@@ -1,5 +1,6 @@
 <div class="kelas" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error_kelas" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
+
 <!-- Main content -->
 <div class="main-content">
     <section class="section">
@@ -22,10 +23,11 @@
                     <h4>Data Kelas</h4>
                     <div class="card-header-action">
                         <a href="<?= site_url('masterdata/add_kelas') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-kelas"><i class="fas fa-file-import"></i> Import Data</a>
                     </div>
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-striped table-md" id="table1">
+                    <table class="table table-striped table-md" id="dataTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -85,6 +87,32 @@
             </div>
         </div>
     <?php endforeach ?>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-import-kelas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Data Kelas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= site_url('masterdata/import_kelas'); ?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <label for="">File Excel</label>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="form-file-input" id="file" required>
+                            <label for="file" name="file" class="custom-file-label">Pilih File</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- jQuery -->

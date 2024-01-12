@@ -24,12 +24,12 @@ class User extends CI_Controller
         $data['jumlahTransaksi'] = $this->Data->count_transaksi();
         $data['jumlahAktifitas'] = $this->Log->count_activity();
         $data['log'] = $this->Log->get_activity_log();
-        $data['siswa'] = $this->Data->get_siswa();
+        $data['siswasatu'] = $this->Data->get_siswa();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('user/dashboard');
-        $this->load->view('templates/footer');
+        $this->load->view('user/dashboard', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     public function laporan()
