@@ -56,7 +56,7 @@
 
     <!-- Modal -->
     <?php foreach ($jurusan as $p) : ?>
-        <div class="modal fade" tabindex="-1" role="dialog" id="modalEdit<?= $p->ID_JURUSAN ?>">
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalEdit<?= $p->ID_JURUSAN ?>">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

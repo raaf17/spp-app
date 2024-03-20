@@ -1,7 +1,7 @@
 <div class="card card-primary">
     <?php if (!empty($pembayaran)) : ?>
         <div class="card-header">
-            <h5 class="card-title text-bold">Tagihan Bayar</h5>
+            <h5 class="card-title text-bold">Histori Pembayaran</h5>
             <!-- /.card-tools -->
         </div>
         <!-- /.card-header -->

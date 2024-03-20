@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="<?= base_url('assets/') ?>img/favicon/esemkita-lg.png" type="image/x-ic
+    on">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -17,7 +19,7 @@
 </head>
 
 <body>
-    <section class="section">
+    <section class="section">c
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">

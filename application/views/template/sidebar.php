@@ -40,10 +40,21 @@
 
     <!-- Transaksi -->
     <li class="menu-header">Transaksi</li>
-    <li>
-        <a href="<?= base_url('pembayaran') ?>" class="nav-link">
-            <i class="nav-icon far fa-money-bill-alt"></i> <span>Transaksi Pembayaran</span>
+    <li class="nav-item dropdown">
+        <a href="#" class="nav-link has-dropdown">
+            <i class="nav-icon fas fa-copy"></i> <span>Pembayaran</span>
         </a>
+        <ul class="dropdown-menu">
+            <li class="nav-item">
+                <a href="<?= site_url('pembayaran') ?>" class="nav-link">
+                <i class="nav-icon far fa-money-bill-alt"></i> Bulanan</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= site_url('pembayaran/bayarlain') ?>" class="nav-link">
+                <i class="nav-icon far fa-money-bill-alt"></i> Lainnya</a>
+            </li>
+            </li>
+        </ul>
     </li>
     <li>
         <a href="<?= base_url('pembayaran/history') ?>" class="nav-link">
