@@ -26,10 +26,10 @@ class User extends CI_Controller
         $data['log'] = $this->Log->get_activity_log();
         $data['siswasatu'] = $this->Data->get_siswa();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('user/dashboard', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function laporan()
@@ -38,10 +38,10 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('user/laporan');
-        $this->load->view('templates/footer');
+        $this->load->view('template/footer');
     }
 
     public function cetakPetugas()

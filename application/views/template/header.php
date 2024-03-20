@@ -4,25 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <link rel="shortcut icon" href="<?= base_url('assets/') ?>img/favicon/esemkita-lg.png" type="image/x-ic
+    on">
     <title>SPPKITA | <?= $title ?></title>
 
-    <link rel="shortcut icon" href="<?= base_url('assets/') ?>img/favicon/esemkita-lg.png" type="image/x-icon">
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/selectric/public/selectric.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/jquery-selectric/selectric.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
 
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/style.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>/assets/css/components.css">
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/assets/css/components.css">
 
+    <!-- CDN Libraries Link -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 

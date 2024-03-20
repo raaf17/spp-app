@@ -11,7 +11,7 @@ class Data_model extends CI_Model
 
     public function get_siswa()
     {
-        $query = "SELECT `tbl_siswa`.*, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
+        $query = "SELECT `tbl_siswa`.*, `tbl_spp`.`NAMA_PEMBAYARAN`, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
         FROM `tbl_siswa`,`tbl_spp`,`tbl_kelas`,`tbl_jurusan` WHERE `tbl_siswa`.`id_kelas` = `tbl_kelas`.`id_kelas` AND `tbl_siswa`.`id_spp` = `tbl_spp`.`id_spp` AND `tbl_kelas`.`id_jurusan` = `tbl_jurusan`.`id_jurusan` AND `tbl_siswa`.`NISN` = '" . $this->session->userdata('NISN') . "'";
 
         return $this->db->query($query)->row_array();
@@ -19,7 +19,7 @@ class Data_model extends CI_Model
 
     public function search($keyword)
     {
-        $query = "SELECT `tbl_siswa`.*, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
+        $query = "SELECT `tbl_siswa`.*, `tbl_spp`.`NAMA_PEMBAYARAN`, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
         FROM `tbl_siswa`,`tbl_spp`,`tbl_kelas`,`tbl_jurusan` WHERE `tbl_siswa`.`id_kelas` = `tbl_kelas`.`id_kelas` AND `tbl_siswa`.`id_spp` = `tbl_spp`.`id_spp` AND `tbl_kelas`.`id_jurusan` = `tbl_jurusan`.`id_jurusan` AND `tbl_siswa`.`nisn` LIKE '%" . $keyword . "%'
         ";
 
@@ -28,8 +28,17 @@ class Data_model extends CI_Model
 
     public function transaksi($keyword)
     {
-        $query = "SELECT `tbl_pembayaran`.*, `tbl_siswa`.*, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
+        $query = "SELECT `tbl_pembayaran`.*, `tbl_siswa`.*, `tbl_spp`.`NAMA_PEMBAYARAN`, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
         FROM `tbl_pembayaran`, `tbl_siswa`,`tbl_spp`,`tbl_kelas`,`tbl_jurusan` WHERE `tbl_pembayaran`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_siswa`.`id_kelas` = `tbl_kelas`.`id_kelas` AND `tbl_siswa`.`id_spp` = `tbl_spp`.`id_spp` AND `tbl_kelas`.`id_jurusan` = `tbl_jurusan`.`id_jurusan` AND `tbl_siswa`.`nisn` LIKE '%" . $keyword . "%'
+        ";
+
+        return $this->db->query($query)->result();
+    }
+
+    public function transaksilainnya($keyword)
+    {
+        $query = "SELECT `tbl_bayarlain`.*, `tbl_siswa`.*, `tbl_spp`.`NAMA_PEMBAYARAN`, `tbl_spp`.`TAHUN`, `tbl_spp`.`NOMINAL`, `tbl_kelas`.`nama_kelas`, `tbl_jurusan`.`jurusan`
+        FROM `tbl_bayarlain`, `tbl_siswa`,`tbl_spp`,`tbl_kelas`,`tbl_jurusan` WHERE `tbl_bayarlain`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_siswa`.`id_kelas` = `tbl_kelas`.`id_kelas` AND `tbl_siswa`.`id_spp` = `tbl_spp`.`id_spp` AND `tbl_kelas`.`id_jurusan` = `tbl_jurusan`.`id_jurusan` AND `tbl_siswa`.`nisn` LIKE '%" . $keyword . "%'
         ";
 
         return $this->db->query($query)->result();
@@ -201,6 +210,19 @@ class Data_model extends CI_Model
     public function spp_edit()
     {
         $data = [
+            'tahun' => $this->input->post('tahun_awal'),
+            'nominal' => $this->input->post('nominal')
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_spp', $this->input->post('id_spp'));
+        $this->db->update('tbl_spp');
+    }
+
+    public function sppmore_edit()
+    {
+        $data = [
+            'nama_pembayaran' => $this->input->post('nama_pembayaran'),
             'tahun' => $this->input->post('tahun_awal'),
             'nominal' => $this->input->post('nominal')
         ];

@@ -21,10 +21,10 @@ class MasterData extends CI_Controller
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['petugas'] = $this->Data->petugas_get();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('master/petugas/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function list_petugas()
@@ -93,11 +93,11 @@ class MasterData extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('template/header', $data);
 
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('template/sidebar', $data);
             $this->load->view('master/petugas/add', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('template/footer', $data);
         } else {
             $this->Data->petugas_add();
 
@@ -193,10 +193,10 @@ class MasterData extends CI_Controller
         $data['kelas'] = $this->db->get('tbl_kelas')->result();
         $data['spp'] = $this->db->get('tbl_spp')->result();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('master/siswa/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function list_siswa()
@@ -284,11 +284,11 @@ class MasterData extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('template/header', $data);
 
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('template/sidebar', $data);
             $this->load->view('master/siswa/add', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('template/footer', $data);
         } else {
 
             $spp = $this->Data->get_id_spp();
@@ -430,13 +430,13 @@ class MasterData extends CI_Controller
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['spp'] = $this->db->get('tbl_spp')->result();
+        $data['sppmore'] = $this->db->where('nama_pembayaran IS NOT NULL')->get('tbl_spp')->result();
 
+        $this->load->view('template/header', $data);
 
-        $this->load->view('templates/header', $data);
-
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('master/spp/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function list_spp()
@@ -499,11 +499,11 @@ class MasterData extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('template/header', $data);
 
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('template/sidebar', $data);
             $this->load->view('master/spp/add', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('template/footer', $data);
         } else {
             $data = [
                 'tahun' => $this->input->post('tahun_awal') . '/' . $this->input->post('tahun_akhir'),
@@ -578,11 +578,11 @@ class MasterData extends CI_Controller
         $data['kelas'] = $this->Data->kelas_get();
         $data['jurusan'] = $this->db->get('tbl_jurusan')->result();
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('template/header', $data);
 
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('master/kelas/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function list_kelas()
@@ -643,11 +643,11 @@ class MasterData extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('template/header', $data);
 
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('template/sidebar', $data);
             $this->load->view('master/kelas/add', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('template/footer', $data);
         } else {
             $this->Data->kelas_add();
 
@@ -776,11 +776,11 @@ class MasterData extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('template/header', $data);
 
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('template/sidebar', $data);
             $this->load->view('master/jurusan/index', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('template/footer', $data);
         } else {
             $this->db->insert('tbl_jurusan', ['jurusan' => $this->input->post('jurusan')]);
 
@@ -934,6 +934,81 @@ class MasterData extends CI_Controller
 
             $this->session->set_flashdata($message);
             redirect('masterdata/jurusan');
+        }
+    }
+
+    public function add_sppmore()
+    {
+        $data['title'] = 'Data SPP Lainnya';
+        $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
+        $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
+        $data['spp'] = $this->db->get('tbl_spp')->result();
+
+        $this->form_validation->set_rules('nama_pembayaran', 'Nama Pembayaran', 'required', [
+            'required' => 'Nama Pembayaran tidak boleh kosong!'
+        ]);
+        $this->form_validation->set_rules('tahun_awal', 'Tahun Awal', 'required', [
+            'required' => 'Tahun Pertama tidak boleh kosong!'
+        ]);
+        $this->form_validation->set_rules('tahun_akhir', 'Tahun Akhir', 'required', [
+            'required' => 'Tahun Kedua tidak boleh kosong!'
+        ]);
+        $this->form_validation->set_rules('nominal', 'Nominal', 'required', [
+            'required' => 'Nominal tidak boleh kosong!'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('master/spp/add_more', $data);
+            $this->load->view('template/footer', $data);
+        } else {
+            $data = [
+                'nama_pembayaran' => $this->input->post('nama_pembayaran'),
+                'tahun' => $this->input->post('tahun_awal') . '/' . $this->input->post('tahun_akhir'),
+                'nominal' => $this->input->post('nominal')
+            ];
+
+            $this->db->insert('tbl_spp', $data);
+
+            // Jika admin atau petugas menambahkan data spp maka akan masuk ke log activity
+
+            if ($this->db->affected_rows() > 0) {
+                $assign_to = '';
+                $assign_type = '';
+                activity_log('spp', 'Menambah data spp', $assign_to, $assign_type);
+
+                $this->session->set_flashdata('success',  'ditambahkan');
+                redirect('masterdata/spp', $data);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function sppmore_edit()
+    {
+        $this->form_validation->set_rules('nama_pembayaran', 'nama_pembayaran', 'required');
+        $this->form_validation->set_rules('tahun_awal', 'tahun_awal', 'required|trim');
+        $this->form_validation->set_rules('nominal', 'nominal', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('gagal', 'diubah');
+            redirect('masterdata/spp');
+        } else {
+            $this->Data->spp_edit();
+
+            if ($this->db->affected_rows() > 0) {
+                $assign_to = '';
+                $assign_type = '';
+                activity_log('spp', 'Mengedit data spp', $assign_to, $assign_type);
+
+                $this->session->set_flashdata('success',  'diubah');
+                redirect('masterdata/spp');
+            } else {
+                return false;
+            }
         }
     }
 }

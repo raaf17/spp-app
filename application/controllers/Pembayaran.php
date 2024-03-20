@@ -19,10 +19,10 @@ class Pembayaran extends CI_Controller
         $data['title'] = 'Transaksi Pembayaran';
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('pembayaran/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function transaksispp()
@@ -39,10 +39,10 @@ class Pembayaran extends CI_Controller
         $siswa = $this->Data->search($keyword);
         $tagihan = $this->Data->transaksi($keyword);
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('pembayaran/view', ['siswa' => $siswa, 'tagihan' => $tagihan]);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function transaksi($id)
@@ -110,10 +110,10 @@ class Pembayaran extends CI_Controller
         $keyword = $this->session->userdata('NISN');
         $data['pembayaran'] = $this->Data->history_get($keyword);
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
         $this->load->view('pembayaran/history', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('template/footer', $data);
     }
 
     public function search_history()
@@ -130,5 +130,68 @@ class Pembayaran extends CI_Controller
         ];
 
         echo json_encode($callback); //konversi variable $callback menjadi JSON
+    }
+
+    public function bayarlain()
+    {
+        if (empty($this->session->userdata('username'))) {
+            redirect('auth/blocked');
+        }
+
+        $data['title'] = 'Transaksi Pembayaran Lainnya';
+        $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('bayarlainnya/index', $data);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function transaksispplainnya()
+    {
+        if (empty($this->session->userdata('username'))) {
+            redirect('auth/blocked');
+        }
+
+        $data['title'] = 'Transaksi Pembayaran Lainnya';
+        $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
+
+        $keyword = $this->input->get('search');
+
+        $siswa = $this->Data->search($keyword);
+        $tagihan = $this->Data->transaksi($keyword);
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('bayarlainnya/view', ['siswa' => $siswa, 'tagihan' => $tagihan]);
+        $this->load->view('template/footer', $data);
+    }
+
+    public function transaksilainnya($id)
+    {
+        $search = $this->db->query("SELECT `tbl_siswa`.`NISN` FROM `tbl_siswa`, `tbl_pembayaran` WHERE `tbl_pembayaran`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_pembayaran`.`ID_PEMBAYARAN` = '" . $id . "'")->row_array();
+
+        $tgl_bayar = date('Y-m-d');
+        $ket = 'LUNAS';
+
+        $data = [
+            'tgl_bayar' => $tgl_bayar,
+            'ket' => $ket,
+            'id_petugas' => $this->session->userdata('id_petugas')
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_pembayaran', $id);
+        $this->db->update('tbl_pembayaran');
+
+        if ($this->db->affected_rows() > 0) {
+            $assign_to = '';
+            $assign_type = '';
+            activity_log('pembayaran', 'Menambah data transaksi pembayaran', $assign_to, $assign_type);
+
+            $this->session->set_flashdata('success',  'Transaksi pembayaran sukses');
+
+            redirect('pembayaran/transaksispp?search=' . $search['NISN']);
+        }
     }
 }
