@@ -12,7 +12,6 @@
             margin: 0;
             padding: 0;
             font-family: 'Times New Roman', Times, serif;
-
         }
 
         header p {
@@ -28,13 +27,11 @@
             text-transform: capitalize;
         }
 
-
         .hr1 {
             margin-top: 15px;
             border-color: grey;
             margin-top: -13px;
         }
-
 
         .hr2 {
             border: 1px solid black;
@@ -145,8 +142,6 @@
     </div>
 
     <button type="button" class="print mt-3 mb-3 ml-2" onclick="window.print();">Print</button>
-
-
 
     <script src="<?= base_url() ?>/assets/js/jquery.js"></script>
     <script src="<?= base_url() ?>/assets/js/bootstrap.min.js"></script>

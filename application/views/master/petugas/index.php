@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+<!-- Alert -->
 <div class="petugas" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
 
@@ -50,7 +50,7 @@
     </section>
 </div>
 
-<!-- Modal -->
+<!-- Modal Edit Petugas -->
 <?php foreach ($petugas as $p) : ?>
     <div class="modal fade" id="modalEdit<?= $p->ID_PETUGAS ?>">
         <div class="modal-dialog" role="document">
@@ -99,7 +99,6 @@
                 </div>
                 <form method="post" action="<?= base_url('masterdata/petugas_pass') ?>">
                     <input type="hidden" name="id_petugas" value="<?= $p->ID_PETUGAS ?>">
-
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="password1">Password</label>
@@ -124,9 +123,7 @@
     </div>
 <?php endforeach ?>
 
-<!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-
 <script type="text/javascript">
     show_data();
 

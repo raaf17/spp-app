@@ -7,6 +7,8 @@ class Account_model extends CI_Model
     {
         $query = $this->db->query("call login_check('" . $username . "','" . $password . "')");
         mysqli_next_result($this->db->conn_id);
+
+
         return $query->num_rows();
     }
 
@@ -14,6 +16,7 @@ class Account_model extends CI_Model
     {
         $query = $this->db->query("call login_check('" . $username . "','" . $password . "')");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 
@@ -21,6 +24,7 @@ class Account_model extends CI_Model
     {
         $query = $this->db->query("call level_get('" . $id_level . "')");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 
@@ -28,6 +32,7 @@ class Account_model extends CI_Model
     {
         $query = $this->db->query("call siswa_check('" . $username . "', '" . $password . "')");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 
@@ -35,6 +40,7 @@ class Account_model extends CI_Model
     {
         $query = $this->db->query("call siswa_check('" . $username . "', '" . $password . "')");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 }

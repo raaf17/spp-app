@@ -1,3 +1,7 @@
+<!-- Alert -->
+<div class="petugas" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+<div class="error" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
+
 <!-- Main content -->
 <div class="main-content">
     <section class="section">
@@ -42,7 +46,6 @@
                                                                                 echo "$date"; ?>
                 </div>
                 <div class="row">
-                    <!-- Left col -->
                     <section class="col-lg-7 connectedSortable">
 
                     </section>
@@ -52,33 +55,7 @@
     </section>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-import-siswa">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Import Data Siswa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="<?= site_url('masterdata/import_siswa'); ?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <label for="">File Excel</label>
-                        <div class="custom-file">
-                            <input type="file" name="file" class="form-file-input" id="file" required>
-                            <label for="file" name="file" class="custom-file-label">Pilih File</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-<!-- Modal -->
+<!-- Modal Edit Siswa -->
 <?php foreach ($siswa as $s) : ?>
     <div class="modal fade" id="modalEdit<?= $s->NISN ?>">
         <div class="modal-dialog" role="document">
@@ -151,9 +128,33 @@
     </div>
 <?php endforeach ?>
 
-<!-- jQuery -->
-<script src="<?= base_url('assets/') ?>js/jquery.js"></script>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-import-siswa">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Data Siswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= site_url('masterdata/import_siswa'); ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <label for="">File Excel</label>
+                    <div class="custom-file">
+                        <input type="file" name="file" class="form-file-input" id="file" required>
+                        <label for="file" name="file" class="custom-file-label">Pilih File</label>
+                    </div>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<script src="<?= base_url('assets/') ?>js/jquery.js"></script>
 <script type="text/javascript">
     show_data();
 
@@ -176,7 +177,3 @@
         });
     }
 </script>
-
-</body>
-
-</html>

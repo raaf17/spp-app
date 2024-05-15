@@ -21,6 +21,7 @@ class MasterData extends CI_Controller
         $data['user'] = $this->db->get_where('tbl_petugas', ['username' => $this->session->userdata('username')])->row_array();
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['petugas'] = $this->Data->petugas_get();
+
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
         $this->load->view('master/petugas/index', $data);
@@ -30,7 +31,6 @@ class MasterData extends CI_Controller
     public function list_petugas()
     {
         $no = 1;
-
         $data = $this->Data->petugas_get();
 
         foreach ($data as $petugas) {
@@ -202,7 +202,6 @@ class MasterData extends CI_Controller
     public function list_siswa()
     {
         $no = 1;
-
         $data = $this->Data->siswa_get();
 
         foreach ($data as $siswa) {
@@ -290,7 +289,6 @@ class MasterData extends CI_Controller
             $this->load->view('master/siswa/add', $data);
             $this->load->view('template/footer', $data);
         } else {
-
             $spp = $this->Data->get_id_spp();
 
             foreach ($spp as $s) : endforeach;
@@ -358,12 +356,10 @@ class MasterData extends CI_Controller
     public function import_siswa()
     {
         if (isset($_FILES["file"]["name"])) {
-            // upload
             $file_tmp = $_FILES['file']['tmp_name'];
             $file_name = $_FILES['file']['name'];
             $file_size = $_FILES['file']['size'];
             $file_type = $_FILES['file']['type'];
-            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
 
             $object = PHPExcel_IOFactory::load($file_tmp);
 
@@ -379,7 +375,6 @@ class MasterData extends CI_Controller
                     $alamat = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
                     $no_telp = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
 
-                    // Cek apakah kelas sudah ada sebelumnya
                     $existingJurusan = $this->db->get_where('tbl_siswa', ['nisn' => $nisn])->row();
 
                     if (!$existingJurusan) {
@@ -396,7 +391,6 @@ class MasterData extends CI_Controller
                 }
             }
 
-            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
             if (!empty($data)) {
                 $this->db->insert_batch('tbl_siswa', $data);
 
@@ -442,7 +436,6 @@ class MasterData extends CI_Controller
     public function list_spp()
     {
         $no = 1;
-
         $data = $this->db->get('tbl_spp')->result();
 
         foreach ($data as $spp) {
@@ -512,8 +505,6 @@ class MasterData extends CI_Controller
 
             $this->db->insert('tbl_spp', $data);
 
-            // Jika admin atau petugas menambahkan data spp maka akan masuk ke log activity
-
             if ($this->db->affected_rows() > 0) {
                 $assign_to = '';
                 $assign_type = '';
@@ -531,8 +522,6 @@ class MasterData extends CI_Controller
     {
         $this->db->where('id_spp', $id);
         $this->db->delete('tbl_spp');
-
-        // Jika admin atau petugas menghapus data spp maka akan masuk ke log activity
 
         if ($this->db->affected_rows() > 0) {
             $assign_to = '';
@@ -579,7 +568,6 @@ class MasterData extends CI_Controller
         $data['jurusan'] = $this->db->get('tbl_jurusan')->result();
 
         $this->load->view('template/header', $data);
-
         $this->load->view('template/sidebar', $data);
         $this->load->view('master/kelas/index', $data);
         $this->load->view('template/footer', $data);
@@ -588,7 +576,6 @@ class MasterData extends CI_Controller
     public function list_kelas()
     {
         $no = 1;
-
         $data = $this->Data->kelas_get();
 
         foreach ($data as $kelas) {
@@ -708,12 +695,10 @@ class MasterData extends CI_Controller
     public function import_kelas()
     {
         if (isset($_FILES["file"]["name"])) {
-            // upload
             $file_tmp = $_FILES['file']['tmp_name'];
             $file_name = $_FILES['file']['name'];
             $file_size = $_FILES['file']['size'];
             $file_type = $_FILES['file']['type'];
-            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
 
             $object = PHPExcel_IOFactory::load($file_tmp);
 
@@ -724,7 +709,6 @@ class MasterData extends CI_Controller
                     $id_jurusan = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $nama_kelas = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
 
-                    // Cek apakah kelas sudah ada sebelumnya
                     $existingJurusan = $this->db->get_where('tbl_kelas', ['nama_kelas' => $nama_kelas])->row();
 
                     if (!$existingJurusan) {
@@ -736,7 +720,6 @@ class MasterData extends CI_Controller
                 }
             }
 
-            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
             if (!empty($data)) {
                 $this->db->insert_batch('tbl_kelas', $data);
 
@@ -800,7 +783,6 @@ class MasterData extends CI_Controller
     public function list_jurusan()
     {
         $no = 1;
-
         $data = $this->db->get('tbl_jurusan')->result();
 
         foreach ($data as $jurusan) {
@@ -883,12 +865,10 @@ class MasterData extends CI_Controller
     public function import_jurusan()
     {
         if (isset($_FILES["file"]["name"])) {
-            // upload
             $file_tmp = $_FILES['file']['tmp_name'];
             $file_name = $_FILES['file']['name'];
             $file_size = $_FILES['file']['size'];
             $file_type = $_FILES['file']['type'];
-            // move_uploaded_file($file_tmp,"uploads/".$file_name); // simpan filenya di folder uploads
 
             $object = PHPExcel_IOFactory::load($file_tmp);
 
@@ -898,7 +878,6 @@ class MasterData extends CI_Controller
                 for ($row = 2; $row <= $highestRow; $row++) {
                     $jurusan = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
 
-                    // Cek apakah jurusan sudah ada sebelumnya
                     $existingJurusan = $this->db->get_where('tbl_jurusan', ['jurusan' => $jurusan])->row();
 
                     if (!$existingJurusan) {
@@ -909,7 +888,6 @@ class MasterData extends CI_Controller
                 }
             }
 
-            // Jika ada data baru yang belum ada sebelumnya, simpan ke database
             if (!empty($data)) {
                 $this->db->insert_batch('tbl_jurusan', $data);
 
@@ -971,8 +949,6 @@ class MasterData extends CI_Controller
             ];
 
             $this->db->insert('tbl_spp', $data);
-
-            // Jika admin atau petugas menambahkan data spp maka akan masuk ke log activity
 
             if ($this->db->affected_rows() > 0) {
                 $assign_to = '';

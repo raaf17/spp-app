@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
+                            <div class="card-icon bg-warning">
                                 <i class="far fa-newspaper"></i>
                             </div>
                             <div class="card-wrap">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
+                            <div class="card-icon bg-success">
                                 <i class="fas fa-money-bill-1-wave"></i>
                             </div>
                             <div class="card-wrap">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
+                            <div class="card-icon bg-info">
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="card-wrap">
@@ -74,7 +74,6 @@
 
                 </div>
                 <div class="row">
-                    <!-- Left col -->
                     <section class="col-lg-12">
                         <div class="card card-outline card-primary">
                             <div class="card-header">
@@ -116,7 +115,6 @@
                     <div class="card-header">
                         <h5 class="card-title text-bold">Biodata Siswa</h5>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-condensed table-striped">
                             <tbody>
