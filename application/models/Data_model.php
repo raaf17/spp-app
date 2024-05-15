@@ -6,6 +6,7 @@ class Data_model extends CI_Model
     public function get_id_spp()
     {
         $query = "SELECT * FROM `tbl_spp` WHERE `id_spp` = " . $this->input->post('spp_id');
+
         return $this->db->query($query)->result();
     }
 
@@ -77,6 +78,7 @@ class Data_model extends CI_Model
     public function petugas_get()
     {
         $query = $this->db->get_where('tbl_petugas', 'id_level = 2');
+
         return $query->result();
     }
 
@@ -115,12 +117,14 @@ class Data_model extends CI_Model
     {
         $query = $this->db->query("call get_siswa()");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 
     public function jatuhTempo($id)
     {
         $query = "SELECT * FROM tbl_pembayaran WHERE id_spp = '$id'";
+
         return $this->db->query($query)->result();
     }
 
@@ -159,13 +163,10 @@ class Data_model extends CI_Model
             echo "Gagal cuy";
         } else {
             $n = $this->db->query("SELECT NISN FROM tbl_siswa ORDER BY NISN DESC LIMIT 1")->row_array();
-
             $nisn = $n['NISN'];
 
             for ($i = 0; $i < 12; $i++) {
-                // membuat tanggal jatuh tempo nya setiap tanggal 20
                 $jatuhTempo = date('Y-m-d', strtotime("+$i month", strtotime($awalTempo)));
-
                 $bulan = $bulanData[date('m', strtotime($jatuhTempo))];
                 $tahun = date('Y', strtotime($jatuhTempo));
 
@@ -236,6 +237,7 @@ class Data_model extends CI_Model
     {
         $query = $this->db->query("call kelas_get()");
         mysqli_next_result($this->db->conn_id);
+
         return $query->result();
     }
 

@@ -31,6 +31,7 @@
 <script src="<?= base_url('assets/template') ?>/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 <script src="<?= base_url('assets/template') ?>/node_modules/jquery-selectric/jquery.selectric.min.js"></script>
 <script src="<?= base_url('assets/template') ?>/node_modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
 
 <!-- Template JS File -->
 <script src="<?= base_url('assets/template') ?>/assets/js/scripts.js"></script>
@@ -62,4 +63,5 @@
 </script>
 
 </body>
+
 </html>

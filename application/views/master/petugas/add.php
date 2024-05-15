@@ -52,14 +52,10 @@
     </section>
 </div>
 
-<!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
-<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
-
 <script>
     show_data();
 

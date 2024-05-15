@@ -47,14 +47,14 @@
         <ul class="dropdown-menu">
             <li class="nav-item">
                 <a href="<?= site_url('pembayaran') ?>" class="nav-link">
-                <i class="nav-icon far fa-money-bill-alt"></i> Bulanan</a>
+                    <i class="nav-icon far fa-money-bill-alt"></i> Bulanan</a>
             </li>
             <li class="nav-item">
                 <a href="<?= site_url('pembayaran/bayarlain') ?>" class="nav-link">
-                <i class="nav-icon far fa-money-bill-alt"></i> Lainnya</a>
+                    <i class="nav-icon far fa-money-bill-alt"></i> Lainnya</a>
             </li>
-            </li>
-        </ul>
+    </li>
+    </ul>
     </li>
     <li>
         <a href="<?= base_url('pembayaran/history') ?>" class="nav-link">
@@ -92,7 +92,6 @@
     <a href="<?= base_url('auth/logout') ?>" class="nav-link logout" data-toggle="tooltip">
         <i class="fas fa-sign-out-alt nav-icon"></i> Logout</a>
 </li>
-<!-- </ul> -->
 
 <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
     <a href="<?= site_url('documentation'); ?>" class="btn btn-primary btn-sm btn-block btn-icon-split">

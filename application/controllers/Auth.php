@@ -23,6 +23,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim', [
             'required' => 'Password tidak boleh kosong!'
         ]);
+
         if ($this->form_validation->run() == false) {
             $this->load->view('index');
         } else {
@@ -54,7 +55,6 @@ class Auth extends CI_Controller
 
             $this->session->set_userdata($data);
             redirect('user');
-
         } else if ($chk_siswa) {
             $dataget = $this->Account->siswa_get($username, $this->input->post('password'));
             foreach ($dataget as $userdata) : endforeach;
@@ -71,7 +71,6 @@ class Auth extends CI_Controller
 
             $this->session->set_userdata($data);
             redirect('user');
-
         } else {
             $this->session->set_flashdata('error',  '<div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>Maaf akun tidak ditemukan!</strong> Mungkin anda salah memasukan username atau password.

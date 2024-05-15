@@ -6,10 +6,12 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         if (empty($this->session->userdata('username') || $this->session->userdata('NISN'))) {
             $this->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">Maaf! Anda harus login terlebih dahulu.</div>');
             redirect('auth');
         }
+
         $this->load->model('Data_model', 'Data');
         $this->load->model('Log_model', 'Log');
     }
@@ -47,9 +49,7 @@ class User extends CI_Controller
     public function cetakPetugas()
     {
         $data['petugas'] = $this->db->get_where('tbl_petugas', ['id_level' => 2])->result();
-
         $html = $this->load->view('laporan/petugas', $data, true);
-
         $this->pdfgenerator->generate($html, 'Data Petugas');
 
         if ($this->db->affected_rows() > 0) {
@@ -64,9 +64,7 @@ class User extends CI_Controller
     public function cetakSiswa()
     {
         $data['siswa'] = $this->Data->siswa_get();
-
         $html = $this->load->view('laporan/siswa', $data, true);
-
         $this->pdfgenerator->generate($html, 'Data Siswa');
 
         if ($this->db->affected_rows() > 0) {
@@ -82,11 +80,8 @@ class User extends CI_Controller
     {
         $tgl_mulai  = $this->input->post('tgl1');
         $tgl_sampai  = $this->input->post('tgl2');
-
         $data['transaksi'] = $this->Data->cetakTransaksi($tgl_mulai, $tgl_sampai);
-
         $html = $this->load->view('laporan/pembayaran', $data, true);
-
         $this->pdfgenerator->generate($html, 'Data pembayaran', 'A4', 'landscape');
 
         if ($this->db->affected_rows() > 0) {
@@ -100,11 +95,8 @@ class User extends CI_Controller
 
     public function cetakStruk($id)
     {
-
         $data['transaksi'] = $this->Data->cetakStruk($id);
-
         $this->load->view('laporan/struk', $data);
-
         // $this->pdfgenerator->generate($html, 'struk pembayaran', 'A4', 'landscape');
 
         if ($this->db->affected_rows() > 0) {

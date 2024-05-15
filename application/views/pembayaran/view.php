@@ -160,7 +160,8 @@
                                                             <a href="<?= site_url('pembayaran/hapus/') . $pem->ID_PEMBAYARAN; ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Hapus</a>
                                                             <a href="<?= site_url('user/cetakStruk/') . $pem->ID_PEMBAYARAN; ?>" target="_blank" class="btn btn-default"><i class="fas fa-download"></i> Cetak</a>
                                                         <?php else : ?>
-                                                            <a href="<?= site_url('pembayaran/transaksi/') . $pem->ID_PEMBAYARAN; ?>" class="btn btn-primary">Bayar</a>
+                                                            <!-- <a href="<?= site_url('pembayaran/transaksi/') . $pem->ID_PEMBAYARAN; ?>" class="btn btn-primary">Bayar</a> -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-bayar" class="btn btn-primary">Bayar</button>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
@@ -184,8 +185,60 @@
 </div>
 </section>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-bayar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Transaksi Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- <form action="<?= site_url('pembayaran/bayar'); ?>" method="post"> -->
+            <div class="modal-body">
+                <input type="hidden" id="nisn" value="<?= $siswa->NISN; ?>">
+                <div class="form-group">
+                    <label for="">Jumlah Pembayaran</label>
+                    <input type="number" name="bayar" id="bayar" onchange="proses()" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Kembalian</label>
+                    <input type="number" name="kembalian" id="kembalian" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Bayar</button>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>
 <!-- /.content -->
 
+<script>
+    function proses() {
+        var nisn = $("#nisn").val();
+        $.ajax({
+            url: '<?= site_url('pembayaran/transaksispp'); ?>?search=' + nisn,
+            type: "POST",
+            dataType: "json",
+            success: function(data) {
+                var bayar = parseInt($("#bayar").val());
+                if (bayar > data) {
+                    var kembalian = bayar - data;
+                    $("#kembalian").val(kembalian);
+                } else {
+                    $("#kembalian").val(0);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error: ' + error);
+            }
+        });
+    }
+</script>
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
 <script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>

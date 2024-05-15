@@ -1,3 +1,4 @@
+<!-- Alert -->
 <div class="jurusan" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error_jurusan" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
 
@@ -31,7 +32,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="card card-primary mt-3 mb-3">
                 <div class="card-body table-responsive">
                     <table class="table table-striped table-md" id="dataTable">
@@ -54,13 +55,13 @@
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Modal Edit Jurusan -->
     <?php foreach ($jurusan as $p) : ?>
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalEdit<?= $p->ID_JURUSAN ?>">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Kelas</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Jurusan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -85,6 +86,7 @@
         </div>
     <?php endforeach ?>
 
+    <!-- Modal Import Jurusan -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-import-jurusan">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -112,9 +114,7 @@
     </div>
 </div>
 
-<!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-
 <script type="text/javascript">
     show_data();
 

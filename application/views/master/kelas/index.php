@@ -1,3 +1,4 @@
+<!-- Alert -->
 <div class="kelas" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error_kelas" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
 
@@ -47,7 +48,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Modal Edit Kelas -->
     <?php foreach ($kelas as $p) : ?>
         <div class="modal fade" id="modalEdit<?= $p->ID_KELAS ?>">
             <div class="modal-dialog" role="document">
@@ -60,7 +61,6 @@
                     </div>
                     <form method="post" action="<?= base_url('masterdata/kelas_edit') ?>">
                         <input type="hidden" name="id_kelas" value="<?= $p->ID_KELAS ?>">
-
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="nama_kelas">Nama Kelas</label>
@@ -115,9 +115,7 @@
     </div>
 </div>
 
-<!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-
 <script type="text/javascript">
     show_data();
 
