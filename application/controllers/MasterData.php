@@ -962,29 +962,4 @@ class MasterData extends CI_Controller
             }
         }
     }
-
-    public function sppmore_edit()
-    {
-        $this->form_validation->set_rules('nama_pembayaran', 'nama_pembayaran', 'required');
-        $this->form_validation->set_rules('tahun_awal', 'tahun_awal', 'required|trim');
-        $this->form_validation->set_rules('nominal', 'nominal', 'required|trim');
-
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('gagal', 'diubah');
-            redirect('masterdata/spp');
-        } else {
-            $this->Data->spp_edit();
-
-            if ($this->db->affected_rows() > 0) {
-                $assign_to = '';
-                $assign_type = '';
-                activity_log('spp', 'Mengedit data spp', $assign_to, $assign_type);
-
-                $this->session->set_flashdata('success',  'diubah');
-                redirect('masterdata/spp');
-            } else {
-                return false;
-            }
-        }
-    }
 }

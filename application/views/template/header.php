@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/selectric/public/selectric.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/jquery-selectric/selectric.css">
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
 
