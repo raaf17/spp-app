@@ -1,6 +1,6 @@
 <footer class="main-footer">
   <div class="footer-left">
-    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauv.al/">WebCrafters</a>
+    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="">WebCrafters</a>
   </div>
   <div class="footer-right">
     v1.0
@@ -29,9 +29,9 @@
 <script src="<?= base_url('assets/template') ?>/assets/js/page/bootstrap-modal.js"></script>
 <script src="<?= base_url('assets/template') ?>/node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?= base_url('assets/template') ?>/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-<script src="<?= base_url('assets/template') ?>/node_modules/jquery-selectric/jquery.selectric.min.js"></script>
 <script src="<?= base_url('assets/template') ?>/node_modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
+<!-- <script src="<?= base_url('assets/template') ?>/node_modules/cleave-js/dist/cleave.min.js"></script> -->
+<!-- <script src="<?= base_url('assets/template') ?>/js/page/forms-advanced-forms.js"></script> -->
 
 <!-- Template JS File -->
 <script src="<?= base_url('assets/template') ?>/assets/js/scripts.js"></script>

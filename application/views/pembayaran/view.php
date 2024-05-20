@@ -113,7 +113,6 @@
                                     </table>
                                 </div>
 
-                                <!-- /.card-body -->
                             <?php else : ?>
                                 <div class="card-body text-center">
                                     <p class="mt-3"><b>
@@ -161,7 +160,7 @@
                                                             <a href="<?= site_url('user/cetakStruk/') . $pem->ID_PEMBAYARAN; ?>" target="_blank" class="btn btn-default"><i class="fas fa-download"></i> Cetak</a>
                                                         <?php else : ?>
                                                             <!-- <a href="<?= site_url('pembayaran/transaksi/') . $pem->ID_PEMBAYARAN; ?>" class="btn btn-primary">Bayar</a> -->
-                                                            <button type="button" data-toggle="modal" data-target="#modal-bayar" class="btn btn-primary">Bayar</button>
+                                                            <button type="button" data-toggle="modal" data-target="#modal-bayar<?= $pem->ID_PEMBAYARAN; ?>" class="btn btn-primary">Bayar</button>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
@@ -186,74 +185,50 @@
 </section>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-bayar">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Transaksi Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- <form action="<?= site_url('pembayaran/bayar'); ?>" method="post"> -->
-            <div class="modal-body">
-                <input type="hidden" id="nisn" value="<?= $siswa->NISN; ?>">
-                <div class="form-group">
-                    <label for="">Jumlah Pembayaran</label>
-                    <input type="number" name="bayar" id="bayar" onchange="proses()" class="form-control">
+<?php foreach ($tagihan as $pem) : ?>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-bayar<?= $pem->ID_PEMBAYARAN; ?>">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Transaksi Pembayaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="">Kembalian</label>
-                    <input type="number" name="kembalian" id="kembalian" class="form-control" disabled>
-                </div>
+                <form action="<?= site_url('pembayaran/transaksi/'.$pem->ID_PEMBAYARAN); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Pembayaran Bulan</label>
+                            <input type="text" name="bulan" class="form-control" value="<?= $pem->BULAN_DIBAYAR; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tagihan</label>
+                            <input type="text" name="tagihan" id="tagihan" class="form-control" value="Rp. <?= number_format($pem->NOMINAL, 0, ",", ".") ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jumlah Pembayaran</label>
+                            <input type="number" name="jml_bayar" id="jml_bayar" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Bayar</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer bg-whitesmoke br">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Bayar</button>
-            </div>
-            <!-- </form> -->
         </div>
     </div>
-</div>
-<!-- /.content -->
+<?php endforeach; ?>
 
-<script>
-    function proses() {
-        var nisn = $("#nisn").val();
-        $.ajax({
-            url: '<?= site_url('pembayaran/transaksispp'); ?>?search=' + nisn,
-            type: "POST",
-            dataType: "json",
-            success: function(data) {
-                var bayar = parseInt($("#bayar").val());
-                if (bayar > data) {
-                    var kembalian = bayar - data;
-                    $("#kembalian").val(kembalian);
-                } else {
-                    $("#kembalian").val(0);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error: ' + error);
-            }
-        });
-    }
-</script>
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
-<script src="<?= base_url('assets/js/Mysweetalert.js') ?>"></script>
-
-<script src="<?= base_url('assets/') ?>js/config.js"></script>
 
 <script>
-    // SweetAlert untuk transaksi
-
     const success_transaksi = $('.transaksi').data('flashdata');
 
     if (success_transaksi) {
         Swal.fire({
             title: success_transaksi,
-            // text: 'Sudah ditambahkan',
             type: 'success'
         });
     }
@@ -263,7 +238,6 @@
     if (error_transaksi) {
         Swal.fire({
             title: error_transaksi,
-            // text: 'Sudah ditambahkan',
             type: 'success'
         });
     }

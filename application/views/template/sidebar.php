@@ -49,10 +49,6 @@
                 <a href="<?= site_url('pembayaran') ?>" class="nav-link">
                     <i class="nav-icon far fa-money-bill-alt"></i> Bulanan</a>
             </li>
-            <li class="nav-item">
-                <a href="<?= site_url('pembayaran/bayarlain') ?>" class="nav-link">
-                    <i class="nav-icon far fa-money-bill-alt"></i> Lainnya</a>
-            </li>
     </li>
     </ul>
     </li>

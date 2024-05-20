@@ -47,38 +47,38 @@ class Pembayaran extends CI_Controller
 
     public function transaksi($id)
     {
-        $query_jumlah = "SELECT SUM(JUMLAH_BAYAR) AS jumlah FROM pembayaran WHERE ID_PEMBAYARAN=$id";
-        $bayar = $this->db->query($query_jumlah)->row();
+        $search = $this->db->query("SELECT `tbl_siswa`.`NISN` FROM `tbl_siswa`, `tbl_pembayaran` WHERE `tbl_pembayaran`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_pembayaran`.`ID_PEMBAYARAN` = '" . $id . "'")->row_array();
 
-        if ($bayar) {
-            echo json_encode($bayar->jumlah);
-        } else {
-            echo json_encode(0); // Jika data tidak ditemukan, kembalikan 0
+        $jml_bayar = $this->input->post('jml_bayar');
+        $siswa
+
+        $tgl_bayar = date('Y-m-d');
+        if ($jml_bayar < $search->JUMLAH_BAYAR) {
+            $ket = 'BELUM LUNAS';
+        } else if ($jml_bayar == $search->JUMLAH_BAYAR) {
+            $ket = 'LUNAS';
         }
-        // $search = $this->db->query("SELECT `tbl_siswa`.`NISN` FROM `tbl_siswa`, `tbl_pembayaran` WHERE `tbl_pembayaran`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_pembayaran`.`ID_PEMBAYARAN` = '" . $id . "'")->row_array();
 
-        // $tgl_bayar = date('Y-m-d');
-        // $ket = 'LUNAS';
+        $data = [
+            'tgl_bayar' => $tgl_bayar,
+            'jumlah_bayar' => $jml_bayar,
+            'ket' => $ket,
+            'id_petugas' => $this->session->userdata('id_petugas')
+        ];
 
-        // $data = [
-        //     'tgl_bayar' => $tgl_bayar,
-        //     'ket' => $ket,
-        //     'id_petugas' => $this->session->userdata('id_petugas')
-        // ];
+        $this->db->set($data);
+        $this->db->where('id_pembayaran', $id);
+        $this->db->update('tbl_pembayaran');
 
-        // $this->db->set($data);
-        // $this->db->where('id_pembayaran', $id);
-        // $this->db->update('tbl_pembayaran');
+        if ($this->db->affected_rows() > 0) {
+            $assign_to = '';
+            $assign_type = '';
+            activity_log('pembayaran', 'Menambah data transaksi pembayaran', $assign_to, $assign_type);
 
-        // if ($this->db->affected_rows() > 0) {
-        //     $assign_to = '';
-        //     $assign_type = '';
-        //     activity_log('pembayaran', 'Menambah data transaksi pembayaran', $assign_to, $assign_type);
+            $this->session->set_flashdata('success',  'Transaksi pembayaran sukses');
 
-        //     $this->session->set_flashdata('success',  'Transaksi pembayaran sukses');
-
-        //     redirect('pembayaran/transaksispp?search=' . $search['NISN']);
-        // }
+            redirect('pembayaran/transaksispp?search=' . $search['NISN']);
+        }
     }
 
     public function hapus($id)
