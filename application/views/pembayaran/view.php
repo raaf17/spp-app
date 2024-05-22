@@ -189,30 +189,33 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="modal-bayar<?= $pem->ID_PEMBAYARAN; ?>">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <div class="alert alert-warning alert-dismissible show fade">
+                    <b>Pembayaran tidak boleh kurang dari tagihan.</b>
+                </div>
                 <div class="modal-header">
                     <h5 class="modal-title">Transaksi Pembayaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= site_url('pembayaran/transaksi/'.$pem->ID_PEMBAYARAN); ?>" method="post">
+                <form action="<?= site_url('pembayaran/transaksi/' . $pem->ID_PEMBAYARAN); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">Pembayaran Bulan</label>
+                            <label for="bulan">Pembayaran Bulan</label>
                             <input type="text" name="bulan" class="form-control" value="<?= $pem->BULAN_DIBAYAR; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="">Tagihan</label>
+                            <label for="tagihan">Tagihan</label>
                             <input type="text" name="tagihan" id="tagihan" class="form-control" value="Rp. <?= number_format($pem->NOMINAL, 0, ",", ".") ?>">
                         </div>
                         <div class="form-group">
-                            <label for="">Jumlah Pembayaran</label>
-                            <input type="number" name="jml_bayar" id="jml_bayar" class="form-control">
+                            <label for="bayar">Jumlah Pembayaran</label>
+                            <input type="number" name="bayar" id="bayar" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Bayar</button>
+                        <button type="submit" id="bayarButton" class="btn btn-primary">Bayar</button>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 <!-- Alert -->
-<div class="petugas" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+<div class="siswa" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
 <div class="error" data-flashdata="<?= $this->session->flashdata('gagal') ?>"></div>
 
 <!-- Main content -->
@@ -155,6 +155,7 @@
 </div>
 
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
+<script src="<?= base_url('assets/') ?>js/Mysweetalert.js"></script>
 <script type="text/javascript">
     show_data();
 

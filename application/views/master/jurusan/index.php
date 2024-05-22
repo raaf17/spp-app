@@ -115,6 +115,7 @@
 </div>
 
 <script src="<?= base_url('assets/') ?>js/jquery.js"></script>
+<script src="<?= base_url('assets/') ?>js/Mysweetalert.js"></script>
 <script type="text/javascript">
     show_data();
 
