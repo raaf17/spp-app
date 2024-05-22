@@ -65,9 +65,9 @@ class Data_model extends CI_Model
         }
     }
 
-    public function count_transaksi()
+    public function count_kelas()
     {
-        $query = $this->db->get('tbl_pembayaran');
+        $query = $this->db->get('tbl_kelas');
         if ($query->num_rows() > 0) {
             return $query->num_rows();
         } else {

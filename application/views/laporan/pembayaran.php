@@ -86,6 +86,7 @@
                     <th>Tahun Ajaran</th>
                     <th>Pembayaran Bulan</th>
                     <th>Jumlah Bayar</th>
+                    <th>Kembalian</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,10 +100,11 @@
                         <td><?= $p->nama_kelas ?></td>
                         <td><?= $p->TAHUN ?></td>
                         <td><?= $p->BULAN_DIBAYAR ?></td>
-                        <td align="right">Rp.<?= number_format($p->JUMLAH_BAYAR, 0, ",", ".") ?></td>
+                        <td align="right">Rp.<?= number_format($p->BAYAR, 0, ",", ".") ?></td>
+                        <td align="right">Rp.<?= number_format($p->KEMBALIAN, 0, ",", ".") ?></td>
                     </tr>
                 <?php
-                    $jumlah += $p->JUMLAH_BAYAR;
+                    $jumlah += $p->BAYAR - $p->KEMBALIAN;
                 endforeach; ?>
                 <tr>
                     <td colspan="6" align="right"><b>Jumlah : </b></td>

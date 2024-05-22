@@ -23,7 +23,7 @@ class User extends CI_Controller
         $data['siswa'] = $this->db->get_where('tbl_siswa', ['nisn' => $this->session->userdata('NISN')])->row_array();
         $data['jumlahPetugas'] = $this->Data->count_petugas();
         $data['jumlahSiswa'] = $this->Data->count_siswa();
-        $data['jumlahTransaksi'] = $this->Data->count_transaksi();
+        $data['jumlahKelas'] = $this->Data->count_kelas();
         $data['jumlahAktifitas'] = $this->Log->count_activity();
         $data['log'] = $this->Log->get_activity_log();
         $data['siswasatu'] = $this->Data->get_siswa();
@@ -97,7 +97,6 @@ class User extends CI_Controller
     {
         $data['transaksi'] = $this->Data->cetakStruk($id);
         $this->load->view('laporan/struk', $data);
-        // $this->pdfgenerator->generate($html, 'struk pembayaran', 'A4', 'landscape');
 
         if ($this->db->affected_rows() > 0) {
             $assign_to = '';

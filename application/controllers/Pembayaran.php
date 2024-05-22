@@ -49,26 +49,26 @@ class Pembayaran extends CI_Controller
     {
         $search = $this->db->query("SELECT `tbl_siswa`.`NISN` FROM `tbl_siswa`, `tbl_pembayaran` WHERE `tbl_pembayaran`.`NISN` = `tbl_siswa`.`NISN` AND `tbl_pembayaran`.`ID_PEMBAYARAN` = '" . $id . "'")->row_array();
 
-        $jml_bayar = $this->input->post('jml_bayar');
-        $siswa
+        $bayar = $this->input->post('bayar');
 
         $tgl_bayar = date('Y-m-d');
-        if ($jml_bayar < $search->JUMLAH_BAYAR) {
-            $ket = 'BELUM LUNAS';
-        } else if ($jml_bayar == $search->JUMLAH_BAYAR) {
-            $ket = 'LUNAS';
-        }
+        $ket = 'LUNAS';
 
+        
         $data = [
             'tgl_bayar' => $tgl_bayar,
-            'jumlah_bayar' => $jml_bayar,
             'ket' => $ket,
+            'bayar' => $bayar,
             'id_petugas' => $this->session->userdata('id_petugas')
         ];
 
+        
         $this->db->set($data);
         $this->db->where('id_pembayaran', $id);
         $this->db->update('tbl_pembayaran');
+        
+        $query = "UPDATE tbl_pembayaran SET KEMBALIAN = BAYAR - JUMLAH_BAYAR WHERE id_pembayaran=$id";
+        $this->db->query($query);
 
         if ($this->db->affected_rows() > 0) {
             $assign_to = '';

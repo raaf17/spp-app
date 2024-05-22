@@ -130,8 +130,9 @@
         </div>
         <div class="data">
             <p>Telah Diterima Dari : <span><?= $transaksi['NAMA']; ?></span></p>
-            <p>Uang Sejumlah : Rp.<span class="jumlah"><?= $transaksi['JUMLAH_BAYAR'] ?></span></p>
-            <p>Pembayaran Bulan: <span class="bln"><?= $transaksi['BULAN_DIBAYAR']; ?></span></p>
+            <p>Uang Sejumlah    : Rp.<span class="jumlah"><?= $transaksi['JUMLAH_BAYAR'] ?></span></p>
+            <p>Kembalian        : Rp.<span class="jumlah"><?= $transaksi['KEMBALIAN'] ?></span></p>
+            <p>Pembayaran Bulan : <span class="bln"><?= $transaksi['BULAN_DIBAYAR']; ?></span></p>
         </div>
         <div class="ttd">
             <p>Tulungagung, <?= date('d-M-Y', strtotime($transaksi['TGL_BAYAR'])) ?><br><?= $transaksi['nama_petugas'] ?></p>
